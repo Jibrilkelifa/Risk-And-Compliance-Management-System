@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class IncidentOrFraudService {
 
@@ -41,8 +43,9 @@ public class IncidentOrFraudService {
         return incidentOrFraudRepository.findAll().size();
     }
 
-    public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud IncidentOrFraud) {
-        return incidentOrFraudRepository.save(IncidentOrFraud);
+    public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
+        incidentOrFraud.setIsAuthorized(false);
+        return incidentOrFraudRepository.save(incidentOrFraud);
     }
 
     public IncidentOrFraud findIncidentFraudReportById(Long id) {

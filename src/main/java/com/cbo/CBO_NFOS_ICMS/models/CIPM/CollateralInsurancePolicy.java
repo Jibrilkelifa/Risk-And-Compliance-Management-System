@@ -2,7 +2,9 @@ package com.cbo.CBO_NFOS_ICMS.models.CIPM;
 
 import javax.persistence.*;
 
+import com.cbo.CBO_NFOS_ICMS.models.IFR.CaseStatus;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import lombok.*;
 
 @Data
@@ -17,6 +19,8 @@ public class CollateralInsurancePolicy {
     private Long id;
     @Column( length = 64)
     private String preparedBy;
+//    @Column( length = 64)
+//    private double outstandingBalance;
     @Column( length = 64)
     private String preparationTimeStamp;
     @Column( length = 64)
@@ -45,10 +49,19 @@ public class CollateralInsurancePolicy {
     private String insuredName;
     @Column(length = 64)
     private String insuranceExpireDate;
-
+    private Boolean isAuthorized= false;
     @ManyToOne
     @JoinColumn(name = "organizational_unit_id")
     private OrganizationalUnit organizationalUnit;
+
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "sub_process_id")
+    private SubProcess subProcess;
+
 }
 
 

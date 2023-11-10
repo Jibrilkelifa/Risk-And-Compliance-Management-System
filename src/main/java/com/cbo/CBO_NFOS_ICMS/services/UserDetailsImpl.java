@@ -1,4 +1,4 @@
-package com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService;
+package com.cbo.CBO_NFOS_ICMS.services;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

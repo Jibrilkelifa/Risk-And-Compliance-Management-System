@@ -33,6 +33,7 @@ public class AllCategory {
     public AllCategory(String name) {
         this.name = name;
     }
-    public AllCategory(String name, SubModule subModule) { this.name = name; this.subModule = subModule; }
+    public AllCategory(String name, SubModule subModule) { this.name = name; this.subModule = subModule;
+    }
 
 }

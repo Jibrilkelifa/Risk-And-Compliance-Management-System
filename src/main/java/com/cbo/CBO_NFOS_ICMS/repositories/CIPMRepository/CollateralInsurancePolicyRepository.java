@@ -12,13 +12,15 @@ import java.util.Optional;
 
 public interface CollateralInsurancePolicyRepository extends JpaRepository<CollateralInsurancePolicy, Long> {
     void deleteCollateralInsurancePolicyById(Long id);
+
     Optional<CollateralInsurancePolicy> findCollateralInsurancePolicyById(Long id);
     List<CollateralInsurancePolicy> findCollateralInsurancePolicyByOrganizationalUnit(OrganizationalUnit organizationalUnit);
-    @Query("SELECT cipm FROM CollateralInsurancePolicy cipm JOIN OrganizationalUnit b ON cipm.organizationalUnit.id = b.id JOIN SubProcess d ON b.subProcess.id = d.id WHERE d.id = :id")
-    List<CollateralInsurancePolicy> findCollateralInsurancePolicyBySubProcessId(Long id);
+ @Query("SELECT cipm FROM CollateralInsurancePolicy cipm JOIN OrganizationalUnit b ON cipm.organizationalUnit.id = b.id JOIN SubProcess d ON b.subProcess.id = d.id WHERE d.id = :id")
+   List<CollateralInsurancePolicy> findCollateralInsurancePolicyBySubProcessId(Long id);
     @Query("SELECT COUNT(c) FROM CollateralInsurancePolicy c")
     long count();
     List<CollateralInsurancePolicy> findAllByInsuranceExpireDateBefore(LocalDate currentDate);
     List<CollateralInsurancePolicy> findByInsuranceExpireDateBetween(LocalDate currentDate, LocalDate thirtyDaysFromNow);
     List<CollateralInsurancePolicy> findCollateralInsurancePolicyByOrganizationalUnit_SubProcess(SubProcess subProcess);
+
 }

@@ -3,6 +3,7 @@ package com.cbo.CBO_NFOS_ICMS.seeders;
 import com.cbo.CBO_NFOS_ICMS.models.*;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralType;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.InsuranceCoverageType;
+import com.cbo.CBO_NFOS_ICMS.models.CIPM.Status;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.SuspectedFraudsterProfession;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.ActivityStatus;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.ActionTaken;
@@ -12,6 +13,7 @@ import com.cbo.CBO_NFOS_ICMS.models.IFR.FraudType;
 import com.cbo.CBO_NFOS_ICMS.repositories.*;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralTypeRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.InsuranceCoverageTypeRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.StatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.SuspectedFraudsterProfessionRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.ActivityStatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.ActionTakenRepository;
@@ -35,6 +37,7 @@ public class DatabaseSeeder {
     //private Logger logger = Logger.getLogger(DatabaseSeeder.class);
     private JdbcTemplate jdbcTemplate;
     private CollateralTypeRepository collateralTypeRepository;
+    private StatusRepository statusRepository;
     private InsuranceCoverageTypeRepository insuranceCoverageTypeRepository;
     private ChequeTypeRepository chequeTypeRepository;
     private ActionTakenRepository actionTakenRepository;
@@ -58,6 +61,7 @@ public class DatabaseSeeder {
             JdbcTemplate jdbcTemplate,
             AllSubCategoryRepository allSubCategoryRepository,
             CollateralTypeRepository collateralTypeRepository,
+            StatusRepository statusRepository,
             InsuranceCoverageTypeRepository insuranceCoverageTypeRepository,
             ChequeTypeRepository chequeTypeRepository,
             ActionTakenRepository actionTakenRepository,
@@ -78,6 +82,7 @@ public class DatabaseSeeder {
         this.insuranceCoverageTypeRepository = insuranceCoverageTypeRepository;
         this.chequeTypeRepository = chequeTypeRepository;
         this.actionTakenRepository = actionTakenRepository;
+        this.statusRepository=statusRepository;
         this.caseStatusRepository = caseStatusRepository;
         this.activityStatusRepository = activityStatusRepository;
         this.allCategoryRepository = allCategoryRepository;
@@ -106,6 +111,10 @@ public class DatabaseSeeder {
         seedCollateralType("Share Certificates");
         seedCollateralType("Movable Collateral");
         seedCollateralType("Other");
+
+
+        seedStatus("Active");
+        seedStatus("Closed");
         
         seedInsuranceCoverageType("Fire and related perils");
         seedInsuranceCoverageType("Motor Comprehensive; Third Party Liability");
@@ -571,6 +580,19 @@ public class DatabaseSeeder {
             CollateralType collateralType = new CollateralType();
             collateralType.setName(name);
             collateralTypeRepository.save(collateralType);
+            // logger.info("SubProcess Seeded");
+        } else {
+            //  logger.info("SubProcess Seeding Not Required");
+        }
+    }
+    @Transactional
+    public void seedStatus(String name) {
+        String sql = "SELECT name FROM statuses s WHERE s.name = ? LIMIT 1";
+        List<Status> s = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
+        if (s == null || s.size() == 0) {
+            Status status = new Status();
+            status.setName(name);
+            statusRepository.save(status);
             // logger.info("SubProcess Seeded");
         } else {
             //  logger.info("SubProcess Seeding Not Required");

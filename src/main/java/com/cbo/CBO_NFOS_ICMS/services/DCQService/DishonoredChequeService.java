@@ -107,5 +107,20 @@ public class DishonoredChequeService {
         }
         return count;
     }
+    public List<DishonoredCheque> getDishonouredChequesThreeTimesInLastWeek() {
+        LocalDate startDate = LocalDate.now().minusDays(7);
+        LocalDate endDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        List<DishonoredCheque> dishonoredCheques = new ArrayList<>();
+
+        for (DishonoredCheque dcq : dishonoredChequeRepository.findByFrequencyGreaterThanEqual(3)) {
+            LocalDate datePresented = LocalDate.parse(dcq.getDatePresented(), formatter);
+            if (datePresented.isAfter(startDate) && datePresented.isBefore(endDate.plusDays(1))) {
+                dishonoredCheques.add(dcq);
+            }
+        }
+
+        return dishonoredCheques;
+    }
 
 }

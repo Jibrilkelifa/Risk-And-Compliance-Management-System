@@ -72,6 +72,7 @@ public class IncidentOrFraud {
     private String reasonForFailedFraudAttempt;
     @Column( length = 64)
     private String otherComment;
+    private Boolean isAuthorized= false;
     @ManyToOne
     @JoinColumn(name = "organizational_unit_id")
     private OrganizationalUnit organizationalUnit;

@@ -151,6 +151,44 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases.size(), HttpStatus.OK);
     }
+    @GetMapping("/getOutstandingCasesDuringQuarter-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<IncidentOrFraud>> getOutstandingCasesDuringQuarterlist() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> outstandingCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth = null;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    caseItem.getCaseStatus().getName().equals("Outstanding")) {
+                outstandingCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(outstandingCases, HttpStatus.OK);
+    }
     @GetMapping("/getClosedCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getClosedCasesDuringQuarter() {
@@ -188,6 +226,84 @@ public class IncidentOrFraudController {
         }
 
         return new ResponseEntity<>(closedCases.size(), HttpStatus.OK);
+    }
+    @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    (caseItem.getCaseStatus().getName().equals("Closed") ||
+                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
+                closedAndWrittenOffCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(closedAndWrittenOffCases.size(), HttpStatus.OK);
+    }
+    @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<IncidentOrFraud>> getClosedAndWrittenOffCasesDuringQuarterlist() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    (caseItem.getCaseStatus().getName().equals("Closed") ||
+                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
+                closedAndWrittenOffCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
     }
 
 
@@ -268,6 +384,41 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases.size(), HttpStatus.OK);
     }
+    @GetMapping("/getOutstandingCasesInPreviousQuarter-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<IncidentOrFraud>> getOutstandingCasesInPreviousQuarterlist() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> outstandingCases = new ArrayList<>();
+
+        // Get the start and end dates for the previous quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth = null;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.OCTOBER;
+            yearOffset = -1;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.APRIL;
+        } else {
+            startMonth = Month.JULY;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the previous quarter and have a status of "Outstanding"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    caseItem.getCaseStatus().getName().equals("Outstanding")) {
+                outstandingCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(outstandingCases, HttpStatus.OK);
+    }
     @GetMapping("/getNewCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getNewCasesDuringQuarter() {
@@ -304,5 +455,42 @@ public class IncidentOrFraudController {
         }
 
         return new ResponseEntity<>(newCases.size(), HttpStatus.OK);
+    }
+    @GetMapping("/getNewCasesDuringQuarter-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<IncidentOrFraud>> getNewCasesDuringQuarterlist() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> newCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth = null;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            if (caseDate.isAfter(startQuarter.minusDays(1)) && caseDate.isBefore(endQuarter.plusDays(1))) {
+                newCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(newCases, HttpStatus.OK);
     }
 }

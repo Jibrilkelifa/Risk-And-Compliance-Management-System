@@ -41,6 +41,19 @@ public class DailyActivityGapControlService {
         return dACGMRepository.findAll();
     }
 
+
+
+
+    public DailyActivityGapControl approveActionPlan(Long id, String actionPlanDueDate) {
+        DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        row.setActionPlanDueDate(actionPlanDueDate);
+        return dACGMRepository.save(row);
+    }
+    public DailyActivityGapControl escalatePlan(Long id) {
+        DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        row.setEscalatedByManager(true);
+        return dACGMRepository.save(row);
+    }
     public int findDACGMSize() {
         return dACGMRepository.findAll().size();
     }

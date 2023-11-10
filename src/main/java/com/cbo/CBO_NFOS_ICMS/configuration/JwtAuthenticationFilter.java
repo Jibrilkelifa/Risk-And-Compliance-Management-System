@@ -1,7 +1,8 @@
 package com.cbo.CBO_NFOS_ICMS.configuration;
 
 
-import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.UserDetailsServiceImpl;
+
+import com.cbo.CBO_NFOS_ICMS.services.UserDetailsServiceImpl;
 import com.cbo.CBO_NFOS_ICMS.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
