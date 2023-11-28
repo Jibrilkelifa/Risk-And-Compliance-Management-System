@@ -1,0 +1,26 @@
+
+
+java:S1192"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8ê½ŸÍ¯1
+j
+java:S1192ß"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8¥â”é±1
+o
+java:S1192“"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8ê½ŸÍ¯1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8ë½ŸÍ¯1
+r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ë½ŸÍ¯1
+r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ë½ŸÍ¯1
+m	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8ë½ŸÍ¯1
+r	java:S117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ä¿ÿÿÿÿÿ8ë½ŸÍ¯1
+r	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ä¿ÿÿÿÿÿ8ë½ŸÍ¯1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8í½ŸÍ¯1
+b
+java:S4684>"@Replace this persistent entity with a simple POJO or DTO object.(¢ä¿ÿÿÿÿÿ8ğÁŸÍ¯1
+b
+java:S4684F"@Replace this persistent entity with a simple POJO or DTO object.(¢ä¿ÿÿÿÿÿ8ñÁŸÍ¯1
+H
+java:S1452b"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8óÁŸÍ¯1
+b
+java:S1854º"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8şÁŸÍ¯1
+S
+java:S1481º"5Remove this unused "outstandingCases" local variable.(Ç šÙ8ÿÁŸÍ¯1
+k
+java:S5361×"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8ÂŸÍ¯1

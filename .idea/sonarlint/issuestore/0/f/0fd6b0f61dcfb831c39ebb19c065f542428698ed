@@ -1,0 +1,11 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸–ûÑşÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(´ï¾úÿÿÿÿ
+f	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–²Éà
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îéââùÿÿÿÿ
+[
+java:S4684"@Replace this persistent entity with a simple POJO or DTO object.(´ï¾úÿÿÿÿ
+V
+java:S4684%"@Replace this persistent entity with a simple POJO or DTO object.(–²Éà
+<
+java:S1452+"&Remove usage of generic wildcard type.(•Ù¸¹

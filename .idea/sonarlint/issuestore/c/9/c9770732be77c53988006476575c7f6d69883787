@@ -1,0 +1,8 @@
+
+r	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ¨é›þÿÿÿÿ8æ°‹½·1
+r	java:S117A"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê‹¨Îÿÿÿÿÿ8ç°‹½·1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÇÙ±Ç8è°‹½·1
+G	java:S106+"+Replace this use of System.out by a logger.(ìÝì‰8Ÿì’û·1
+u
+java:S1128
+"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸Îùÿÿÿÿ8óë¼û·1
