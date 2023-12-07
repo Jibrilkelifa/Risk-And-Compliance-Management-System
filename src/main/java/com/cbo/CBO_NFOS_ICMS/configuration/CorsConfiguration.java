@@ -15,13 +15,13 @@ public class CorsConfiguration {
     private static final String DELETE = "DELETE";
 
     @Bean
-    public WebMvcConfigurer corsConfigurer(){
+    public WebMvcConfigurer corsConfigurer() {
 
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods(GET,POST,PUT,DELETE)
+                        .allowedMethods(GET, POST, PUT, DELETE)
                         .allowedHeaders("*")
                         .allowedOriginPatterns("*")
                         .allowCredentials(true);

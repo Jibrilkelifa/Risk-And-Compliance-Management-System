@@ -15,12 +15,13 @@ import javax.persistence.*;
 public class SubModule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false )
+    @Column(updatable = false)
     private Long id;
     @Column(length = 10)
     private String code;
     @Column(length = 64)
     private String name;
+
     public SubModule(String name) {
         this.name = name;
     }

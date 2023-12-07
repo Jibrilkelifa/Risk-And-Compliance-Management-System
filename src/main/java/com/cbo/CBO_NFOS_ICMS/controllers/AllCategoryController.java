@@ -19,28 +19,33 @@ public class AllCategoryController {
     public AllCategoryController(AllCategoryService allCategoryService) {
         this.allCategoryService = allCategoryService;
     }
+
     @GetMapping("/find/{id}")
-    public ResponseEntity<AllCategory> getAllCategoryId (@PathVariable("id") Long id) {
-        AllCategory allCategory= allCategoryService.findAllCategoryById(id);
+    public ResponseEntity<AllCategory> getAllCategoryId(@PathVariable("id") Long id) {
+        AllCategory allCategory = allCategoryService.findAllCategoryById(id);
         return new ResponseEntity<>(allCategory, HttpStatus.OK);
     }
+
     @PostMapping("/getAllCategory")
     public List<AllCategory> getAllCategoriesBySubModuleName(@RequestBody Map<String, String> requestBody) {
         String subModuleName = requestBody.get("subModuleName");
         return allCategoryService.findAllCategoryBySubModuleName(subModuleName);
     }
+
     @PostMapping("/add")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllCategory> addAllCategory(@RequestBody AllCategory allCategory) {
-        AllCategory newAllCategory =allCategoryService.addAllCategory(allCategory);
+        AllCategory newAllCategory = allCategoryService.addAllCategory(allCategory);
         return new ResponseEntity<>(newAllCategory, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllCategory> updateAllCategory(@RequestBody AllCategory allCategory) {
-        AllCategory updateAllCategory =allCategoryService.updateAllCategory(allCategory);
+        AllCategory updateAllCategory = allCategoryService.updateAllCategory(allCategory);
         return new ResponseEntity<>(updateAllCategory, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<?> deleteAllCategory(@PathVariable("id") Long id) {

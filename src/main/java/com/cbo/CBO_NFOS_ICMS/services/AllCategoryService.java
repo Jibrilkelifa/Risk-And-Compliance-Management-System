@@ -14,26 +14,32 @@ public class AllCategoryService {
     public AllCategoryService(AllCategoryRepository allCategoryRepository) {
         this.allCategoryRepository = allCategoryRepository;
     }
-    public AllCategory addAllCategory(AllCategory allCategory){
+
+    public AllCategory addAllCategory(AllCategory allCategory) {
 
         return allCategoryRepository.save(allCategory);
     }
-    public List<AllCategory> findAllAllCategory(){
+
+    public List<AllCategory> findAllAllCategory() {
         return allCategoryRepository.findAll();
     }
-    public List<AllCategory> findAllCategoryBySubModuleName(String name){
+
+    public List<AllCategory> findAllCategoryBySubModuleName(String name) {
         List<AllCategory> allCategories = allCategoryRepository.findAll();
         allCategories.removeIf(allCategory -> !allCategory.getSubModule().getCode().equals(name));
         return allCategories;
     }
-    public AllCategory  updateAllCategory(AllCategory allCategory){
+
+    public AllCategory updateAllCategory(AllCategory allCategory) {
         return allCategoryRepository.save(allCategory);
     }
-    public AllCategory findAllCategoryById(Long id){
+
+    public AllCategory findAllCategoryById(Long id) {
         return allCategoryRepository.findAllCategoryById(id)
-                .orElseThrow(()-> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
-    public void deleteAllCategory(Long id){
+
+    public void deleteAllCategory(Long id) {
         allCategoryRepository.deleteById(id);
     }
 

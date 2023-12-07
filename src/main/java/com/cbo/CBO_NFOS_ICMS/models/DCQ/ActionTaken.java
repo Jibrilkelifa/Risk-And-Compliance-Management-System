@@ -13,10 +13,11 @@ import javax.persistence.*;
 public class ActionTaken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable =false , updatable = false )
+    @Column(nullable = false, updatable = false)
     private Long id;
     @Column(nullable = false)
     private String name;
+
     public ActionTaken(String name) {
         this.name = name;
     }

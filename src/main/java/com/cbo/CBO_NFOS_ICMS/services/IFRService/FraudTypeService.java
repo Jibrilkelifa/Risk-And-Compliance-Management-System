@@ -6,6 +6,7 @@ import com.cbo.CBO_NFOS_ICMS.repositories.IFRRepository.FraudTypeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class FraudTypeService {
     private final FraudTypeRepository fraudTypeRepository;
@@ -13,21 +14,26 @@ public class FraudTypeService {
     public FraudTypeService(FraudTypeRepository fraudTypeRepository) {
         this.fraudTypeRepository = fraudTypeRepository;
     }
-    public FraudType addFraudType(FraudType fraudType){
+
+    public FraudType addFraudType(FraudType fraudType) {
 
         return fraudTypeRepository.save(fraudType);
     }
-    public List<FraudType> findAllFraudType(){
+
+    public List<FraudType> findAllFraudType() {
         return fraudTypeRepository.findAll();
     }
-    public FraudType updateFraudType(FraudType fraudType){
+
+    public FraudType updateFraudType(FraudType fraudType) {
         return fraudTypeRepository.save(fraudType);
     }
-    public FraudType findFraudTypeById(Long id){
+
+    public FraudType findFraudTypeById(Long id) {
         return fraudTypeRepository.findFraudTypeById(id)
-                .orElseThrow(()-> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
-    public void deleteFraudType(Long id){
+
+    public void deleteFraudType(Long id) {
         fraudTypeRepository.deleteById(id);
     }
 }

@@ -22,9 +22,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
         logger.error("Unauthorized error: {}", authException.getMessage());
-       // response.setContentType("application/json;charset=UTF-8");
+        // response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        JSONObject js =new JSONObject();
+        JSONObject js = new JSONObject();
         js.put("timestamp", LocalDateTime.now());
         js.put("message", "Access denied");
         response.getWriter().write(js.toString());

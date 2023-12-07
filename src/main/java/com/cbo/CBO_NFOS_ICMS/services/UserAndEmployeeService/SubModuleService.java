@@ -14,20 +14,25 @@ public class SubModuleService {
     public SubModuleService(SubModuleRepository subModuleRepository) {
         this.subModuleRepository = subModuleRepository;
     }
-    public SubModule addSubModule(SubModule subModule){
+
+    public SubModule addSubModule(SubModule subModule) {
         return subModuleRepository.save(subModule);
     }
-    public List<SubModule> findAllSubModule(){
+
+    public List<SubModule> findAllSubModule() {
         return subModuleRepository.findAll();
     }
-    public SubModule updateSubModule(SubModule subModule){
+
+    public SubModule updateSubModule(SubModule subModule) {
         return subModuleRepository.save(subModule);
     }
-    public SubModule findSubModuleById(Long id){
+
+    public SubModule findSubModuleById(Long id) {
         return subModuleRepository.findSubModuleById(id)
-                .orElseThrow(()-> new UserNotFoundException("SubModule by id = " + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("SubModule by id = " + id + " was not found"));
     }
-    public void deleteSubModule(Long id){
+
+    public void deleteSubModule(Long id) {
         subModuleRepository.deleteById(id);
     }
 }

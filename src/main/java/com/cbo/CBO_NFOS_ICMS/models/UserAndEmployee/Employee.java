@@ -35,7 +35,7 @@ public class Employee {
     @JsonIgnore
     private User user;
 
-    public Employee(Long employeeId, String fullName, String jobTitle, OrganizationalUnit organizationalUnit, String personalEmail, String companyEmail, String phoneNumber, String employeeImage,  String signatureImage, String gender, String birthDate) {
+    public Employee(Long employeeId, String fullName, String jobTitle, OrganizationalUnit organizationalUnit, String personalEmail, String companyEmail, String phoneNumber, String employeeImage, String signatureImage, String gender, String birthDate) {
         this.employeeId = employeeId;
         this.fullName = fullName;
         this.jobTitle = jobTitle;

@@ -15,31 +15,36 @@ public class BranchService {
     public BranchService(BranchRepository branchRepository) {
         this.branchRepository = branchRepository;
     }
-    public Branch addBranch(Branch branch){
+
+    public Branch addBranch(Branch branch) {
 
         return branchRepository.save(branch);
     }
-    public List<Branch> findAllBranch(){
+
+    public List<Branch> findAllBranch() {
         return branchRepository.findAll();
     }
-    public Branch  updateBranch(Branch branch){
+
+    public Branch updateBranch(Branch branch) {
         return branchRepository.save(branch);
     }
-    public Branch findBranchById(Long id){
+
+    public Branch findBranchById(Long id) {
         return branchRepository.findBranchById(id)
-                .orElseThrow(()-> new UserNotFoundException("Branch by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("Branch by id" + id + " was not found"));
     }
 
-    public List<Branch> findBranchBySubProcess(SubProcess subProcess){
+    public List<Branch> findBranchBySubProcess(SubProcess subProcess) {
         return branchRepository.findBranchBySubProcess(subProcess);
     }
-    public String deleteBranch(Long id){
+
+    public String deleteBranch(Long id) {
 
         branchRepository.deleteById(id);
-        return  "Record deleted Succesfully";
+        return "Record deleted Succesfully";
     }
 
     public Branch findBranchByName(String name) {
-        return branchRepository.findBranchByName(name).orElseThrow(()-> new UserNotFoundException("Branch by name=" + name + " was not found"));
+        return branchRepository.findBranchByName(name).orElseThrow(() -> new UserNotFoundException("Branch by name=" + name + " was not found"));
     }
 }

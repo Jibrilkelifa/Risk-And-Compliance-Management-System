@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface FraudTypeRepository extends JpaRepository<FraudType,Long> {
+public interface FraudTypeRepository extends JpaRepository<FraudType, Long> {
     Optional<FraudType> findFraudTypeById(Long id);
 }

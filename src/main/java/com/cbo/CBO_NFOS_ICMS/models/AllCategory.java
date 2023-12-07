@@ -1,12 +1,8 @@
 package com.cbo.CBO_NFOS_ICMS.models;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -20,10 +16,10 @@ public class AllCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false )
+    @Column(updatable = false)
     private Long id;
 
-    @Column( length = 64)
+    @Column(length = 64)
     private String name;
 
     @ManyToOne
@@ -33,7 +29,10 @@ public class AllCategory {
     public AllCategory(String name) {
         this.name = name;
     }
-    public AllCategory(String name, SubModule subModule) { this.name = name; this.subModule = subModule;
+
+    public AllCategory(String name, SubModule subModule) {
+        this.name = name;
+        this.subModule = subModule;
     }
 
 }

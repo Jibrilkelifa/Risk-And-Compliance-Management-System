@@ -14,21 +14,26 @@ public class CaseStatusService {
     public CaseStatusService(CaseStatusRepository caseStatusRepository) {
         this.caseStatusRepository = caseStatusRepository;
     }
-    public CaseStatus addCaseStatus(CaseStatus caseStatus){
+
+    public CaseStatus addCaseStatus(CaseStatus caseStatus) {
 
         return caseStatusRepository.save(caseStatus);
     }
-    public List<CaseStatus> findAllCaseStatus(){
+
+    public List<CaseStatus> findAllCaseStatus() {
         return caseStatusRepository.findAll();
     }
-    public CaseStatus updateCaseStatus(CaseStatus caseStatus){
+
+    public CaseStatus updateCaseStatus(CaseStatus caseStatus) {
         return caseStatusRepository.save(caseStatus);
     }
-    public CaseStatus findCaseStatusById(Long id){
+
+    public CaseStatus findCaseStatusById(Long id) {
         return caseStatusRepository.findCaseStatusById(id)
-                .orElseThrow(()-> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
-    public void deleteCaseStatus(Long id){
+
+    public void deleteCaseStatus(Long id) {
         caseStatusRepository.deleteById(id);
     }
 }

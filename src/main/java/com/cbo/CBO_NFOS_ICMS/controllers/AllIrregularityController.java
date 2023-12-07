@@ -18,16 +18,19 @@ public class AllIrregularityController {
     public AllIrregularityController(AllIrregularityService allIrregularityService) {
         this.allIrregularityService = allIrregularityService;
     }
+
     @GetMapping("/all")
-    public ResponseEntity<List<AllIrregularity>> getAllIrregularitys(){
+    public ResponseEntity<List<AllIrregularity>> getAllIrregularitys() {
         List<AllIrregularity> allIrregularities = allIrregularityService.findAllIrregularity();
         return new ResponseEntity<>(allIrregularities, HttpStatus.OK);
     }
+
     @GetMapping("/find/{id}")
-    public ResponseEntity<AllIrregularity> getIrregularityId (@PathVariable("id") Long id) {
-       AllIrregularity allIrregularity = allIrregularityService.findIrregularityById(id);
+    public ResponseEntity<AllIrregularity> getIrregularityId(@PathVariable("id") Long id) {
+        AllIrregularity allIrregularity = allIrregularityService.findIrregularityById(id);
         return new ResponseEntity<>(allIrregularity, HttpStatus.OK);
     }
+
     @PostMapping("/getAllIrregularity")
     public List<AllIrregularity> getAllIrregularitiesByCategoryNameAndSubCategoryName(@RequestBody Map<String, String> requestBody) {
         String categoryName = requestBody.get("categoryName");
@@ -38,19 +41,21 @@ public class AllIrregularityController {
     @PostMapping("/add")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllIrregularity> addIrregularity(@RequestBody AllIrregularity allIrregularity) {
-       AllIrregularity newAllIrregularity = allIrregularityService.addIrregularity(allIrregularity);
+        AllIrregularity newAllIrregularity = allIrregularityService.addIrregularity(allIrregularity);
         return new ResponseEntity<>(newAllIrregularity, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllIrregularity> updateIrregularity(@RequestBody AllIrregularity allIrregularity) {
-       AllIrregularity updateAllIrregularity = allIrregularityService.updateIrregularity(allIrregularity);
+        AllIrregularity updateAllIrregularity = allIrregularityService.updateIrregularity(allIrregularity);
         return new ResponseEntity<>(updateAllIrregularity, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<?> deleteIrregularity(@PathVariable("id") Long id) {
-       allIrregularityService.deleteIrregularity(id);
+        allIrregularityService.deleteIrregularity(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

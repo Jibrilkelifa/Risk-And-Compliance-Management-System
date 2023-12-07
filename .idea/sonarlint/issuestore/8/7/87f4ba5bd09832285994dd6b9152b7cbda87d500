@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 k
 java:S1192V"IDefine a constant instead of duplicating this literal "M/d/yyyy" 3 times.(ê’ŠÑýÿÿÿÿ8Ì·¿÷·1
 m	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¬Üù8Í·¿÷·1
@@ -13,9 +14,15 @@ java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á8ñ·¿÷·1
 _
 java:S1068"=Remove this unused "organizationalUnitService" private field.(³Žªòûÿÿÿÿ8ò·¿÷·1
 =======
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 d
 java:S1192R"IDefine a constant instead of duplicating this literal "M/d/yyyy" 3 times.(ê’ŠÑýÿÿÿÿ
 f	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¬Üù
 k	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§·Š§ùÿÿÿÿ
+<<<<<<< HEAD
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

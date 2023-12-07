@@ -17,13 +17,16 @@ public class ActionTakenService {
     public ActionTakenService(ActionTakenRepository actionTakenRepository) {
         this.actionTakenRepository = actionTakenRepository;
     }
-    public ActionTaken addActionTaken(ActionTaken actionTaken){
+
+    public ActionTaken addActionTaken(ActionTaken actionTaken) {
 
         return actionTakenRepository.save(actionTaken);
     }
-    public List<ActionTaken> findAllActionTaken(){
+
+    public List<ActionTaken> findAllActionTaken() {
         return actionTakenRepository.findAll();
     }
+
     public ActionTaken updateActionTaken(ActionTaken actionTaken) throws Exception {
         try {
             return actionTakenRepository.save(actionTaken);
@@ -37,11 +40,13 @@ public class ActionTakenService {
             throw new Exception("Error with transaction system: " + e.getMessage());
         }
     }
-    public ActionTaken findActionTakenById(Long id){
+
+    public ActionTaken findActionTakenById(Long id) {
         return actionTakenRepository.findActionTakenById(id)
-                .orElseThrow(()-> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
-    public void deleteActionTaken(Long id){
+
+    public void deleteActionTaken(Long id) {
         ActionTaken existingActionTaken = actionTakenRepository.findById(id).orElse(null);
         if (existingActionTaken == null)
             throw new NoSuchActionTakenExistsException("No Such ActionTaken exists!!");

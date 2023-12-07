@@ -14,20 +14,25 @@ public class AllSubCategoryService {
     public AllSubCategoryService(AllSubCategoryRepository allSubCategoryRepository) {
         this.allSubCategoryRepository = allSubCategoryRepository;
     }
-    public AllSubCategory addAllSubCategory(AllSubCategory allSubCategory){
+
+    public AllSubCategory addAllSubCategory(AllSubCategory allSubCategory) {
 
         return allSubCategoryRepository.save(allSubCategory);
     }
-    public List<AllSubCategory> findAllSubCategory(){
+
+    public List<AllSubCategory> findAllSubCategory() {
         return allSubCategoryRepository.findAll();
     }
-    public AllSubCategory  updateAllSubCategory(AllSubCategory allSubCategory){
+
+    public AllSubCategory updateAllSubCategory(AllSubCategory allSubCategory) {
         return allSubCategoryRepository.save(allSubCategory);
     }
-    public AllSubCategory findAllSubCategoryById(Long id){
+
+    public AllSubCategory findAllSubCategoryById(Long id) {
         return allSubCategoryRepository.findAllSubCategoryById(id)
-                .orElseThrow(()-> new UserNotFoundException("allSubCategory by id = " + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("allSubCategory by id = " + id + " was not found"));
     }
+
     public List<AllSubCategory> findAllSubCategoryByCategoryName(String subModuleName, String categoryName) {
         List<AllSubCategory> subCategories = allSubCategoryRepository.findAll();
         System.out.println(subCategories);
@@ -35,7 +40,8 @@ public class AllSubCategoryService {
         System.out.println(subCategories);
         return subCategories;
     }
-    public void deleteAllSubCategory(Long id){
+
+    public void deleteAllSubCategory(Long id) {
         allSubCategoryRepository.deleteById(id);
     }
 

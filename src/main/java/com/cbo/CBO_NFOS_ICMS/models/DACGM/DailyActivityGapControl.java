@@ -16,38 +16,37 @@ import javax.persistence.*;
 public class DailyActivityGapControl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( updatable = false)
+    @Column(updatable = false)
     private Long id;
-    @Column( length = 64)
+    @Column(length = 64)
     private String date;
-    @Column( length = 64)
+    @Column(length = 64)
     private String preparedBy;
-    @Column( length = 64)
+    @Column(length = 64)
     private String caseId;
-    @Column( length = 64)
+    @Column(length = 64)
     private String accountNumber;
-    @Column( length = 64)
+    @Column(length = 64)
     private String accountName;
-    @Column( length = 64)
+    @Column(length = 64)
     private String amountInvolved;
-    @Column( length = 64)
+    @Column(length = 64)
     private String responsiblePerson;
-    @Column( length = 64)
+    @Column(length = 64)
     private String actionPlanDueDate;
-    @Column( length = 64)
+    @Column(length = 64)
     private String approvedBy;
-    private Boolean escalatedByManager= false;
-<<<<<<< HEAD
-    private Boolean actionTaken= false;
-=======
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+    private Boolean escalatedByManager = false;
+
+    private Boolean actionTaken = false;
+
     @ManyToOne
     @JoinColumn(name = "activity_status_id")
     private ActivityStatus activityStatus;
     @ManyToOne
     @JoinColumn(name = "irregularity_id")
     private AllIrregularity irregularity;
-    @Column( length = 64)
+    @Column(length = 64)
     private String otherIrregularity;
     @ManyToOne
     @JoinColumn(name = "branch_id")

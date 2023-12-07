@@ -18,6 +18,6 @@ public class Location {
     private String code;
     private String name;
     @ManyToOne
-    @JoinColumn(name="location_group_id")
+    @JoinColumn(name = "location_group_id")
     private LocationGroup locationGroup;
 }

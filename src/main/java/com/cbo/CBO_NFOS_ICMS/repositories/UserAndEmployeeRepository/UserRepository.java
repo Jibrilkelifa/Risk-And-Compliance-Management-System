@@ -11,10 +11,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 //    public User findByUsername(String user);
     Boolean existsByUsername(String username);
 
-   // Boolean existsByEmail(String email);
+    // Boolean existsByEmail(String email);
     Optional<User> findUserById(Long id);
-
-
 
 
 //    @Query("SELECT u FROM User u WHERE u.email = ?1")
@@ -22,8 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     void deleteUserById(Long id);
 
-  //  List<User> findUsersByRolesId(Long roleId);
-
+    //  List<User> findUsersByRolesId(Long roleId);
 
 
     @Query("SELECT u FROM User u WHERE u.username = ?1")

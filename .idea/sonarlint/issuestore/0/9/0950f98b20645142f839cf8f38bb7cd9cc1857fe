@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ãž«÷
 b
 java:S1117R"@Rename "isAuthorized" which hides the field declared at line 86.(üóªÂùÿÿÿÿ8™§šÄ1
 X	java:S125X"<This block of commented-out lines of code should be removed.(åýêŸ8˜ýîõÃ1
+=======
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ãž«÷
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

@@ -6,6 +6,7 @@ import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.InsuranceCoverageTypeRe
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class InsuranceCoverageTypeService {
     private final InsuranceCoverageTypeRepository insuranceCoverageTypeRepository;
@@ -13,21 +14,26 @@ public class InsuranceCoverageTypeService {
     public InsuranceCoverageTypeService(InsuranceCoverageTypeRepository insuranceCoverageTypeRepository) {
         this.insuranceCoverageTypeRepository = insuranceCoverageTypeRepository;
     }
-    public InsuranceCoverageType addInsuranceCoverageType(InsuranceCoverageType insuranceCoverageType){
+
+    public InsuranceCoverageType addInsuranceCoverageType(InsuranceCoverageType insuranceCoverageType) {
 
         return insuranceCoverageTypeRepository.save(insuranceCoverageType);
     }
-    public List<InsuranceCoverageType> findAllInsuranceCoverageType(){
+
+    public List<InsuranceCoverageType> findAllInsuranceCoverageType() {
         return insuranceCoverageTypeRepository.findAll();
     }
-    public InsuranceCoverageType updateInsuranceCoverageType(InsuranceCoverageType insuranceCoverageType){
+
+    public InsuranceCoverageType updateInsuranceCoverageType(InsuranceCoverageType insuranceCoverageType) {
         return insuranceCoverageTypeRepository.save(insuranceCoverageType);
     }
-    public InsuranceCoverageType findInsuranceCoverageTypeById(Long id){
+
+    public InsuranceCoverageType findInsuranceCoverageTypeById(Long id) {
         return insuranceCoverageTypeRepository.findInsuranceCoverageTypeById(id)
-                .orElseThrow(()-> new UserNotFoundException("InsuranceCoverageType by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("InsuranceCoverageType by id" + id + " was not found"));
     }
-    public void deleteInsuranceCoverageType(Long id){
+
+    public void deleteInsuranceCoverageType(Long id) {
         insuranceCoverageTypeRepository.deleteById(id);
     }
 }

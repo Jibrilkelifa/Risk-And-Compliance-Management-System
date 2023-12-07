@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÆË·ýÿÿÿÿ8´åÎ¸1
 l	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½ïƒ{8´åÎ¸1
 m	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÈø¯8´åÎ¸1
@@ -15,6 +16,8 @@ java:S1452C"&Remove usage of generic wildcard type.(çÕä°8¦´åÎ¸1
 z
 java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy'.(ÔÓ«„øÿÿÿÿ8¯†æÎ¸1
 =======
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùÆË·ýÿÿÿÿ
 f	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿–Ãâ
 f	java:S117/"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÈø¯
@@ -26,5 +29,9 @@ java:S46844"@Replace this persistent entity with a simple POJO or DTO object.(¸
 [
 java:S4684;"@Replace this persistent entity with a simple POJO or DTO object.(ð‹üºÿÿÿÿÿ
 <
+<<<<<<< HEAD
+java:S1452B"&Remove usage of generic wildcard type.(çÕä°
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1452B"&Remove usage of generic wildcard type.(çÕä°
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

@@ -1,30 +1,22 @@
 
 q
-<<<<<<< HEAD
-java:S11922"ODefine a constant instead of duplicating this literal " was not found" 3 times.(ó°¡¤üÿÿÿÿ8ˆì¬™»1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üÿ¨º8Šì¬™»1
-L	java:S1065"+Replace this use of System.out by a logger.(Íº“âúÿÿÿÿ8 ì¬™»1
-]	java:S125P"<This block of commented-out lines of code should be removed.(··“²ÿÿÿÿÿ8£ì¬™»1
-]	java:S125^"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8¥ì¬™»1
-X	java:S125c"<This block of commented-out lines of code should be removed.(¡¼Í8¦ì¬™»1
-X	java:S125t"<This block of commented-out lines of code should be removed.(±Ğ…©8¦ì¬™»1
-^	java:S125‰"<This block of commented-out lines of code should be removed.(ş°¿øÿÿÿÿÿ8¨ì¬™»1
+java:S11922"ODefine a constant instead of duplicating this literal " was not found" 3 times.(ó°¡¤üÿÿÿÿ8Ì§öšÄ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üÿ¨º8Î§öšÄ1
+L	java:S1066"+Replace this use of System.out by a logger.(Íº“âúÿÿÿÿ8Ú§öšÄ1
+]	java:S125R"<This block of commented-out lines of code should be removed.(··“²ÿÿÿÿÿ8Ü§öšÄ1
+]	java:S125`"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8İ§öšÄ1
+X	java:S125e"<This block of commented-out lines of code should be removed.(¡¼Í8İ§öšÄ1
+X	java:S125v"<This block of commented-out lines of code should be removed.(±Ğ…©8İ§öšÄ1
+^	java:S125‹"<This block of commented-out lines of code should be removed.(ş°¿øÿÿÿÿÿ8Ş§öšÄ1
 z
-java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy'.(ÔÓ«„øÿÿÿÿ8®ãœ»1
+java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy'.(ÔÓ«„øÿÿÿÿ8Ş§öšÄ1
 r
-java:S1128"PRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch'.(ŠúÕÜûÿÿÿÿ8®ãœ»1
+java:S1128"PRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch'.(ŠúÕÜûÿÿÿÿ8Ş§öšÄ1
 q
-java:S1128"TRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess'.(¹¨ËÏ8®ãœ»1
+java:S1128"TRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess'.(¹¨ËÏ8Ş§öšÄ1
 M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8®ãœ»1
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Ş§öšÄ1
 R
-java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á8¨ì¬™»1
+java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á8ß§öšÄ1
 N
-java:S1068"1Remove this unused "branchService" private field.(şó«8¨ì¬™»1
-=======
-java:S11920"ODefine a constant instead of duplicating this literal " was not found" 3 times.(ó°¡¤üÿÿÿÿ8Ò¯¬÷±1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Üÿ¨º8Ó¯¬÷±1
-]	java:S125E"<This block of commented-out lines of code should be removed.(··“²ÿÿÿÿÿ8ã¯¬÷±1
-X	java:S125e"<This block of commented-out lines of code should be removed.(±Ğ…©8æ¯¬÷±1
-]	java:S125z"<This block of commented-out lines of code should be removed.(ş°¿øÿÿÿÿÿ8ç¯¬÷±1
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+java:S1068"1Remove this unused "branchService" private field.(şó«8ß§öšÄ1

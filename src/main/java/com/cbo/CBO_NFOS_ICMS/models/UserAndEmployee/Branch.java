@@ -18,7 +18,7 @@ public class Branch {
     private String name;
     private String mnemonic;
     @ManyToOne
-    @JoinColumn(name="location_id")
+    @JoinColumn(name = "location_id")
     private Location location;
     private String telephone;
     @ManyToOne

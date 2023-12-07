@@ -1,32 +1,30 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.IFRController;
 
-import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.Images;
 import com.cbo.CBO_NFOS_ICMS.services.IFRService.IncidentOrFraudService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
-import java.util.List;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
 @RestController
 @RequestMapping("/incidentFraudReport")
 public class IncidentOrFraudController {
@@ -35,12 +33,14 @@ public class IncidentOrFraudController {
     public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService) {
         this.incidentOrFraudService = incidentOrFraudService;
     }
+
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'ICMS_PROVISION')")
-    public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReport(){
+    public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReport() {
         List<IncidentOrFraud> IncidentOrFraud = incidentOrFraudService.findAllIncidentFraudReport();
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
     }
+
     @PostMapping("/upload")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC')")
     public ResponseEntity<String> uploadForWrittenOff(@RequestParam("writtenOff") MultipartFile file) {
@@ -55,9 +55,10 @@ public class IncidentOrFraudController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error uploading file.");
         }
     }
+
     @GetMapping("/getSize")
     @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN')")
-    public int  getIncidentFraudReportSize(){
+    public int getIncidentFraudReportSize() {
         return incidentOrFraudService.findIncidentFraudReportSize();
     }
 
@@ -69,6 +70,7 @@ public class IncidentOrFraudController {
         IncidentOrFraud = incidentOrFraudService.findAllIncidentFraudReportInSpecificOrganizationalUnit(branchId);
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
     }
+
     @GetMapping("/findBySubProcessId/{id}")
     @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC')")
     public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReportInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
@@ -76,12 +78,14 @@ public class IncidentOrFraudController {
         IncidentOrFraud = incidentOrFraudService.findAllIncidentFraudReportInSpecificSubProcess(subProcessId);
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
     }
+
     @GetMapping("/find/{id}")
     public ResponseEntity<IncidentOrFraud> getIncidentFraudReportId
-            (@PathVariable("id") Long id){
+            (@PathVariable("id") Long id) {
         IncidentOrFraud IncidentOrFraud = incidentOrFraudService.findIncidentFraudReportById(id);
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
     }
+
     @PostMapping("/add")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC','ICMS_DISTRICT_IC','ICMS_ADMIN')")
     public ResponseEntity<IncidentOrFraud> addIncidentFraudReport(
@@ -101,8 +105,7 @@ public class IncidentOrFraudController {
             System.out.println("Added by role: " + role);
 
 
-        }
-        catch (JsonProcessingException e) {
+        } catch (JsonProcessingException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
@@ -126,6 +129,7 @@ public class IncidentOrFraudController {
         }
 
     }
+
     @GetMapping("/image/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC')")
     public Images getImage(@PathVariable Long id) throws IOException {
@@ -137,36 +141,38 @@ public class IncidentOrFraudController {
     @PutMapping("/update")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC')")
     public ResponseEntity<IncidentOrFraud> updateIncidentOrFraud
-            (@RequestBody IncidentOrFraud incidentOrFraud){
+            (@RequestBody IncidentOrFraud incidentOrFraud) {
         IncidentOrFraud updateIncidentOrFraud = incidentOrFraudService.updateIncidentFraudReport(incidentOrFraud);
         return new ResponseEntity<>(updateIncidentOrFraud, HttpStatus.CREATED);
     }
+
     @PatchMapping("/calculateProvision/{id}")
     @PreAuthorize("hasAnyRole('ICMS_PROVISION')")
-    public ResponseEntity<IncidentOrFraud> calculateProvision(@PathVariable Long id, @RequestBody Map<String, String> requestBody)
-    {
-        try
-        {
-            IncidentOrFraud row = incidentOrFraudService.calculateProvision(id,  requestBody.get("provisionHeld"));
+    public ResponseEntity<IncidentOrFraud> calculateProvision(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
+        try {
+            IncidentOrFraud row = incidentOrFraudService.calculateProvision(id, requestBody.get("provisionHeld"));
             return ResponseEntity.ok(row);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @PatchMapping("/authorize/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT_DIRECTOR','ICMS_ADMIN')")
-    public ResponseEntity<IncidentOrFraud> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody)
-    { try { IncidentOrFraud row = incidentOrFraudService.updateTableRow(id,  requestBody.get("authorizer"));
-        return ResponseEntity.ok(row); } catch (Exception e)
-    { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); } }
+    public ResponseEntity<IncidentOrFraud> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
+        try {
+            IncidentOrFraud row = incidentOrFraudService.updateTableRow(id, requestBody.get("authorizer"));
+            return ResponseEntity.ok(row);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
 
-    public ResponseEntity<?> deleteIncidentFraudReport (@PathVariable("id") Long id){
+    public ResponseEntity<?> deleteIncidentFraudReport(@PathVariable("id") Long id) {
         incidentOrFraudService.deleteIncidentFraudReport(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -184,6 +190,7 @@ public class IncidentOrFraudController {
         Map<String, Integer> countMap = incidentOrFraudService.findNumberOfIncidentOrFraudCasesLastWeekByFraudType();
         return new ResponseEntity<>(countMap, HttpStatus.OK);
     }
+
     @GetMapping("/getOutstandingCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getOutstandingCasesDuringQuarter() {
@@ -213,7 +220,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 outstandingCases.add(caseItem);
@@ -222,6 +229,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases.size(), HttpStatus.OK);
     }
+
     @GetMapping("/getOutstandingCasesDuringQuarter-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<IncidentOrFraud>> getOutstandingCasesDuringQuarterlist() {
@@ -251,7 +259,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 outstandingCases.add(caseItem);
@@ -260,6 +268,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases, HttpStatus.OK);
     }
+
     @GetMapping("/getClosedCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getClosedCasesDuringQuarter() {
@@ -289,7 +298,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Closed")) {
                 closedCases.add(caseItem);
@@ -298,6 +307,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(closedCases.size(), HttpStatus.OK);
     }
+
     @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
@@ -337,6 +347,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(closedAndWrittenOffCases.size(), HttpStatus.OK);
     }
+
     @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<IncidentOrFraud>> getClosedAndWrittenOffCasesDuringQuarterlist() {
@@ -380,7 +391,7 @@ public class IncidentOrFraudController {
 
     @GetMapping("/getOutstandingCasesAmountDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<String> getOutstandingCasesAmountDuringQuarter()  {
+    public ResponseEntity<String> getOutstandingCasesAmountDuringQuarter() {
         List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
         List<IncidentOrFraud> outstandingCases = new ArrayList<>();
         double totalAmount = 0;
@@ -408,7 +419,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 double fraudAmount = Double.parseDouble(caseItem.getFraudAmount().replaceAll(",", ""));
@@ -420,6 +431,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(formattedAmount, HttpStatus.OK);
     }
+
     @GetMapping("/getOutstandingCasesInPreviousQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getOutstandingCasesInPreviousQuarter() {
@@ -446,7 +458,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the previous quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 outstandingCases.add(caseItem);
@@ -455,6 +467,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases.size(), HttpStatus.OK);
     }
+
     @GetMapping("/getOutstandingCasesInPreviousQuarter-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<IncidentOrFraud>> getOutstandingCasesInPreviousQuarterlist() {
@@ -481,7 +494,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the previous quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 outstandingCases.add(caseItem);
@@ -490,6 +503,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(outstandingCases, HttpStatus.OK);
     }
+
     @GetMapping("/getNewCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getNewCasesDuringQuarter() {
@@ -519,7 +533,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter.minusDays(1)) && caseDate.isBefore(endQuarter.plusDays(1))) {
                 newCases.add(caseItem);
             }
@@ -527,6 +541,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(newCases.size(), HttpStatus.OK);
     }
+
     @GetMapping("/getNewCasesDuringQuarter-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<IncidentOrFraud>> getNewCasesDuringQuarterlist() {
@@ -556,7 +571,7 @@ public class IncidentOrFraudController {
         // Filter the cases that occurred during the current quarter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(),formatter);
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
             if (caseDate.isAfter(startQuarter.minusDays(1)) && caseDate.isBefore(endQuarter.plusDays(1))) {
                 newCases.add(caseItem);
             }

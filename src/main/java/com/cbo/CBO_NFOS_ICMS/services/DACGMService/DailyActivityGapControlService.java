@@ -2,16 +2,12 @@ package com.cbo.CBO_NFOS_ICMS.services.DACGMService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.DailyActivityGapControlRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,23 +40,22 @@ public class DailyActivityGapControlService {
     }
 
 
-
-
     public DailyActivityGapControl approveActionPlan(Long id, String actionPlanDueDate) {
         DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
         row.setActionPlanDueDate(actionPlanDueDate);
-<<<<<<< HEAD
+
         row.setActionTaken(true);
         System.out.println(row.getActionTaken());
-=======
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+
         return dACGMRepository.save(row);
     }
+
     public DailyActivityGapControl escalatePlan(Long id) {
         DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
         row.setEscalatedByManager(true);
         return dACGMRepository.save(row);
     }
+
     public int findDACGMSize() {
         return dACGMRepository.findAll().size();
     }
@@ -93,6 +88,7 @@ public class DailyActivityGapControlService {
     public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(Long id) {
         return dACGMRepository.findDACGMByBranchId(id);
     }
+
     public List<DailyActivityGapControl> findAllDACGMInSpecificSubProcess(Long subProcessId) {
 //        Branch branch = organizationalUnitService.findBranchById(id);
         return dACGMRepository.findDACGMBySubProcessId(subProcessId);

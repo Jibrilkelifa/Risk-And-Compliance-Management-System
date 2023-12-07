@@ -1,10 +1,7 @@
 package com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository;
 
-import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +17,7 @@ public interface DailyActivityGapControlRepository extends JpaRepository<DailyAc
 
     List<DailyActivityGapControl> findDACGMByBranchId(Long id);
 
-//    @Query("SELECT dc FROM daily_activities_gap_control dc JOIN Organizational_unit b ON dc.organizational_unit.id = b.id JOIN sub_process d ON b.sub_process.id = d.id WHERE d.id = :id")
+    //    @Query("SELECT dc FROM daily_activities_gap_control dc JOIN Organizational_unit b ON dc.organizational_unit.id = b.id JOIN sub_process d ON b.sub_process.id = d.id WHERE d.id = :id")
 //    List<DailyActivityGapControl> findDACGMBySubProcessId(Long id);
-List<DailyActivityGapControl> findDACGMBySubProcessId(Long subProcessId);
+    List<DailyActivityGapControl> findDACGMBySubProcessId(Long subProcessId);
 }

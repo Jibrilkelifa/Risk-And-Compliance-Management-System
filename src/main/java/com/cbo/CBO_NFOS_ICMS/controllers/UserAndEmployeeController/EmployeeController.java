@@ -22,18 +22,20 @@ public class EmployeeController {
 
     @GetMapping("/all")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
-    public ResponseEntity<List<Employee>> getAllEmployee(){
+    public ResponseEntity<List<Employee>> getAllEmployee() {
         List<Employee> employees = employeeService.findAllEmployee();
         return new ResponseEntity<>(employees, HttpStatus.OK);
     }
+
     @GetMapping("/find/{id}")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
-    public Employee getEmployeeById(@PathVariable("id") Long id){
+    public Employee getEmployeeById(@PathVariable("id") Long id) {
         return employeeService.findEmployeeById(id);
     }
+
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    public void deleteEmployee(@PathVariable("id") Long id){
+    public void deleteEmployee(@PathVariable("id") Long id) {
 
         employeeService.deleteEmployee(id);
     }

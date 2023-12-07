@@ -1,7 +1,11 @@
 
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“
 <<<<<<< HEAD
+<<<<<<< HEAD
 \	java:S107&"BConstructor has 11 parameters, which is greater than 7 authorized.(îòì•ûÿÿÿÿ
+=======
+\	java:S107&"BConstructor has 11 parameters, which is greater than 7 authorized.(¯÷¿Ãúÿÿÿÿ
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 \	java:S107&"BConstructor has 11 parameters, which is greater than 7 authorized.(¯÷¿Ãúÿÿÿÿ
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

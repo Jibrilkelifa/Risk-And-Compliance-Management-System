@@ -14,21 +14,26 @@ public class ChequeTypeService {
     public ChequeTypeService(ChequeTypeRepository chequeTypeRepository) {
         this.chequeTypeRepository = chequeTypeRepository;
     }
-    public ChequeType addChequeType(ChequeType ChequeType){
+
+    public ChequeType addChequeType(ChequeType ChequeType) {
 
         return chequeTypeRepository.save(ChequeType);
     }
-    public List<ChequeType> findAllChequeType(){
+
+    public List<ChequeType> findAllChequeType() {
         return chequeTypeRepository.findAll();
     }
-    public ChequeType updateChequeType(ChequeType ChequeType){
+
+    public ChequeType updateChequeType(ChequeType ChequeType) {
         return chequeTypeRepository.save(ChequeType);
     }
-    public ChequeType findChequeTypeById(Long id){
+
+    public ChequeType findChequeTypeById(Long id) {
         return chequeTypeRepository.findChequeTypeById(id)
-                .orElseThrow(()-> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
-    public void deleteChequeType(Long id){
+
+    public void deleteChequeType(Long id) {
         chequeTypeRepository.deleteById(id);
     }
 

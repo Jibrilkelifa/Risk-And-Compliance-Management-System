@@ -1,7 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.services;
 
 
-
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.User;
 import com.cbo.CBO_NFOS_ICMS.repositories.UserAndEmployeeRepository.UserRepository;
 import com.cbo.CBO_NFOS_ICMS.utils.JwtUtils;
@@ -37,21 +36,20 @@ public class JwtService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user =userRepo.findByUserName(username);
+        User user = userRepo.findByUserName(username);
 
-        if (user != null ){
+        if (user != null) {
 
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
-        }
-        else {
+        } else {
             throw new UsernameNotFoundException("Username is not valid");
         }
     }
 
 
-    private Set getAuthorities(User user){
+    private Set getAuthorities(User user) {
         Set authorities = new HashSet();
-        if (user != null){
+        if (user != null) {
             user.getRoles().forEach(role -> {
                 authorities.add(new SimpleGrantedAuthority(role.getName().toString()));
             });

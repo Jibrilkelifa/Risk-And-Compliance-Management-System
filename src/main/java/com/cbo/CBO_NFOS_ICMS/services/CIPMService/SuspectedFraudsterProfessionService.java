@@ -6,6 +6,7 @@ import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.SuspectedFraudsterProfe
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class SuspectedFraudsterProfessionService {
     private final SuspectedFraudsterProfessionRepository suspectedFraudsterProfessionRepository;
@@ -14,21 +15,25 @@ public class SuspectedFraudsterProfessionService {
         this.suspectedFraudsterProfessionRepository = suspectedFraudsterProfessionRepository;
     }
 
-    public SuspectedFraudsterProfession addSuspectedFraudsterProfession(SuspectedFraudsterProfession SuspectedFraudsterProfession){
+    public SuspectedFraudsterProfession addSuspectedFraudsterProfession(SuspectedFraudsterProfession SuspectedFraudsterProfession) {
 
         return suspectedFraudsterProfessionRepository.save(SuspectedFraudsterProfession);
     }
-    public List<SuspectedFraudsterProfession> findAllSuspectedFraudsterProfession(){
+
+    public List<SuspectedFraudsterProfession> findAllSuspectedFraudsterProfession() {
         return suspectedFraudsterProfessionRepository.findAll();
     }
-    public SuspectedFraudsterProfession updateSuspectedFraudsterProfession(SuspectedFraudsterProfession SuspectedFraudsterProfession){
+
+    public SuspectedFraudsterProfession updateSuspectedFraudsterProfession(SuspectedFraudsterProfession SuspectedFraudsterProfession) {
         return suspectedFraudsterProfessionRepository.save(SuspectedFraudsterProfession);
     }
-    public SuspectedFraudsterProfession findSuspectedFraudsterProfessionById(Long id){
+
+    public SuspectedFraudsterProfession findSuspectedFraudsterProfessionById(Long id) {
         return suspectedFraudsterProfessionRepository.findSuspectedFraudsterProfessionById(id)
-                .orElseThrow(()-> new UserNotFoundException("SuspectedFraudsterProfession by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("SuspectedFraudsterProfession by id" + id + " was not found"));
     }
-    public void deleteSuspectedFraudsterProfession(Long id){
+
+    public void deleteSuspectedFraudsterProfession(Long id) {
         suspectedFraudsterProfessionRepository.deleteById(id);
     }
 

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface SuspectedFraudsterProfessionRepository extends JpaRepository<SuspectedFraudsterProfession, Long> {
-    Optional<SuspectedFraudsterProfession>findSuspectedFraudsterProfessionById(Long id);
+    Optional<SuspectedFraudsterProfession> findSuspectedFraudsterProfessionById(Long id);
 }

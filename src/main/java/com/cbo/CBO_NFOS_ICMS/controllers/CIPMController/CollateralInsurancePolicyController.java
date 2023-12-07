@@ -1,7 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.CIPMController;
 
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
-import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.services.CIPMService.CollateralInsurancePolicyService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
@@ -10,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -24,13 +20,15 @@ import java.util.*;
 public class CollateralInsurancePolicyController {
     private final CollateralInsurancePolicyService collateralInsurancePolicyService;
     private final SubProcessService subProcessService;
+
     public CollateralInsurancePolicyController(CollateralInsurancePolicyService collateralInsurancePolicyService, SubProcessService subProcessService) {
         this.collateralInsurancePolicyService = collateralInsurancePolicyService;
         this.subProcessService = subProcessService;
     }
+
     @GetMapping("/getAll")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicy(){
+    public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicy() {
         List<CollateralInsurancePolicy> CollateralInsurancePolicy = collateralInsurancePolicyService.findAllCollateralInsurancePolicy();
         return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);
     }
@@ -45,72 +43,76 @@ public class CollateralInsurancePolicyController {
 
     @GetMapping("/findBySubProcessId/{id}")
     @PreAuthorize("hasRole('ICMS_DISTRICT_IC')")
-    public ResponseEntity<List<CollateralInsurancePolicy> >getAllCollateralInsurancePolicyInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
+    public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicyInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<CollateralInsurancePolicy> CollateralInsurancePolicy;
         CollateralInsurancePolicy = collateralInsurancePolicyService.findAllCollateralInsurancePolicyInSpecificSubProcess(subProcessId);
-        return new ResponseEntity<>(CollateralInsurancePolicy,HttpStatus.OK);
+        return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);
     }
-        @GetMapping("/find/{id}")
-        public ResponseEntity<CollateralInsurancePolicy> getCollateralInsurancePolicyId
-        (@PathVariable("id") Long id){
-            CollateralInsurancePolicy CollateralInsurancePolicy = collateralInsurancePolicyService.findCollateralInsurancePolicyById(id);
-            return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);
-        }
-        @PostMapping("/add")
-        @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
-        public ResponseEntity<CollateralInsurancePolicy> addCollateralInsurancePolicy
-        (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy){
 
-            LocalDate date = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
-            String formattedDate = date.format(formatter);
-            collateralInsurancePolicy.setPreparationTimeStamp(formattedDate);
+    @GetMapping("/find/{id}")
+    public ResponseEntity<CollateralInsurancePolicy> getCollateralInsurancePolicyId
+            (@PathVariable("id") Long id) {
+        CollateralInsurancePolicy CollateralInsurancePolicy = collateralInsurancePolicyService.findCollateralInsurancePolicyById(id);
+        return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);
+    }
 
-            CollateralInsurancePolicy newCollateralInsurancePolicy = collateralInsurancePolicyService.addCollateralInsurancePolicy(collateralInsurancePolicy);
-            return new ResponseEntity<>(newCollateralInsurancePolicy, HttpStatus.CREATED);
-        }
-        @PutMapping("/update")
-        @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
-        public ResponseEntity<CollateralInsurancePolicy> updateEmloyee
-<<<<<<< HEAD
-        (@RequestBody CollateralInsurancePolicy CollateralInsurancePolicy){
-            CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService. updateColateralInsurancePolicy(CollateralInsurancePolicy);
-=======
-        (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy){
-            System.out.println(collateralInsurancePolicy.getStatus());
-            CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService.updateCollateralInsurancePolicy(collateralInsurancePolicy);
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-            return new ResponseEntity<>(updateCollateralInsurancePolicy, HttpStatus.CREATED);
+    @PostMapping("/add")
+    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    public ResponseEntity<CollateralInsurancePolicy> addCollateralInsurancePolicy
+            (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy) {
 
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        String formattedDate = date.format(formatter);
+        collateralInsurancePolicy.setPreparationTimeStamp(formattedDate);
 
-        }
+        CollateralInsurancePolicy newCollateralInsurancePolicy = collateralInsurancePolicyService.addCollateralInsurancePolicy(collateralInsurancePolicy);
+        return new ResponseEntity<>(newCollateralInsurancePolicy, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update")
+    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    public ResponseEntity<CollateralInsurancePolicy> updateEmloyee
+            (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy) {
+        System.out.println(collateralInsurancePolicy.getStatus());
+        CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService.updateCollateralInsurancePolicy(collateralInsurancePolicy);
+        return new ResponseEntity<>(updateCollateralInsurancePolicy, HttpStatus.CREATED);
+
+    }
+
     @PatchMapping("/authorize/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
-    public ResponseEntity<CollateralInsurancePolicy> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody)
-    { try { CollateralInsurancePolicy row = collateralInsurancePolicyService.authorizeIFR(id,  requestBody.get("authorizer"));
-        return ResponseEntity.ok(row); } catch (Exception e)
-    { return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); } }
+    public ResponseEntity<CollateralInsurancePolicy> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
+        try {
+            CollateralInsurancePolicy row = collateralInsurancePolicyService.authorizeIFR(id, requestBody.get("authorizer"));
+            return ResponseEntity.ok(row);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
     @DeleteMapping("/delete/{id}")
-        @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
-        public ResponseEntity<?> deleteCollateralInsurancePolicy (@PathVariable("id") Long id){
-            collateralInsurancePolicyService.deleteCollateralInsurancePolicy(id);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-        @GetMapping("/getTotalNumberOfPolicies")
-        @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-        public ResponseEntity<Long> getTotalNumberOfPolicies() {
-            Long totalNumberOfPolicies = collateralInsurancePolicyService.getTotalNumberOfPolicies();
-            return new ResponseEntity<>(totalNumberOfPolicies, HttpStatus.OK);
-        }
+    public ResponseEntity<?> deleteCollateralInsurancePolicy(@PathVariable("id") Long id) {
+        collateralInsurancePolicyService.deleteCollateralInsurancePolicy(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
-        @GetMapping("/TotalNumberOfExpiredPolicies")
-        @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-        public ResponseEntity<Integer> getNumberOfExpiredPolicies() {
-            int numberOfExpiredPolicies = collateralInsurancePolicyService.getNumberOfExpiredPolicies();
-            return new ResponseEntity<>(numberOfExpiredPolicies, HttpStatus.OK);
-        }
+    @GetMapping("/getTotalNumberOfPolicies")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<Long> getTotalNumberOfPolicies() {
+        Long totalNumberOfPolicies = collateralInsurancePolicyService.getTotalNumberOfPolicies();
+        return new ResponseEntity<>(totalNumberOfPolicies, HttpStatus.OK);
+    }
+
+    @GetMapping("/TotalNumberOfExpiredPolicies")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<Integer> getNumberOfExpiredPolicies() {
+        int numberOfExpiredPolicies = collateralInsurancePolicyService.getNumberOfExpiredPolicies();
+        return new ResponseEntity<>(numberOfExpiredPolicies, HttpStatus.OK);
+    }
+
     @GetMapping("/ExpiredPolicies")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<CollateralInsurancePolicy>> getExpiredPolicies() {
@@ -118,12 +120,12 @@ public class CollateralInsurancePolicyController {
         return new ResponseEntity<>(expiredPolicies, HttpStatus.OK);
     }
 
-        @GetMapping("/expiring-within-thirty-days")
-        @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-        public ResponseEntity<Integer> getNumberOfPoliciesExpiringWithinThirtyDays() {
-            int numberOfPoliciesExpiringWithinThirtyDays = collateralInsurancePolicyService.getNumberOfPoliciesExpiringWithinThirtyDays();
-            return new ResponseEntity<>(numberOfPoliciesExpiringWithinThirtyDays, HttpStatus.OK);
-        }
+    @GetMapping("/expiring-within-thirty-days")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<Integer> getNumberOfPoliciesExpiringWithinThirtyDays() {
+        int numberOfPoliciesExpiringWithinThirtyDays = collateralInsurancePolicyService.getNumberOfPoliciesExpiringWithinThirtyDays();
+        return new ResponseEntity<>(numberOfPoliciesExpiringWithinThirtyDays, HttpStatus.OK);
+    }
 
     @GetMapping("/expiring-within-thirty-days-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")

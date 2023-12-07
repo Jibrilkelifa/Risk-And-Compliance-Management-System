@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 @RestController
 public class TimeController {
-    @RequestMapping(value="/getTime", method= RequestMethod.GET)
+    @RequestMapping(value = "/getTime", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER', 'ICMS_BRANCH', 'ICMS_DISTRICT', 'ICMS_ADMIN')")
     public @ResponseBody Time getTime() {
         Time time = new Time();

@@ -1,10 +1,14 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ƒ‡øÿÿÿÿ8³¿«æµ1
 k
 java:S1128"NRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.DCQ.DishonoredCheque'.(¸·•ï8Ûûç÷·1
 r
 java:S1128"PRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch'.(ŠúÕÜûÿÿÿÿ8Ûûç÷·1
+=======
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ƒ‡øÿÿÿÿ
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ƒ‡øÿÿÿÿ
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

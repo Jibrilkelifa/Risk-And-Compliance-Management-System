@@ -1,0 +1,29 @@
+
+q
+java:S1192]"ODefine a constant instead of duplicating this literal " was not found" 3 times.(Ÿ‚±›ýÿÿÿÿ8åÍž›Ä1
+r	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÀµŽùÿÿÿÿ8åÍž›Ä1
+€
+java:S1488œ"]Immediately return this expression instead of assigning it to the temporary variable "count".(ƒ–ßÀÿÿÿÿÿ8æÍž›Ä1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡›½‰ýÿÿÿÿ8çÍž›Ä1
+]	java:S125;"<This block of commented-out lines of code should be removed.(‹ÚóÍûÿÿÿÿ8÷Íž›Ä1
+]	java:S125l"<This block of commented-out lines of code should be removed.(ßØ²¸ýÿÿÿÿ8ýÍž›Ä1
+y
+java:S1128"WRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl'.(‰ÂçËÿÿÿÿÿ8Öþ¡›Ä1
+r
+java:S1128"PRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch'.(ŠúÕÜûÿÿÿÿ8Öþ¡›Ä1
+q
+java:S1128	"TRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess'.(¹¨ËÏ8Öþ¡›Ä1
+M
+java:S1128"0Remove this unused import 'java.nio.file.Files'.(‚ƒü8Öþ¡›Ä1
+L
+java:S1128"/Remove this unused import 'java.nio.file.Path'.(×²êÂ8Öþ¡›Ä1
+M
+java:S1128"0Remove this unused import 'java.nio.file.Paths'.(áè°¯8Öþ¡›Ä1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8×þ¡›Ä1
+z
+java:S1128"XRemove this unused import 'org.springframework.data.jpa.domain.AbstractPersistable_.id'.(ì€¦ÿÿÿÿÿ8×þ¡›Ä1
+R
+java:S1068$"5Remove this unused "subProcessService" private field.(–œ‚á8„Îž›Ä1
+N
+java:S1068%"1Remove this unused "branchService" private field.(þŽó«8„Îž›Ä1

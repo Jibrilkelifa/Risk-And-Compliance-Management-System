@@ -19,37 +19,42 @@ public class AllSubCategoryController {
     public AllSubCategoryController(AllSubCategoryService allSubCategoryService) {
         this.allSubCategoryService = allSubCategoryService;
     }
+
     @GetMapping("/all")
-    public ResponseEntity<List<AllSubCategory>> getAllSubCategorys(){
+    public ResponseEntity<List<AllSubCategory>> getAllSubCategorys() {
         List<AllSubCategory> allSubCategorys = allSubCategoryService.findAllSubCategory();
         return new ResponseEntity<>(allSubCategorys, HttpStatus.OK);
     }
+
     @GetMapping("/find/{id}")
-    public ResponseEntity<AllSubCategory> getAllSubCategoryId (@PathVariable("id") Long id) {
-        AllSubCategory allSubCategory= allSubCategoryService.findAllSubCategoryById(id);
+    public ResponseEntity<AllSubCategory> getAllSubCategoryId(@PathVariable("id") Long id) {
+        AllSubCategory allSubCategory = allSubCategoryService.findAllSubCategoryById(id);
         return new ResponseEntity<>(allSubCategory, HttpStatus.OK);
     }
+
     @PostMapping("/getAllSubCategory")
     public List<AllSubCategory> getAllSubCategoriesBySubModuleNameAndCategoryName(@RequestBody Map<String, String> requestBody) {
         String subModuleName = requestBody.get("subModuleName");
         String categoryName = requestBody.get("categoryName");
-        System.out.println("subModuleName = "+subModuleName);
-        System.out.println("categoryName = "+categoryName);
+        System.out.println("subModuleName = " + subModuleName);
+        System.out.println("categoryName = " + categoryName);
         return allSubCategoryService.findAllSubCategoryByCategoryName(subModuleName, categoryName);
     }
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllSubCategory> addAllSubCategory(@RequestBody AllSubCategory allSubCategory) {
-        AllSubCategory newAllSubCategory =allSubCategoryService.addAllSubCategory(allSubCategory);
+        AllSubCategory newAllSubCategory = allSubCategoryService.addAllSubCategory(allSubCategory);
         return new ResponseEntity<>(newAllSubCategory, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<AllSubCategory> updateAllSubCategory(@RequestBody AllSubCategory allSubCategory) {
         AllSubCategory updateAllSubCategory = allSubCategoryService.updateAllSubCategory(allSubCategory);
         return new ResponseEntity<>(updateAllSubCategory, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<?> deleteAllSubCategory(@PathVariable("id") Long id) {

@@ -17,28 +17,33 @@ public class ChequeTypeController {
     public ChequeTypeController(ChequeTypeService chequeTypeService) {
         this.chequeTypeService = chequeTypeService;
     }
+
     @GetMapping("/all")
-    public ResponseEntity<List<ChequeType>> getAllChequeTypes(){
+    public ResponseEntity<List<ChequeType>> getAllChequeTypes() {
         List<ChequeType> ChequeTypes = chequeTypeService.findAllChequeType();
         return new ResponseEntity<>(ChequeTypes, HttpStatus.OK);
     }
+
     @GetMapping("/find/{id}")
-    public ResponseEntity<ChequeType> getChequeTypeId (@PathVariable("id") Long id) {
+    public ResponseEntity<ChequeType> getChequeTypeId(@PathVariable("id") Long id) {
         ChequeType ChequeType = chequeTypeService.findChequeTypeById(id);
         return new ResponseEntity<>(ChequeType, HttpStatus.OK);
     }
+
     @PostMapping("/add")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<ChequeType> addChequeType(@RequestBody ChequeType ChequeType) {
-        ChequeType newChequeType =chequeTypeService.addChequeType(ChequeType);
+        ChequeType newChequeType = chequeTypeService.addChequeType(ChequeType);
         return new ResponseEntity<>(newChequeType, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<ChequeType> updateChequeType(@RequestBody ChequeType ChequeType) {
-        ChequeType updateChequeType =chequeTypeService.updateChequeType(ChequeType);
+        ChequeType updateChequeType = chequeTypeService.updateChequeType(ChequeType);
         return new ResponseEntity<>(updateChequeType, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete/{id}")
     @PreAuthorize("hasRole('ICMS_ADMIN')")
     public ResponseEntity<?> deleteChequeType(@PathVariable("id") Long id) {

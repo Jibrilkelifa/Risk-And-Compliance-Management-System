@@ -16,17 +16,17 @@ import javax.persistence.*;
 public class DishonoredCheque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( updatable = false)
+    @Column(updatable = false)
     private Long id;
-    @Column( length = 64)
-    private String datePresented ;
+    @Column(length = 64)
+    private String datePresented;
     @Column(length = 64)
     private String fullNameOfDrawer;
-    @Column( length = 64)
+    @Column(length = 64)
     private String accountNumber;
-    @Column( length = 64)
+    @Column(length = 64)
     private String drawerAddress;
-    @Column( length = 64)
+    @Column(length = 64)
     private String amountInBirr;
     @ManyToOne
     @JoinColumn(name = "cheque_type_id")
@@ -34,13 +34,13 @@ public class DishonoredCheque {
     @ManyToOne
     @JoinColumn(name = "action_taken_id")
     private ActionTaken actionTaken;
-    @Column( length = 15)
+    @Column(length = 15)
     private String tin;
-    @Column( length = 64)
+    @Column(length = 64)
     private String chequeNumber;
-    @Column( length = 64)
+    @Column(length = 64)
     private String nameOfBeneficiary;
-    @Column( length = 64)
+    @Column(length = 64)
     private int frequency;
     /*@Column(nullable = false, length = 64)
     private Long outstandingBalance;*/

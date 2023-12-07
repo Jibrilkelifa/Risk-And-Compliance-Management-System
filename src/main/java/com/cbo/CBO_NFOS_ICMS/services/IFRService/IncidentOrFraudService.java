@@ -2,11 +2,8 @@ package com.cbo.CBO_NFOS_ICMS.services.IFRService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.Images;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.IFRRepository.IncidentOrFraudRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
@@ -18,17 +15,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class IncidentOrFraudService {
@@ -50,12 +42,13 @@ public class IncidentOrFraudService {
     public List<IncidentOrFraud> findAllIncidentFraudReport() {
         return incidentOrFraudRepository.findAll();
     }
+
     public int findIncidentFraudReportSize() {
         return incidentOrFraudRepository.findAll().size();
     }
 
     public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
-<<<<<<< HEAD
+
 //      incidentOrFraud.setIsAuthorized(false);
         Optional<IncidentOrFraud> optionalIncidentOrFraud = incidentOrFraudRepository.findById(incidentOrFraud.getId());
         if (optionalIncidentOrFraud.isPresent()) {
@@ -72,7 +65,7 @@ public class IncidentOrFraudService {
     public Images getImage(Long id) throws IOException {
 
         IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
-        if (fraud != null){
+        if (fraud != null) {
 
             BufferedImage stampImage = ImageIO.read(new File(fraud.getFilePath()));
             ByteArrayOutputStream stbos = new ByteArrayOutputStream();
@@ -84,16 +77,15 @@ public class IncidentOrFraudService {
         }
 
         return null;
-=======
-        incidentOrFraud.setIsAuthorized(false);
-        return incidentOrFraudRepository.save(incidentOrFraud);
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+
+
     }
 
     public IncidentOrFraud findIncidentFraudReportById(Long id) {
         return incidentOrFraudRepository.findIncidentFraudReportById(id)
                 .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
+
     public void deleteIncidentFraudReport(Long id) {
         incidentOrFraudRepository.deleteById(id);
     }
@@ -102,6 +94,7 @@ public class IncidentOrFraudService {
 
         return incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
     }
+
     public List<IncidentOrFraud> findAllIncidentFraudReportInSpecificSubProcess(Long SubProcessId) {
 
         return incidentOrFraudRepository.findIncidentFraudReportBySubProcessId(SubProcessId);
@@ -121,13 +114,13 @@ public class IncidentOrFraudService {
 //    }
 
     public IncidentOrFraud calculateProvision(Long id, String provisionHeld) {
-        IncidentOrFraud row = incidentOrFraudRepository.findById(id).orElseThrow(()-> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        IncidentOrFraud row = incidentOrFraudRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
         row.setProvisionHeld(provisionHeld);
         return incidentOrFraudRepository.save(row);
     }
 
     public IncidentOrFraud updateTableRow(Long id, String caseAuthorizer) {
-        IncidentOrFraud row = incidentOrFraudRepository.findById(id).orElseThrow(()-> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        IncidentOrFraud row = incidentOrFraudRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
         row.setAuthorizedBy(caseAuthorizer);
         row.setIsAuthorized(true);
         LocalDate date = LocalDate.now();
@@ -137,11 +130,12 @@ public class IncidentOrFraudService {
         row.setAuthorizationTimeStamp(formattedDate);
         return incidentOrFraudRepository.save(row);
     }
+
     public void deleteRow(int id) {
-        Optional<IncidentOrFraud> data =  incidentOrFraudRepository.findById((long) id);
+        Optional<IncidentOrFraud> data = incidentOrFraudRepository.findById((long) id);
         if (data.isPresent()) {
 
-            List<IncidentOrFraud> dataList =  incidentOrFraudRepository.findAll();
+            List<IncidentOrFraud> dataList = incidentOrFraudRepository.findAll();
             for (int i = id; i - 1 < dataList.size(); i++) {
                 IncidentOrFraud d = dataList.get(i - 1);
 
@@ -151,6 +145,7 @@ public class IncidentOrFraudService {
             incidentOrFraudRepository.deleteById((long) id);
         }
     }
+
     public int findNumberOfIncidentOrFraudCasesLastWeek() {
         LocalDate endDate = LocalDate.now().plusDays(1);
         LocalDate startDate = endDate.minusDays(7);
@@ -159,6 +154,7 @@ public class IncidentOrFraudService {
                 startDate.format(formatter), endDate.format(formatter));
         return count;
     }
+
     public Map<String, Integer> findNumberOfIncidentOrFraudCasesLastWeekByFraudType() {
         LocalDate endDate = LocalDate.now().plusDays(1);
         LocalDate startDate = endDate.minusDays(7);
@@ -173,6 +169,7 @@ public class IncidentOrFraudService {
         }
         return countMap;
     }
+
     public void processIncidentFraudReport(MultipartFile file) throws IOException {
         // Save the file to the desired location or perform any processing/logic
         String filename = file.getOriginalFilename();
