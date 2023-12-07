@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 public class IncidentOrFraudService {
 
@@ -77,7 +79,6 @@ public class IncidentOrFraudService {
         }
 
         return null;
-
 
     }
 

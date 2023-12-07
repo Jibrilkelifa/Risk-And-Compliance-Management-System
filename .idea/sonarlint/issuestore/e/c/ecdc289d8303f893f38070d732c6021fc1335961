@@ -1,5 +1,11 @@
 
 y
+<<<<<<< HEAD
 java:S1192"\Define a constant instead of duplicating this literal "Access-Control-Allow-Origin" 3 times.(Ž¡±á8€ ø¸1
 n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÚÃŠîûÿÿÿÿ8 ø¸1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬‹ùû8 ø¸1
+=======
+java:S1192"\Define a constant instead of duplicating this literal "Access-Control-Allow-Origin" 3 times.(Ž¡±á8Ö”†¿«1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÚÃŠîûÿÿÿÿ8Û”†¿«1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬‹ùû8à”†¿«1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

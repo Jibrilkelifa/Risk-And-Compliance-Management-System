@@ -1,7 +1,11 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü8ÍÀ÷û·1
+=======
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

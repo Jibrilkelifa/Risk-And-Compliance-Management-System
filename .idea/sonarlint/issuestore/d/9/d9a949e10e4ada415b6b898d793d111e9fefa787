@@ -1,11 +1,15 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬‚ßÊ8Î…¼÷·1
 y
 java:S1128"WRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl'.(‰ÂçËÿÿÿÿÿ8Ñ…¼÷·1
 r
 java:S1128"PRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch'.(ŠúÕÜûÿÿÿÿ8Ñ…¼÷·1
+=======
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬‚ßÊ
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬‚ßÊ
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

@@ -1,6 +1,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 f	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•’÷™
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îéââùÿÿÿÿ8Óİìû·1
 ]
@@ -10,6 +11,8 @@ java:S4684&"@Replace this persistent entity with a simple POJO or DTO object.(Ë
 H
 java:S1452,"&Remove usage of generic wildcard type.(Œ©ÜÄûÿÿÿÿ8æ€ü·1
 =======
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•’÷™8™Ş­¶1
@@ -24,6 +27,10 @@ j
 java:S1128"HRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.CaseStatus'.(ÜÄë®úÿÿÿÿ8Ş®Âë¶1
 z
 <<<<<<< HEAD
+<<<<<<< HEAD
+java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.services.IFRService.CaseStatusService'.(Ò€¡Œıÿÿÿÿ8Ş®Âë¶1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.services.IFRService.CaseStatusService'.(Ò€¡Œıÿÿÿÿ8Ş®Âë¶1
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======

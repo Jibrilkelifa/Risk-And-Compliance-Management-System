@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.bind.JAXBException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -80,6 +82,16 @@ public class CollateralInsurancePolicyController {
 
     }
 
+/*        @PutMapping("/update")
+        @PreAuthorize("hasRole('ICMS_BRANCH')")
+        public ResponseEntity<CollateralInsurancePolicy> updateEmloyee
+        (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy){
+            System.out.println(collateralInsurancePolicy.getStatus());
+            CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService.updateCollateralInsurancePolicy(collateralInsurancePolicy);
+            return new ResponseEntity<>(updateCollateralInsurancePolicy, HttpStatus.CREATED);
+
+
+        }*/
     @PatchMapping("/authorize/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
     public ResponseEntity<CollateralInsurancePolicy> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
@@ -104,6 +116,18 @@ public class CollateralInsurancePolicyController {
     public ResponseEntity<Long> getTotalNumberOfPolicies() {
         Long totalNumberOfPolicies = collateralInsurancePolicyService.getTotalNumberOfPolicies();
         return new ResponseEntity<>(totalNumberOfPolicies, HttpStatus.OK);
+/*        @GetMapping("/TotalNumberOfExpiredPolicies")
+        @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+        public ResponseEntity<Integer> getNumberOfExpiredPolicies() {
+            int numberOfExpiredPolicies = collateralInsurancePolicyService.getNumberOfExpiredPolicies();
+            return new ResponseEntity<>(numberOfExpiredPolicies, HttpStatus.OK);
+        }
+    @GetMapping("/ExpiredPolicies")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<CollateralInsurancePolicy>> getExpiredPolicies() {
+        List<CollateralInsurancePolicy> expiredPolicies = collateralInsurancePolicyService.getExpiredPolicies();
+        return new ResponseEntity<>(expiredPolicies, HttpStatus.OK);*/
+
     }
 
     @GetMapping("/TotalNumberOfExpiredPolicies")
@@ -133,6 +157,13 @@ public class CollateralInsurancePolicyController {
         List<CollateralInsurancePolicy> policiesExpiringWithinThirtyDays = collateralInsurancePolicyService.getPoliciesExpiringWithinThirtyDays();
         return new ResponseEntity<>(policiesExpiringWithinThirtyDays, HttpStatus.OK);
     }
+
+//    @GetMapping("/expiring-within-thirty-days-list")
+//    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+//    public ResponseEntity<List<CollateralInsurancePolicy>> getPoliciesExpiringWithinThirtyDays() {
+//        List<CollateralInsurancePolicy> policiesExpiringWithinThirtyDays = collateralInsurancePolicyService.getPoliciesExpiringWithinThirtyDays();
+//        return new ResponseEntity<>(policiesExpiringWithinThirtyDays, HttpStatus.OK);
+//    }
 
     @GetMapping("/perDistrict/expired")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")

@@ -3,6 +3,7 @@ r	java:S117""QRename this local variable to match the regular expression '^[a-
 r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8»ž†¿«1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8¼ž†¿«1
 r	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ý©î¢ùÿÿÿÿ8¼ž†¿«1
 r	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(°Ð¬éýÿÿÿÿ8¼ž†¿«1
@@ -26,6 +27,8 @@ java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8ëÛ¨é½1
 =======
 =======
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 r	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8¼ž†¿«1
 r	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ý©î¢ùÿÿÿÿ8¼ž†¿«1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îéââùÿÿÿÿ8Àž†¿«1
@@ -46,6 +49,10 @@ V
 java:S1128"9Remove this unused import 'javax.xml.bind.JAXBException'.(ª¥åå8…áÈû·1
 R
 <<<<<<< HEAD
+<<<<<<< HEAD
+java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8…áÈû·1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8…áÈû·1
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======

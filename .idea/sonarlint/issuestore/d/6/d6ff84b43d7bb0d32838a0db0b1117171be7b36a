@@ -1,6 +1,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( Ö±ˆûÿÿÿÿ8ÌïÒæµ1
 ]	java:S125"<This block of commented-out lines of code should be removed.(Š¦³‘ÿÿÿÿÿ8ÎïÒæµ1
 ]	java:S125"<This block of commented-out lines of code should be removed.(¬‚õ¦øÿÿÿÿ8ÏïÒæµ1
@@ -14,12 +15,18 @@ java:S1128"JRemove this unused import 'org.springframework.data.jpa.repository
 =======
 =======
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.( Ö±ˆûÿÿÿÿ
 V	java:S125"<This block of commented-out lines of code should be removed.(Š¦³‘ÿÿÿÿÿ
 V	java:S125"<This block of commented-out lines of code should be removed.(¬‚õ¦øÿÿÿÿ
 V	java:S125"<This block of commented-out lines of code should be removed.(Ù¢£ÿøÿÿÿÿ
 e
 <<<<<<< HEAD
+<<<<<<< HEAD
+java:S1128"JRemove this unused import 'org.springframework.data.jpa.repository.Query'.(Äºöïþÿÿÿÿ
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1128"JRemove this unused import 'org.springframework.data.jpa.repository.Query'.(Äºöïþÿÿÿÿ
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======

@@ -1,5 +1,6 @@
 
 q
+<<<<<<< HEAD
 java:S1192]"ODefine a constant instead of duplicating this literal " was not found" 3 times.(Ÿ‚±›ýÿÿÿÿ8åÍž›Ä1
 r	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ÀµŽùÿÿÿÿ8åÍž›Ä1
 €
@@ -27,3 +28,13 @@ R
 java:S1068$"5Remove this unused "subProcessService" private field.(–œ‚á8„Îž›Ä1
 N
 java:S1068%"1Remove this unused "branchService" private field.(þŽó«8„Îž›Ä1
+=======
+java:S11925"ODefine a constant instead of duplicating this literal " was not found" 3 times.(Ÿ‚±›ýÿÿÿÿ8ªíáí¸1
+
+java:S1488p"]Immediately return this expression instead of assigning it to the temporary variable "count".(ƒ–ßÀÿÿÿÿÿ8«íáí¸1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡›½‰ýÿÿÿÿ8­íáí¸1
+j
+java:S1128"HRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.CaseStatus'.(ÜÄë®úÿÿÿÿ8Û„äí¸1
+z
+java:S1128"XRemove this unused import 'org.springframework.data.jpa.domain.AbstractPersistable_.id'.(ì€¦ÿÿÿÿÿ8ƒ‘Âº1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

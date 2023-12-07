@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Data
 
 @NoArgsConstructor
@@ -20,9 +21,10 @@ public class CollateralInsurancePolicy {
     private Long id;
     @Column(length = 64)
     private String preparedBy;
-    //    @Column( length = 64)
+
+//    @Column( length = 64)
 //    private double outstandingBalance;
-    @Column(length = 64)
+    @Column( length = 64)
     private String preparationTimeStamp;
     @Column(length = 64)
     private String authorizedBy;

@@ -89,6 +89,7 @@ public class DatabaseSeeder {
         this.insuranceCoverageTypeRepository = insuranceCoverageTypeRepository;
         this.chequeTypeRepository = chequeTypeRepository;
         this.actionTakenRepository = actionTakenRepository;
+        this.statusRepository=statusRepository;
         this.caseStatusRepository = caseStatusRepository;
         this.activityStatusRepository = activityStatusRepository;
         this.allCategoryRepository = allCategoryRepository;
@@ -600,7 +601,6 @@ public class DatabaseSeeder {
             //  logger.info("SubProcess Seeding Not Required");
         }
     }
-
     @Transactional
     public void seedStatus(String name) {
         String sql = "SELECT name FROM statuses s WHERE s.name = ? LIMIT 1";
@@ -614,6 +614,20 @@ public class DatabaseSeeder {
             //  logger.info("SubProcess Seeding Not Required");
         }
     }
+
+/*    @Transactional
+    public void seedStatus(String name) {
+        String sql = "SELECT name FROM statuses s WHERE s.name = ? LIMIT 1";
+        List<Status> s = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
+        if (s == null || s.size() == 0) {
+            Status status = new Status();
+            status.setName(name);
+            statusRepository.save(status);
+            // logger.info("SubProcess Seeded");
+        } else {
+            //  logger.info("SubProcess Seeding Not Required");
+        }
+    }*/
 
     @Transactional
     public void seedInsuranceCoverageType(String name) {

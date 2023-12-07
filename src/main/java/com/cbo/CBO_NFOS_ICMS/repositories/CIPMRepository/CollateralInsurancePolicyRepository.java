@@ -15,7 +15,6 @@ public interface CollateralInsurancePolicyRepository extends JpaRepository<Colla
 
     List<CollateralInsurancePolicy> findCollateralInsurancePolicyByBranchId(Long branchId);
 
-//    List<CollateralInsurancePolicy> findCollateralInsurancePolicyBySubProcess(SubProcess subproces);
 
     @Query("SELECT COUNT(c) FROM CollateralInsurancePolicy c")
     long count();

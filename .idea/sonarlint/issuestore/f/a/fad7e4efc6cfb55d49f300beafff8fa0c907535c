@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø¨É8á©ïáµ1
 X
 java:S1854."<Remove this useless assignment to local variable "username".(¯®«l8èÓ¢äµ1
@@ -6,3 +7,6 @@ I
 java:S1481."-Remove this unused "username" local variable.(¯®«l8ðÓ¢äµ1
 s
 java:S1128"VRemove this unused import 'org.springframework.security.core.userdetails.UserDetails'.(ÊÁ¥8«å¶1
+=======
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø¨É8‘ÂÅ£¶1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

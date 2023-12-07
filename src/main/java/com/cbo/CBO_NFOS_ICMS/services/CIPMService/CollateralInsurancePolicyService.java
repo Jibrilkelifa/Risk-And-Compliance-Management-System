@@ -2,11 +2,13 @@ package com.cbo.CBO_NFOS_ICMS.services.CIPMService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralInsurancePolicyRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -59,6 +61,7 @@ public class CollateralInsurancePolicyService {
 
 
     }
+
 
     public CollateralInsurancePolicy findCollateralInsurancePolicyById(Long id) {
         return collateralInsurancePolicyRepository.findCollateralInsurancePolicyById(id)
@@ -169,6 +172,5 @@ public class CollateralInsurancePolicyService {
         row.setAuthorizationTimeStamp(formattedDate);
         return collateralInsurancePolicyRepository.save(row);
     }
-
 
 }

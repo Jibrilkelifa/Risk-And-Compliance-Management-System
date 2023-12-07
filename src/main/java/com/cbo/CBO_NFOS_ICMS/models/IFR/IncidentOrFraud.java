@@ -78,7 +78,11 @@ public class IncidentOrFraud {
     private String addedByRole;
     @Column(length = 64)
     private String otherComment;
+<<<<<<< HEAD
     private Boolean isAuthorized = false;
+=======
+    private Boolean isAuthorized= false;
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;

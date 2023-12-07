@@ -307,8 +307,86 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(closedCases.size(), HttpStatus.OK);
     }
-
     @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    (caseItem.getCaseStatus().getName().equals("Closed") ||
+                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
+                closedAndWrittenOffCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(closedAndWrittenOffCases.size(), HttpStatus.OK);
+    }
+    @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<IncidentOrFraud>> getClosedAndWrittenOffCasesDuringQuarterlist() {
+        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
+        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
+
+        // Get the start and end dates for the current quarter
+        LocalDate currentDate = LocalDate.now();
+        int yearOffset = 0;
+        Month startMonth;
+        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+            startMonth = Month.JANUARY;
+        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+            startMonth = Month.APRIL;
+        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+            startMonth = Month.JULY;
+        } else {
+            startMonth = Month.OCTOBER;
+        }
+
+        if (startMonth.equals(Month.JANUARY)) {
+            yearOffset = -1;
+        }
+        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
+        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        for (IncidentOrFraud caseItem : allCases) {
+            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
+            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+                    (caseItem.getCaseStatus().getName().equals("Closed") ||
+                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
+                closedAndWrittenOffCases.add(caseItem);
+            }
+        }
+
+        return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
+    }
+
+    /*@GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
         List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
@@ -387,7 +465,7 @@ public class IncidentOrFraudController {
 
         return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
     }
-
+*/
 
     @GetMapping("/getOutstandingCasesAmountDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")

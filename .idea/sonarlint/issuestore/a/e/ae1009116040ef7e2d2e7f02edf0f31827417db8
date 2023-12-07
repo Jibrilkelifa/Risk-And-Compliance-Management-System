@@ -1,6 +1,13 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¨æÈûÿÿÿÿ8™â×å¼1
+=======
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¨æÈûÿÿÿÿ8æ¦¬ò¶1
+X	java:S125"<This block of commented-out lines of code should be removed.(Ò£Üõ8ë¦¬ò¶1
+j
+java:S1128"HRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.CaseStatus'.(ÜÄë®úÿÿÿÿ8á“Ë½·1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ¨æÈûÿÿÿÿ8æ¦¬ò¶1
 X	java:S125"<This block of commented-out lines of code should be removed.(Ò£Üõ8ë¦¬ò¶1

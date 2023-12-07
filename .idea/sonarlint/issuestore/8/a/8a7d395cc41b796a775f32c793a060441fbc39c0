@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“•Ðû
 T
 java:S2589ñ"8Remove this expression which always evaluates to "false"(æç—ýÿÿÿÿ
@@ -60,6 +61,8 @@ java:S1128"TRemove this unused import 'org.springframework.context.event.Conte
 n
 java:S1128"LRemove this unused import 'org.springframework.context.event.EventListener'.(¦ñÛÐüÿÿÿÿ8ï€§ý·1
 =======
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 {
 java:S1192Ç"]Define a constant instead of duplicating this literal "Branch Opening Requirements" 17 times.(ßÁ¼Ò8øÜÚÌ¶1
 i
@@ -670,5 +673,9 @@ java:S1155©">Use isEmpty() to check whether the collection is empty or not.(í¸
 q
 java:S1128"TRemove this unused import 'org.springframework.context.event.ContextRefreshedEvent'.(ôõµÍ8¤ÞëÌ¶1
 n
+<<<<<<< HEAD
+java:S1128"LRemove this unused import 'org.springframework.context.event.EventListener'.(¦ñÛÐüÿÿÿÿ8¤ÞëÌ¶1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1128"LRemove this unused import 'org.springframework.context.event.EventListener'.(¦ñÛÐüÿÿÿÿ8¤ÞëÌ¶1
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

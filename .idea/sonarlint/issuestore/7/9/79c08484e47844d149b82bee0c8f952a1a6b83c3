@@ -1,5 +1,6 @@
 
 Å
+<<<<<<< HEAD
 java:S1192÷"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(è≈±Ìˇˇˇˇˇ8∫˙ûòƒ1
 j
 java:S1192¶"GDefine a constant instead of duplicating this literal "Closed" 3 times.(›Ü∏Ü˚ˇˇˇˇ8ª˙ûòƒ1
@@ -31,3 +32,29 @@ java:S1128
 "?Remove this unused import 'org.springframework.http.MediaType'.(˙ü›Ø˛ˇˇˇˇ8ù€˛òƒ1
 F
 java:S1128")Remove this unused import 'java.io.File'.(Ü–•≈8û€˛òƒ1
+=======
+java:S1192è"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(è≈±Ìˇˇˇˇˇ8ÍΩüÕØ1
+j
+java:S1192ﬂ"GDefine a constant instead of duplicating this literal "Closed" 3 times.(›Ü∏Ü˚ˇˇˇˇ8•‚îÈ±1
+o
+java:S1192ì"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(îœ≈¯¸ˇˇˇˇ8ÍΩüÕØ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˘ø”Ï˚ˇˇˇˇ8ÎΩüÕØ1
+r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÛà˛˚ˇˇˇˇ8ÎΩüÕØ1
+r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îÛà˛˚ˇˇˇˇ8ÎΩüÕØ1
+m	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çªø˜8ÎΩüÕØ1
+r	java:S117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‰çøˇˇˇˇˇ8ÎΩüÕØ1
+r	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢‰çøˇˇˇˇˇ8ÎΩüÕØ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ﬂÓı˚ˇˇˇˇ8ÌΩüÕØ1
+b
+java:S4684>"@Replace this persistent entity with a simple POJO or DTO object.(¢‰çøˇˇˇˇˇ8¡üÕØ1
+b
+java:S4684F"@Replace this persistent entity with a simple POJO or DTO object.(¢‰çøˇˇˇˇˇ8Ò¡üÕØ1
+H
+java:S1452b"&Remove usage of generic wildcard type.(àÛß©¯ˇˇˇˇ8Û¡üÕØ1
+b
+java:S1854∫"DRemove this useless assignment to local variable "outstandingCases".(«†öŸ8˛¡üÕØ1
+S
+java:S1481∫"5Remove this unused "outstandingCases" local variable.(«†öŸ8ˇ¡üÕØ1
+k
+java:S5361◊"HReplace this call to "replaceAll()" by a call to the "replace()" method.(™˚äõˇˇˇˇˇ8Å¬üÕØ1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

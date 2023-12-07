@@ -1,6 +1,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 r	java:S1170"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½±ÝÜÿÿÿÿÿ8§Ü‡÷·1
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(÷ØÓ&8¨Ü‡÷·1
 b
@@ -20,6 +21,8 @@ java:S1128"MRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.Incide
 =======
 =======
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(÷ØÓ&8î‰¡ø±1
 b
 java:S4684<"@Replace this persistent entity with a simple POJO or DTO object.(¢ºùÿÿÿÿ8ÿ‰¡ø±1
@@ -33,6 +36,10 @@ n
 java:S1128"RRemove this unused import 'com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException'.(ÙÊÃb8Üä¥Ÿ²1
 j
 <<<<<<< HEAD
+<<<<<<< HEAD
+java:S1128"MRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud'.(¦Ïü˜8Ýä¥Ÿ²1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+=======
 java:S1128"MRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud'.(¦Ïü˜8Ýä¥Ÿ²1
 >>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 =======
