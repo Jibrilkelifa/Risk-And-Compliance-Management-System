@@ -1,109 +1,228 @@
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllSubCategory.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\CaseStatus.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\OrganizationalUnitService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\ResourceNotFoundException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ActionTaken.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\InsuranceCoverageTypeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\DishonoredChequeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ChequeTypeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ChequeTypeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\ModuleRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\DishonoredChequeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Employee.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\CorsConfiguration.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllCategoryRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\DishonoredCheque.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllSubCategoryService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\FraudTypeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralInsurancePolicyController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\TimeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\WorkCenter.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ActionTakenService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\EmployeeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\UserRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\ModuleService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\SubProcessController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllIrregularityRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\IncidentOrFraud.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\RoleRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllSubCategoryController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\DailyActivityGapControl.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\FraudTypeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\SubModuleController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Process.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\utils\JwtUtils.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\SubProcess.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\DailyActivityGapController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllSubCategoryRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\TimeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\SubProcessRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationFilter.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\InsuranceCoverageType.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchUserExistsException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllIrregularityService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\ActivityStatusRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\RoleService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenExistsException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\ERole.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralTypeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\IncidentOrFraudService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\EmployeeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\IncidentOrFraudController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubProcessService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllCategory.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralInsurancePolicyRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\seeders\DatabaseSeeder.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralInsurancePolicy.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubModuleService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\ActivityStatusController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\InsuranceCoverageTypeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\InsuranceCoverageTypeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\OrganizationalUnitController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\Frequency.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ActionTakenRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralTypeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralType.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\MvcConfig.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ChequeTypeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\DailyActivityGapControlService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\SecurityConfig.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\Time.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Module.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllCategoryService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\JwtService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\CBO_NFOS_ICMS_Application.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllIrregularity.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\RoleController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\ActivityStatusService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\IncidentOrFraudRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\CaseStatusService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ActionTakenController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\CaseStatusRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\EmployeeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\UserDetailsImpl.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\SubModule.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\SuspectedFraudsterProfession.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\DailyActivityGapControlRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllCategoryController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\ActivityStatus.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\SuspectedFraudsterProfessionRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\SuspectedFraudsterProfessionController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\CaseStatusController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\DishonoredChequeRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenrExistsException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserNotFoundException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\SuspectedFraudsterProfessionService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\FraudTypeService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllIrregularityController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\UserDetailsServiceImpl.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\OrganizationalUnitRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralInsurancePolicyService.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ChequeType.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\FraudType.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationEntryPoint.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\User.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\SubModuleRepository.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralTypeController.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\OrganizationalUnit.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserAlreadyExistsException.java
-C:\Users\debbym\Documents\Gitea\CBO_NFOS_ICMS\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Role.java
+<<<<<<< HEAD
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\BranchRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\UserRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\RoleRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralTypeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ActionTakenService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralInsurancePolicyController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\SubModule.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\WorkCenter.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserDetailsServiceImpl.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\ModuleRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\OrganizationalUnitController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllIrregularityRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralType.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\ERole.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\DishonoredChequeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\ActivityStatus.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\CaseStatusRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\User.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ActionTakenController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\DailyActivityGapControlService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\StatusController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Module.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ChequeTypeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\seeders\DatabaseSeeder.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\SubProcessRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralTypeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenExistsException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ActionTaken.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\FraudTypeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\FraudTypeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchUserExistsException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllIrregularity.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\FraudTypeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubProcessService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\TimeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\Time.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\ActivityStatusRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\DailyActivityGapController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\RoleController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserNotFoundException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\SubProcessController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\SubProcess.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\SuspectedFraudsterProfession.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\FraudType.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserAlreadyExistsException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\InsuranceCoverageTypeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationEntryPoint.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\BranchService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserDetailsImpl.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\IncidentOrFraudService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ChequeType.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllSubCategory.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\EmployeeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllCategory.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\ModuleService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Location.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\CaseStatus.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\OrganizationalUnit.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ChequeTypeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralInsurancePolicyService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Branch.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Role.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllCategoryRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllSubCategoryRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralInsurancePolicy.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\CorsConfiguration.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\IncidentOrFraud.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\DailyActivityGapControl.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllSubCategoryService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\MvcConfig.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\InsuranceCoverageTypeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationFilter.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\DishonoredChequeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Employee.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\InsuranceCoverageType.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllCategoryController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\DailyActivityGapControlRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\SuspectedFraudsterProfessionController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\SubModuleController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\EmployeeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralTypeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\RoleService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ChequeTypeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\ResourceNotFoundException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\ActivityStatusService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\TimeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\StatusService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\DishonoredChequeRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\InsuranceCoverageTypeController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\IncidentOrFraudController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\ActivityStatusController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\Status.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\DishonoredCheque.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Process.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\SuspectedFraudsterProfessionService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\Frequency.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\JwtService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\SecurityConfig.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\CaseStatusService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllSubCategoryController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\utils\JwtUtils.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllIrregularityController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\StatusRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\IncidentOrFraudRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\CaseStatusController.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllIrregularityService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\SubModuleRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\CBO_NFOS_ICMS_Application.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllCategoryService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralInsurancePolicyRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\SuspectedFraudsterProfessionRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ActionTakenRepository.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\LocationGroup.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\EmployeeService.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenrExistsException.java
+C:\Users\jibrilk\Pictures\icms new owner backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubModuleService.java
+=======
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\SuspectedFraudsterProfessionService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\DailyActivityGapController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\WorkCenter.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ChequeTypeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\SubModuleRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllCategoryRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllSubCategory.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Module.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserAlreadyExistsException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\CaseStatus.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\ERole.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllIrregularityController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\RoleRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\TimeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\RoleService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\ResourceNotFoundException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\ActivityStatusService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralInsurancePolicyController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralTypeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\FraudTypeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\SecurityConfig.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\InsuranceCoverageTypeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\DishonoredChequeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ChequeTypeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\CBO_NFOS_ICMS_Application.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\DailyActivityGapControlRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllIrregularityRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationEntryPoint.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\IncidentOrFraudController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllCategoryService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralInsurancePolicyRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\FraudType.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralInsurancePolicy.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationFilter.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Role.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\RoleController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\AllSubCategoryRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\ActivityStatusController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\SubProcessController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\CollateralTypeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\IFR\IncidentOrFraud.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\ActivityStatus.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Employee.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\seeders\DatabaseSeeder.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\OrganizationalUnitController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DACGM\DailyActivityGapControl.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\TimeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\User.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\UserRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ActionTakenController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\CaseStatusService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\SuspectedFraudsterProfessionController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenrExistsException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\CaseStatusRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralInsurancePolicyService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubProcessService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\SuspectedFraudsterProfession.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllCategoryController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\SubModule.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\SubModuleController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ChequeType.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllSubCategoryService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\IncidentOrFraudService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\InsuranceCoverageTypeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\IFRController\CaseStatusController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubModuleService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\DishonoredCheque.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\AllIrregularityService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\AllSubCategoryController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DACGMService\DailyActivityGapControlService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenExistsException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserDetailsImpl.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\EmployeeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\InsuranceCoverageType.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\DishonoredChequeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\DishonoredChequeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserDetailsServiceImpl.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\OrganizationalUnitService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\DCQ\ActionTaken.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\Time.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Process.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\ModuleService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralType.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\utils\JwtUtils.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\CIPM\Frequency.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\DCQService\ActionTakenService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ChequeTypeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\IncidentOrFraudRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\SubProcessRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllIrregularity.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\SuspectedFraudsterProfessionRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\CIPMRepository\InsuranceCoverageTypeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\AllCategory.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralTypeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\OrganizationalUnit.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\CorsConfiguration.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\UserNotFoundException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\FraudTypeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\configuration\MvcConfig.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\ModuleRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\EmployeeController.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\SubProcess.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\exception\NoSuchUserExistsException.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\ActivityStatusRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ActionTakenRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\EmployeeRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\OrganizationalUnitRepository.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\IFRService\FraudTypeService.java
+C:\Users\jibrilk\Pictures\icms backup\icms\src\main\java\com\cbo\CBO_NFOS_ICMS\services\JwtService.java
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

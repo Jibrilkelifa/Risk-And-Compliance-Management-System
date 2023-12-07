@@ -21,8 +21,5 @@ public class SubProcess {
     private Long id;
     private String code;
     private String name;
-    @ManyToOne
-    private Process process;
-    @ManyToOne
-    private WorkCenter workCenter;
+
 }

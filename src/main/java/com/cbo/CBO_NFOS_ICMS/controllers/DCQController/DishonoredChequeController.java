@@ -1,5 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.DCQController;
 
+import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.DishonoredCheque;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.Frequency;
 import com.cbo.CBO_NFOS_ICMS.services.DCQService.DishonoredChequeService;
@@ -29,17 +30,17 @@ public class DishonoredChequeController {
     }
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH')")
-    public ResponseEntity<List<DishonoredCheque>> getAllDishonouredChequeInSpecificOrganizationalUnit(@PathVariable("id") Long id) {
-        List<DishonoredCheque> DishonoredCheque;
-        DishonoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificOrganizationalUnit(id);
-        return new ResponseEntity<>(DishonoredCheque, HttpStatus.OK);
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
+    public ResponseEntity<List<DishonoredCheque>> getAllDishouneredChequeInSpecificOrganizationalUnit(@PathVariable("id") Long branchId) {
+        List<DishonoredCheque> DishounoredCheque;
+        DishounoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificOrganizationalUnit(branchId);
+        return new ResponseEntity<>(DishounoredCheque, HttpStatus.OK);
     }
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT')")
-    public @ResponseBody List<DishonoredCheque> getAllDishonouredChequeInSpecificSubProcess(@PathVariable("id") Long id) {
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC')")
+    public @ResponseBody List<DishonoredCheque> getAllDishonouredChequeInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<DishonoredCheque> dishonoredCheque;
-        dishonoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificSubProcess(id);
+        dishonoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificSubProcess(subProcessId);
         return dishonoredCheque;
     }
         @GetMapping("/find/{id}")
@@ -61,7 +62,7 @@ public class DishonoredChequeController {
             return new ResponseEntity<>(updateDishonoredCheque, HttpStatus.CREATED);
         }
         @DeleteMapping("/delete/{id}")
-        @PreAuthorize("hasRole('ICMS_BRANCH')")
+        @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
         public ResponseEntity<?> deleteDishonouredCheque (@PathVariable("id") Long id){
             dishonoredChequeService.deleteDishonouredCheque(id);
@@ -99,6 +100,12 @@ public class DishonoredChequeController {
     public ResponseEntity<Integer> countDishonouredChequesThreeTimesInLastWeek() {
         int count = dishonoredChequeService.countDishonouredChequesThreeTimesInLastWeek();
         return ResponseEntity.ok(count);
+    }
+    @GetMapping("/three-times-in-last-week-list")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<DishonoredCheque>> getDishonouredChequesThreeTimesInLastWeek() {
+        List<DishonoredCheque> dishonoredCheques = dishonoredChequeService.getDishonouredChequesThreeTimesInLastWeek();
+        return ResponseEntity.ok(dishonoredCheques);
     }
     }
 

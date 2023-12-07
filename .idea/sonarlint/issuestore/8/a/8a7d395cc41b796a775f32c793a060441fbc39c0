@@ -1,0 +1,60 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(“•Ğû
+T
+java:S2589ñ"8Remove this expression which always evaluates to "false"(æç—ıÿÿÿÿ
+O
+java:S2589"8Remove this expression which always evaluates to "false"(¶˜íù
+O
+java:S2589›"8Remove this expression which always evaluates to "false"(„ÜäÙ
+O
+java:S2589ÿ"8Remove this expression which always evaluates to "false"(†€°
+O
+java:S2589­"8Remove this expression which always evaluates to "false"(„ÜäÙ
+T
+java:S2589¼"8Remove this expression which always evaluates to "false"(í¸’ºüÿÿÿÿ
+V	java:S125%"<This block of commented-out lines of code should be removed.(Í¹ß‘şÿÿÿÿ
+W	java:S125ç"<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ
+R	java:S125é"<This block of commented-out lines of code should be removed.(£º¡¶
+D
+java:S1874ğ"-Remove this use of "query"; it is deprecated.(Ú¶»•
+Z
+java:S1155ñ">Use isEmpty() to check whether the collection is empty or not.(æç—ıÿÿÿÿ
+W	java:S125õ"<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ
+R	java:S125÷"<This block of commented-out lines of code should be removed.(£º¡¶
+D
+java:S1874ş"-Remove this use of "query"; it is deprecated.(¥Üİª
+U
+java:S1155ÿ">Use isEmpty() to check whether the collection is empty or not.(†€°
+W	java:S125„"<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ
+R	java:S125†"<This block of commented-out lines of code should be removed.(£º¡¶
+D
+java:S1874"-Remove this use of "query"; it is deprecated.(£ÏÒë
+W	java:S125"<This block of commented-out lines of code should be removed.(ˆÅ„Šüÿÿÿÿ
+U
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(¶˜íù
+W	java:S125’"<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ
+R	java:S125”"<This block of commented-out lines of code should be removed.(£º¡¶
+I
+java:S1874š"-Remove this use of "query"; it is deprecated.(ŸµôÕüÿÿÿÿ
+U
+java:S1155›">Use isEmpty() to check whether the collection is empty or not.(„ÜäÙ
+3
+java:S1116"Remove this empty statement.(Ù•Ú²
+W	java:S125 "<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ
+R	java:S125¢"<This block of commented-out lines of code should be removed.(£º¡¶
+Y	java:S125§"<This block of commented-out lines of code should be removed.(—ª¾‰8×“ïõÃ1
+D
+java:S1874«"-Remove this use of "query"; it is deprecated.(è„—
+U
+java:S1155­">Use isEmpty() to check whether the collection is empty or not.(„ÜäÙ
+^	java:S125²"<This block of commented-out lines of code should be removed.(Ç÷Õ‰øÿÿÿÿ8ôæı·1
+Y	java:S125´"<This block of commented-out lines of code should be removed.(£º¡¶8ôæı·1
+K
+java:S1874»"-Remove this use of "query"; it is deprecated.(·§ì©8ôæı·1
+Z
+java:S1155¼">Use isEmpty() to check whether the collection is empty or not.(í¸’ºüÿÿÿÿ
+W	java:S125Á"<This block of commented-out lines of code should be removed.(ÈÉ†ûÿÿÿÿ
+q
+java:S1128"TRemove this unused import 'org.springframework.context.event.ContextRefreshedEvent'.(ôõµÍ8î€§ı·1
+n
+java:S1128"LRemove this unused import 'org.springframework.context.event.EventListener'.(¦ñÛĞüÿÿÿÿ8ï€§ı·1

@@ -4,20 +4,23 @@ package com.cbo.CBO_NFOS_ICMS.utils;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class JwtUtils {
 
     // Inject the secret key and expiration time from application.properties
-    @Value("${application.security.jwt.secret-key}")
+    @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${application.security.jwt.expiration}")
+    @Value("${jwt.expiration}")
     private long expiration;
 
     // Create a JWT token from a username, date, and authorities
@@ -50,8 +53,10 @@ public class JwtUtils {
             // Parse the token and check if it is expired or malformed
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
-        } catch (ExpiredJwtException | MalformedJwtException | SignatureException | UnsupportedJwtException | IllegalArgumentException e) {
+        } catch (ExpiredJwtException | MalformedJwtException | SignatureException | UnsupportedJwtException |
+                 IllegalArgumentException e) {
             // Log the exception and return false
+            System.out.println("Invalid JWT token: " + e.getMessage());
             return false;
         }
     }
@@ -61,5 +66,20 @@ public class JwtUtils {
         // Parse the token and get the subject (username)
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
         return claims.getSubject();
+    }
+
+    public List<GrantedAuthority> grantedAuthorities(String token) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : getRolesFromToken(token)) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+
+        return authorities;
+    }
+
+    private List<String> getRolesFromToken(String token) {
+        Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        List<String> roles = (List<String>) claims.get("authorities");
+        return roles;
     }
 }

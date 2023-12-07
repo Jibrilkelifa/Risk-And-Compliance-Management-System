@@ -1,6 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.UserAndEmployeeController;
 
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.http.HttpStatus;
@@ -20,10 +20,10 @@ public class SubProcessController {
             this.subProcessService = subProcessService;
         }
         @GetMapping("/{id}/allOrganizationalUnites")
-        public ResponseEntity<List<OrganizationalUnit>> getAllOrganizationalUnites(@PathVariable("id") Long id){
+        public ResponseEntity<List<Branch>> getAllOrganizationalUnites(@PathVariable("id") Long id){
 
             SubProcess subProcess = subProcessService.findSubProcessById (id);
-            List<OrganizationalUnit> organizationalUnits = subProcessService.findAllOrganizationalUnit(subProcess);
+            List<Branch> organizationalUnits = subProcessService.findAllBranch(subProcess);
             return new ResponseEntity<>(organizationalUnits, HttpStatus.OK);
         }
         @GetMapping("/all")

@@ -1,11 +1,11 @@
 package com.cbo.CBO_NFOS_ICMS.services.DCQService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.DishonoredCheque;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.DishonoredChequeRepository;
-import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.OrganizationalUnitService;
+import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +21,10 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class DishonoredChequeService {
     private final SubProcessService subProcessService;
-    private final OrganizationalUnitService organizationalUnitService;
+    private final BranchService organizationalUnitService;
     private final DishonoredChequeRepository dishonoredChequeRepository;
 
-    public DishonoredChequeService(SubProcessService subProcessService, OrganizationalUnitService organizationalUnitService, DishonoredChequeRepository dishonoredChequeRepository) {
+    public DishonoredChequeService(SubProcessService subProcessService, BranchService organizationalUnitService, DishonoredChequeRepository dishonoredChequeRepository) {
 
         this.subProcessService = subProcessService;
         this.organizationalUnitService = organizationalUnitService;
@@ -56,24 +56,28 @@ public class DishonoredChequeService {
         dishonoredChequeRepository.deleteById(id);
     }
 
-    public List<DishonoredCheque> findAllDishonouredChequeInSpecificOrganizationalUnit(Long id) {
-        OrganizationalUnit organizationalUnit = organizationalUnitService.findOrganizationalUnitById(id);
-        return dishonoredChequeRepository.findDishonouredChequeByOrganizationalUnit(organizationalUnit);
+    public List<DishonoredCheque> findAllDishonouredChequeInSpecificOrganizationalUnit(Long branchid) {
+        //Branch branch = organizationalUnitService.findBranchById(id);
+        return dishonoredChequeRepository.findDishonouredChequeByBranchId(branchid);
     }
 
-    public List<DishonoredCheque> findAllDishonouredChequeInSpecificSubProcess(Long id) {
-        SubProcess subProcess = subProcessService.findSubProcessById(id);
-        List<OrganizationalUnit> organizationalUnits = organizationalUnitService.findOrganizationalUnitBySubProcess(subProcess);
-        List<DishonoredCheque> dchques = new ArrayList<>();
-        for (int i = 0; i < organizationalUnits.size(); i++) {
-            List<DishonoredCheque> clmfjhd = dishonoredChequeRepository.findDishonouredChequeByOrganizationalUnit(organizationalUnits.get(i));
-            for (int j = 0; j < clmfjhd.size(); j++) {
-                dchques.add(dishonoredChequeRepository.findDishonouredChequeByOrganizationalUnit(organizationalUnits.get(i)).get(j));
-
-            }
-        }
-        return dchques;
-    }
+//    public List<DishonoredCheque> findAllDishonouredChequeInSpecificSubProcess(Long id) {
+//        SubProcess subProcess = subProcessService.findSubProcessById(id);
+//        List<Branch> organizationalUnits = organizationalUnitService.findBranchBySubProcess(subProcess);
+//        List<DishonoredCheque> dchques = new ArrayList<>();
+//        for (int i = 0; i < organizationalUnits.size(); i++) {
+//            List<DishonoredCheque> clmfjhd = dishonoredChequeRepository.findDishonouredChequeByBranch(organizationalUnits.get(i));
+//            for (int j = 0; j < clmfjhd.size(); j++) {
+//                dchques.add(dishonoredChequeRepository.findDishonouredChequeByBranch(organizationalUnits.get(i)).get(j));
+//
+//            }
+//        }
+//        return dchques;
+//    }
+public List<DishonoredCheque> findAllDishonouredChequeInSpecificSubProcess(Long subProcessId) {
+    //Branch branch = organizationalUnitService.findBranchById(id);
+    return dishonoredChequeRepository.findDishonouredChequeBySubProcessId(subProcessId);
+}
     public int findDishonouredChequeCountForYear(int year) {
         List<DishonoredCheque> dishonoredCheques = findAllDishonouredCheque();
         int count = 0;
@@ -106,6 +110,21 @@ public class DishonoredChequeService {
             }
         }
         return count;
+    }
+    public List<DishonoredCheque> getDishonouredChequesThreeTimesInLastWeek() {
+        LocalDate startDate = LocalDate.now().minusDays(7);
+        LocalDate endDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+        List<DishonoredCheque> dishonoredCheques = new ArrayList<>();
+
+        for (DishonoredCheque dcq : dishonoredChequeRepository.findByFrequencyGreaterThanEqual(3)) {
+            LocalDate datePresented = LocalDate.parse(dcq.getDatePresented(), formatter);
+            if (datePresented.isAfter(startDate) && datePresented.isBefore(endDate.plusDays(1))) {
+                dishonoredCheques.add(dcq);
+            }
+        }
+
+        return dishonoredCheques;
     }
 
 }

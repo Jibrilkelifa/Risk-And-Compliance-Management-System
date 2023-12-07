@@ -1,7 +1,8 @@
 package com.cbo.CBO_NFOS_ICMS.models.DACGM;
 
 import com.cbo.CBO_NFOS_ICMS.models.AllIrregularity;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -35,6 +36,11 @@ public class DailyActivityGapControl {
     private String actionPlanDueDate;
     @Column( length = 64)
     private String approvedBy;
+    private Boolean escalatedByManager= false;
+<<<<<<< HEAD
+    private Boolean actionTaken= false;
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
     @ManyToOne
     @JoinColumn(name = "activity_status_id")
     private ActivityStatus activityStatus;
@@ -44,7 +50,10 @@ public class DailyActivityGapControl {
     @Column( length = 64)
     private String otherIrregularity;
     @ManyToOne
-    @JoinColumn(name = "organizational_unit_id")
-    private OrganizationalUnit organizationalUnit;
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
+    @ManyToOne
+    @JoinColumn(name = "sub_Process_id")
+    private SubProcess subProcess;
 }
 

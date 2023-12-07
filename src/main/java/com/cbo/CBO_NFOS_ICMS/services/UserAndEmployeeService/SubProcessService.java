@@ -1,9 +1,11 @@
 package com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
-import com.cbo.CBO_NFOS_ICMS.repositories.UserAndEmployeeRepository.OrganizationalUnitRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.UserAndEmployeeRepository.BranchRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.UserAndEmployeeRepository.BranchRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.UserAndEmployeeRepository.SubProcessRepository;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,9 @@ public class SubProcessService {
 
 
     private final SubProcessRepository subProcessRepository;
-    private  final OrganizationalUnitRepository organizationalUnitRepository;
+    private  final BranchRepository organizationalUnitRepository;
 
-    public SubProcessService(SubProcessRepository subProcessRepository, OrganizationalUnitRepository organizationalUnitRepository) {
+    public SubProcessService(SubProcessRepository subProcessRepository, BranchRepository organizationalUnitRepository) {
         this.subProcessRepository = subProcessRepository;
         this.organizationalUnitRepository = organizationalUnitRepository;
     }
@@ -37,7 +39,7 @@ public class SubProcessService {
         subProcessRepository.deleteById(id);
     }
 
-    public List<OrganizationalUnit> findAllOrganizationalUnit(SubProcess subProcess) {
+    public List<Branch> findAllBranch(SubProcess subProcess) {
         return organizationalUnitRepository.findAllBySubProcess(subProcess);
     }
 

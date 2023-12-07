@@ -1,0 +1,17 @@
+
+<<<<<<< HEAD
+
+java:S1488R"]Immediately return this expression instead of assigning it to the temporary variable "roles".(ìÑã•ÿÿÿÿÿ8Ö¢žäµ1
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¬ëöô
+M
+java:S1172"+Remove this unused method parameter "date".(¨ÆÊóøÿÿÿÿ8ð¢žäµ1
+G	java:S106;"+Replace this use of System.out by a logger.(ÖÓ†“8€£žäµ1
+=======
+€
+java:S1488"]Immediately return this expression instead of assigning it to the temporary variable "roles".(ìÑã•ÿÿÿÿÿ8ïˆæˆµ1
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¿ªªþÿÿÿÿ
+X	java:S125"<This block of commented-out lines of code should be removed.(¢—¡8è‰æˆµ1
+F
+java:S1172Y"+Remove this unused method parameter "date".(¨ÆÊóøÿÿÿÿ
+G	java:S106y"+Replace this use of System.out by a logger.(ÖÓ†“8¸Šæˆµ1
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf

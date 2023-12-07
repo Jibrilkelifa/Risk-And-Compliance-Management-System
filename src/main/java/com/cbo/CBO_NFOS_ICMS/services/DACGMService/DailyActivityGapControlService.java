@@ -1,11 +1,13 @@
 package com.cbo.CBO_NFOS_ICMS.services.DACGMService;
 
+import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.DailyActivityGapControlRepository;
-import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.OrganizationalUnitService;
+import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +19,12 @@ import java.util.Optional;
 public class DailyActivityGapControlService {
 
     private final SubProcessService subProcessService;
-    private final OrganizationalUnitService organizationalUnitService;
+    private final BranchService branchService;
     private final DailyActivityGapControlRepository dACGMRepository;
 
-    public DailyActivityGapControlService(SubProcessService subProcessService, OrganizationalUnitService organizationalUnitService, DailyActivityGapControlRepository dACGMRepository) {
+    public DailyActivityGapControlService(SubProcessService subProcessService, BranchService branchService, DailyActivityGapControlRepository dACGMRepository) {
         this.subProcessService = subProcessService;
-        this.organizationalUnitService = organizationalUnitService;
+        this.branchService = branchService;
         this.dACGMRepository = dACGMRepository;
     }
 
@@ -41,12 +43,37 @@ public class DailyActivityGapControlService {
         return dACGMRepository.findAll();
     }
 
+
+
+
+    public DailyActivityGapControl approveActionPlan(Long id, String actionPlanDueDate) {
+        DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        row.setActionPlanDueDate(actionPlanDueDate);
+<<<<<<< HEAD
+        row.setActionTaken(true);
+        System.out.println(row.getActionTaken());
+=======
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+        return dACGMRepository.save(row);
+    }
+    public DailyActivityGapControl escalatePlan(Long id) {
+        DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));
+        row.setEscalatedByManager(true);
+        return dACGMRepository.save(row);
+    }
     public int findDACGMSize() {
         return dACGMRepository.findAll().size();
     }
 
     public DailyActivityGapControl updateDACGM(DailyActivityGapControl dACGM) {
-        return dACGMRepository.save(dACGM);
+        Optional<DailyActivityGapControl> optionalDACGM = dACGMRepository.findById(dACGM.getId());
+        if (optionalDACGM.isPresent()) {
+            DailyActivityGapControl existingDACGM = optionalDACGM.get();
+            existingDACGM.setActivityStatus(dACGM.getActivityStatus());
+            return dACGMRepository.save(existingDACGM);
+        } else {
+            throw new ResourceNotFoundException("DailyActivityGapControl not found");
+        }
     }
 
     public DailyActivityGapControl findDACGMById(Long id) {
@@ -64,25 +91,29 @@ public class DailyActivityGapControlService {
     }
 
     public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(Long id) {
-        OrganizationalUnit organizationalUnit = organizationalUnitService.findOrganizationalUnitById(id);
-        return dACGMRepository.findDACGMByOrganizationalUnit(organizationalUnit);
+        return dACGMRepository.findDACGMByBranchId(id);
+    }
+    public List<DailyActivityGapControl> findAllDACGMInSpecificSubProcess(Long subProcessId) {
+//        Branch branch = organizationalUnitService.findBranchById(id);
+        return dACGMRepository.findDACGMBySubProcessId(subProcessId);
     }
 
-    public List<DailyActivityGapControl> findAllDACGMInSpecificSubProcess(Long id) {
-        SubProcess subProcess = subProcessService.findSubProcessById(id);
-        List<OrganizationalUnit> organizationalUnits = organizationalUnitService.findOrganizationalUnitBySubProcess(subProcess);
-        List<DailyActivityGapControl> dchques = new ArrayList<>();
-        for (int i = 0; i < organizationalUnits.size(); i++) {
-            List<DailyActivityGapControl> clmfjhd = dACGMRepository.findDACGMByOrganizationalUnit(organizationalUnits.get(i));
-            for (int j = 0; j < clmfjhd.size(); j++) {
-                dchques.add(dACGMRepository.findDACGMByOrganizationalUnit(organizationalUnits.get(i)).get(j));
 
-            }
-
-
-        }
-        return dchques;
-    }
+//    public List<DailyActivityGapControl> findAllDACGMInSpecificSubProcess(Long id) {
+//        SubProcess subProcess = subProcessService.findSubProcessById(id);
+//        List<Branch> organizationalUnits = branchService.findBranchBySubProcess(subProcess);
+//        List<DailyActivityGapControl> dchques = new ArrayList<>();
+//        for (int i = 0; i < organizationalUnits.size(); i++) {
+//            List<DailyActivityGapControl> clmfjhd = dACGMRepository.findDACGMByBranch(organizationalUnits.get(i));
+//            for (int j = 0; j < clmfjhd.size(); j++) {
+//                dchques.add(dACGMRepository.findDACGMByBranch(organizationalUnits.get(i)).get(j));
+//
+//            }
+//
+//
+//        }
+//        return dchques;
+//    }
 
 
    /* public DACGM updateTableRow(Long id, boolean caseAuthorized) {

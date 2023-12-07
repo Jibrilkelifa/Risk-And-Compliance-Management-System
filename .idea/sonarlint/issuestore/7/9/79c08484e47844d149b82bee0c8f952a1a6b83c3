@@ -1,0 +1,33 @@
+
+
+java:S1192Ö"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8ºú˜Ä1
+j
+java:S1192¦"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8»ú˜Ä1
+o
+java:S1192Ú"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8»ú˜Ä1
+r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8»ú˜Ä1
+r	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8»ú˜Ä1
+r	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8»ú˜Ä1
+m	java:S117R"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8»ú˜Ä1
+…
+java:S1488„"bImmediately return this expression instead of assigning it to the temporary variable "imageBytes".(ßÑËÁûÿÿÿÿ8Óş˜Ä1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8¿ú˜Ä1
+G	java:S106e"+Replace this use of System.out by a logger.(ô¿½´8›Î³˜Ä1
+Y	java:S125…"<This block of commented-out lines of code should be removed.(Î¹á˜8ıÚş˜Ä1
+^
+java:S4684Œ"@Replace this persistent entity with a simple POJO or DTO object.(šÜ¼ƒ8 Î³˜Ä1
+I
+java:S1452©"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8£Î³˜Ä1
+b
+java:S1854"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8´Î³˜Ä1
+S
+java:S1481"5Remove this unused "outstandingCases" local variable.(Ç šÙ8´Î³˜Ä1
+k
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8·Î³˜Ä1
+x
+java:S1128"VRemove this unused import 'com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException'.(£Ï„üúÿÿÿÿ8Ûş˜Ä1
+a
+java:S1128
+"?Remove this unused import 'org.springframework.http.MediaType'.(úŸİ¯şÿÿÿÿ8Ûş˜Ä1
+F
+java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8Ûş˜Ä1

@@ -2,9 +2,12 @@ package com.cbo.CBO_NFOS_ICMS.models.IFR;
 
 import com.cbo.CBO_NFOS_ICMS.models.AllCategory;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.SuspectedFraudsterProfession;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Team;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
@@ -56,6 +59,9 @@ public class IncidentOrFraud {
     private String  reasonForDelay;
     @Column( length = 64)
     private String fraudOccurrencePlace;
+    private String fileName;
+    private String filePath;
+    private byte[] fileData;
     @Column( length = 64)
     private String fraudCommittingTechnique;
     @Column( length = 64)
@@ -70,10 +76,21 @@ public class IncidentOrFraud {
     private String otherSuspectedFraudsterProfession;
     @Column( length = 64)
     private String reasonForFailedFraudAttempt;
+    private String addedByRole;
     @Column( length = 64)
     private String otherComment;
+    private Boolean isAuthorized= false;
     @ManyToOne
-    @JoinColumn(name = "organizational_unit_id")
-    private OrganizationalUnit organizationalUnit;
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
+    @JoinColumn(name = "branch_id")
+    private Boolean isAuthorized= false;
+//    private Boolean isWrittenOff= false;
+    @ManyToOne
+    @JoinColumn(name = "sub_process_id")
+    private SubProcess subProcess;
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
 }

@@ -3,6 +3,7 @@ package com.cbo.CBO_NFOS_ICMS.seeders;
 import com.cbo.CBO_NFOS_ICMS.models.*;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralType;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.InsuranceCoverageType;
+import com.cbo.CBO_NFOS_ICMS.models.CIPM.Status;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.SuspectedFraudsterProfession;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.ActivityStatus;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.ActionTaken;
@@ -12,6 +13,7 @@ import com.cbo.CBO_NFOS_ICMS.models.IFR.FraudType;
 import com.cbo.CBO_NFOS_ICMS.repositories.*;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralTypeRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.InsuranceCoverageTypeRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.StatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.SuspectedFraudsterProfessionRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.ActivityStatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.ActionTakenRepository;
@@ -35,6 +37,7 @@ public class DatabaseSeeder {
     //private Logger logger = Logger.getLogger(DatabaseSeeder.class);
     private JdbcTemplate jdbcTemplate;
     private CollateralTypeRepository collateralTypeRepository;
+    private StatusRepository statusRepository;
     private InsuranceCoverageTypeRepository insuranceCoverageTypeRepository;
     private ChequeTypeRepository chequeTypeRepository;
     private ActionTakenRepository actionTakenRepository;
@@ -58,8 +61,10 @@ public class DatabaseSeeder {
             JdbcTemplate jdbcTemplate,
             AllSubCategoryRepository allSubCategoryRepository,
             CollateralTypeRepository collateralTypeRepository,
+            StatusRepository statusRepository,
             InsuranceCoverageTypeRepository insuranceCoverageTypeRepository,
             ChequeTypeRepository chequeTypeRepository,
+            StatusRepository statusRepository,
             ActionTakenRepository actionTakenRepository,
             CaseStatusRepository caseStatusRepository,
             ActivityStatusRepository activityStatusRepository,
@@ -73,11 +78,13 @@ public class DatabaseSeeder {
             AllIrregularityRepository allIrregularityRepository
             ){
         this.jdbcTemplate = jdbcTemplate;
+        this.statusRepository=statusRepository;
         this.allSubCategoryRepository = allSubCategoryRepository;
         this.collateralTypeRepository = collateralTypeRepository;
         this.insuranceCoverageTypeRepository = insuranceCoverageTypeRepository;
         this.chequeTypeRepository = chequeTypeRepository;
         this.actionTakenRepository = actionTakenRepository;
+        this.statusRepository=statusRepository;
         this.caseStatusRepository = caseStatusRepository;
         this.activityStatusRepository = activityStatusRepository;
         this.allCategoryRepository = allCategoryRepository;
@@ -106,6 +113,13 @@ public class DatabaseSeeder {
         seedCollateralType("Share Certificates");
         seedCollateralType("Movable Collateral");
         seedCollateralType("Other");
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+        seedStatus("Active");
+        seedStatus("Closed");
         
         seedInsuranceCoverageType("Fire and related perils");
         seedInsuranceCoverageType("Motor Comprehensive; Third Party Liability");
@@ -403,6 +417,7 @@ public class DatabaseSeeder {
         seedAllIrregularitiesTable("Coopay account opening documents were not signed by authorized staff", findAllSubCategoryByNameAndCategoryName("Non-Financial","Digital Banking"));
         seedAllIrregularitiesTable("Other", findAllSubCategoryByNameAndCategoryName("Non-Financial","Digital Banking"));
 
+        seedAllIrregularitiesTable("The branch is not adequately guarded", findAllSubCategoryByNameAndCategoryName("Non-Financial","Branch Opening Requirements"));
         seedAllIrregularitiesTable("All windows and glass walls not grilled", findAllSubCategoryByNameAndCategoryName("Non-Financial","Branch Opening Requirements"));
         seedAllIrregularitiesTable("Appropriate training is not given to staff members of the branch", findAllSubCategoryByNameAndCategoryName("Non-Financial","Branch Opening Requirements"));
         seedAllIrregularitiesTable("Cash loading and unloading area is not suitable", findAllSubCategoryByNameAndCategoryName("Non-Financial","Branch Opening Requirements"));
@@ -501,6 +516,19 @@ public class DatabaseSeeder {
         }
     }
     @Transactional
+    public void seedStatus(String name) {
+        String sql = "SELECT name FROM statuses s WHERE s.name = ? LIMIT 1";
+        List<Status> s = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
+        if (s == null || s.size() == 0) {
+            Status status = new Status();
+            status.setName(name);
+            statusRepository.save(status);
+            // logger.info("SubProcess Seeded");
+        } else {
+            //  logger.info("SubProcess Seeding Not Required");
+        }
+    }
+    @Transactional
     public void seedCasesStatusTable(String name) {
         String sql = "SELECT name FROM cases_status CS WHERE CS.name = ? LIMIT 1";
         List<CaseStatus> cs = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
@@ -576,6 +604,19 @@ public class DatabaseSeeder {
             //  logger.info("SubProcess Seeding Not Required");
         }
     }
+    @Transactional
+    public void seedStatus(String name) {
+        String sql = "SELECT name FROM statuses s WHERE s.name = ? LIMIT 1";
+        List<Status> s = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
+        if (s == null || s.size() == 0) {
+            Status status = new Status();
+            status.setName(name);
+            statusRepository.save(status);
+            // logger.info("SubProcess Seeded");
+        } else {
+            //  logger.info("SubProcess Seeding Not Required");
+        }
+    }
 
     @Transactional
     public void seedInsuranceCoverageType(String name) {
@@ -635,10 +676,10 @@ public class DatabaseSeeder {
     }
     @Transactional
     public void seedAllIrregularitiesTable(String name, AllSubCategory allSubCategory) {
-        System.out.println("seedAllIrregularitiesTable seeding");
+//        System.out.println("seedAllIrregularitiesTable seeding");
         AllCategory allCategory = allSubCategory.getAllcategory();
 
-        String sql = "SELECT AI.name FROM all_irregularities AI JOIN all_sub_categories ASC2 ON AI.all_sub_category_id = ASC2.id WHERE AI.name = ? AND ASC2.all_category_id = ? AND ASC2.name = ? LIMIT 1";
+        String sql = "SELECT AI.name FROM all_irregularities AI JOIN all_sub_categories ASC2 ON AI.all_sub_category_id = ASC2.id WHERE AI.name = ? AND ASC2.all_category_id = ? AND ASC2.name = ? LIMIT 1" ;
         List<AllSubCategory> asc = jdbcTemplate.query(sql, new Object[]{name, allCategory.getId(), allSubCategory.getName()}, (resultSet, rowNum) -> null);
 
         if (asc == null || asc.size() == 0) {

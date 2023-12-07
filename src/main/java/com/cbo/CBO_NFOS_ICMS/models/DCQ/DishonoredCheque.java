@@ -1,6 +1,7 @@
 package com.cbo.CBO_NFOS_ICMS.models.DCQ;
 
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +45,9 @@ public class DishonoredCheque {
     /*@Column(nullable = false, length = 64)
     private Long outstandingBalance;*/
     @ManyToOne
-    @JoinColumn(name = "organizational_unit_id")
-    private OrganizationalUnit organizationalUnit;
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
+    @ManyToOne
+    @JoinColumn(name = "sub_process_id")
+    private SubProcess subProcess;
 }

@@ -18,14 +18,13 @@ public class ActivityStatusController {
         this.activityStatusService = activityStatusService;
     }
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+
     public ResponseEntity<List<ActivityStatus>> getAllActivityStatus(){
         List<ActivityStatus> activitiesStatus =activityStatusService.findAllActivityStatus();
         return new ResponseEntity<>(activitiesStatus, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH')")
     public ResponseEntity<ActivityStatus> getAllDACGMInSpecificOrganizationalUnit(@PathVariable("id") Long id) {
         ActivityStatus activityStatus = activityStatusService.findActivityStatusById(id);
         return new ResponseEntity<>(activityStatus, HttpStatus.OK);
