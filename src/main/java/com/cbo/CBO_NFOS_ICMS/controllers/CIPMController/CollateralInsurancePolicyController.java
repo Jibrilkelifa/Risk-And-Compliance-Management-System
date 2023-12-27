@@ -44,7 +44,7 @@ public class CollateralInsurancePolicyController {
     }
 
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasRole('ICMS_DISTRICT_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicyInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<CollateralInsurancePolicy> CollateralInsurancePolicy;
         CollateralInsurancePolicy = collateralInsurancePolicyService.findAllCollateralInsurancePolicyInSpecificSubProcess(subProcessId);

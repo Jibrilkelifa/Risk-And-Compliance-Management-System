@@ -36,14 +36,13 @@ public class DailyActivityGapControl {
     private String actionPlanDueDate;
     @Column(length = 64)
     private String approvedBy;
-<<<<<<< HEAD
+
     private Boolean escalatedByManager = false;
 
     private Boolean actionTaken = false;
 
-=======
-    private Boolean escalatedByManager= false;
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+
+
     @ManyToOne
     @JoinColumn(name = "activity_status_id")
     private ActivityStatus activityStatus;

@@ -1,35 +1,15 @@
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 k
-java:S1192V"IDefine a constant instead of duplicating this literal "M/d/yyyy" 3 times.(ê’ŠÑýÿÿÿÿ8Ì·¿÷·1
-m	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¬Üù8Í·¿÷·1
-r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§·Š§ùÿÿÿÿ8Í·¿÷·1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ8Î·¿÷·1
-]	java:S125<"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8ë·¿÷·1
-X	java:S125@"<This block of commented-out lines of code should be removed.(êñôø8ë·¿÷·1
-]	java:S125N"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8ë·¿÷·1
+java:S1192e"IDefine a constant instead of duplicating this literal "M/d/yyyy" 3 times.(ê’ŠÑýÿÿÿÿ8ªªæüÉ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¬Üù8¬ªæüÉ1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ8¬ªæüÉ1
+]	java:S125J"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8ÓªæüÉ1
+X	java:S125N"<This block of commented-out lines of code should be removed.(êñôø8ÔªæüÉ1
+]	java:S125\"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8ÔªæüÉ1
+^	java:S125’"<This block of commented-out lines of code should be removed.(îèƒ¾ùÿÿÿÿ8ÚªæüÉ1
+y
+java:S1128"WRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl'.(‰ÂçËÿÿÿÿÿ8ÛªæüÉ1
 R
-java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á8ñ·¿÷·1
+java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á8ÛªæüÉ1
 _
-java:S1068"=Remove this unused "organizationalUnitService" private field.(³Žªòûÿÿÿÿ8ò·¿÷·1
-=======
-=======
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-d
-java:S1192R"IDefine a constant instead of duplicating this literal "M/d/yyyy" 3 times.(ê’ŠÑýÿÿÿÿ
-f	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ê¬Üù
-k	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(§·Š§ùÿÿÿÿ
-<<<<<<< HEAD
-<<<<<<< HEAD
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®°½Àüÿÿÿÿ
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+java:S1068"=Remove this unused "organizationalUnitService" private field.(³Žªòûÿÿÿÿ8ÛªæüÉ1

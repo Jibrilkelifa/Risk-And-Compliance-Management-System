@@ -163,9 +163,9 @@ public class DatabaseSeeder {
         seedSuspectedFraudsterProfessionsTable("Customer");
         seedSuspectedFraudsterProfessionsTable("Other");
 
-        seedActionsTakenTable("Block all debit transactions");
-        seedActionsTakenTable("Block all debit transactions and fine 3% of the cheque amount but not more than Birr 25,000");
-        seedActionsTakenTable("Close the account, fine 5% of the cheque amount but not more than Birr 50,000 and collect all unused cheque leaves and report the same to NBE");
+        seedActionsTakenTable("All debit transactions blocked.");
+        seedActionsTakenTable("All debit transactions blocked, and a fine of 3% of the cheque amount, but not exceeding Birr 25,000, was collected.");
+        seedActionsTakenTable("All debit transactions blocked, and a fine of 5% of the cheque amount, but not exceeding Birr 50,000, was collected.");
 
 
         //SUB-MODULE, ALL-CATEGORY, ALL-SUB-CATEGORY, ALL-IRREGULARITY

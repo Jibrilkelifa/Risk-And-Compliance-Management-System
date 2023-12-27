@@ -1,60 +1,35 @@
 
 
-<<<<<<< HEAD
-java:S1192Ö"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8ºú˜Ä1
+java:S1192ì"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8şÔ®Ê1
 j
-java:S1192¦"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8»ú˜Ä1
+java:S1192¾"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8ÿÔ®Ê1
 o
-java:S1192Ú"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8»ú˜Ä1
-r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8»ú˜Ä1
-r	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8»ú˜Ä1
-r	java:S117K"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8»ú˜Ä1
-m	java:S117R"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8»ú˜Ä1
-…
-java:S1488„"bImmediately return this expression instead of assigning it to the temporary variable "imageBytes".(ßÑËÁûÿÿÿÿ8Óş˜Ä1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8¿ú˜Ä1
-G	java:S106e"+Replace this use of System.out by a logger.(ô¿½´8›Î³˜Ä1
-Y	java:S125…"<This block of commented-out lines of code should be removed.(Î¹á˜8ıÚş˜Ä1
-^
-java:S4684Œ"@Replace this persistent entity with a simple POJO or DTO object.(šÜ¼ƒ8 Î³˜Ä1
+java:S1192ğ"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8ÿÔ®Ê1
+X
+java:S1141“"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ŸÔ®Ê1
+r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8ŸÔ®Ê1
+r	java:S117H"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ŸÔ®Ê1
+r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ŸÔ®Ê1
+m	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8ŸÔ®Ê1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8‡ŸÔ®Ê1
+W	java:S125c"<This block of commented-out lines of code should be removed.(Ö…€j8Ç­Ô®Ê1
+H	java:S106"+Replace this use of System.out by a logger.(ô¿½´8æ­Ô®Ê1
+^	java:S125Æ"<This block of commented-out lines of code should be removed.(§Ÿ…ùÿÿÿÿ8ë­Ô®Ê1
+G	java:S106ã"+Replace this use of System.out by a logger.(º»…l8î­Ô®Ê1
+H	java:S106ä"+Replace this use of System.out by a logger.(÷¬Úº8î­Ô®Ê1
+‰
+java:S1130ò"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(È‚ŠO8ï­Ô®Ê1
+H	java:S106ú"+Replace this use of System.out by a logger.(Ïä™ø8ñ­Ô®Ê1
 I
-java:S1452©"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8£Î³˜Ä1
+java:S1452¾"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8ù­Ô®Ê1
 b
-java:S1854"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8´Î³˜Ä1
+java:S1854é"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8’®Ô®Ê1
+^	java:S125–"<This block of commented-out lines of code should be removed.(«§˜‰ùÿÿÿÿ8”®Ô®Ê1
 S
-java:S1481"5Remove this unused "outstandingCases" local variable.(Ç šÙ8´Î³˜Ä1
+java:S1481é"5Remove this unused "outstandingCases" local variable.(Ç šÙ8•®Ô®Ê1
 k
-java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8·Î³˜Ä1
-x
-java:S1128"VRemove this unused import 'com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException'.(£Ï„üúÿÿÿÿ8Ûş˜Ä1
-a
-java:S1128
-"?Remove this unused import 'org.springframework.http.MediaType'.(úŸİ¯şÿÿÿÿ8Ûş˜Ä1
+java:S5361†"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8˜®Ô®Ê1
+S
+java:S1128"6Remove this unused import 'javax.annotation.Resource'.(î¾Ì—8ª®Ô®Ê1
 F
-java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8Ûş˜Ä1
-=======
-java:S1192"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8ê½ŸÍ¯1
-j
-java:S1192ß"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8¥â”é±1
-o
-java:S1192“"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8ê½ŸÍ¯1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8ë½ŸÍ¯1
-r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ë½ŸÍ¯1
-r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ë½ŸÍ¯1
-m	java:S1178"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8ë½ŸÍ¯1
-r	java:S117>"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ä¿ÿÿÿÿÿ8ë½ŸÍ¯1
-r	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢ä¿ÿÿÿÿÿ8ë½ŸÍ¯1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8í½ŸÍ¯1
-b
-java:S4684>"@Replace this persistent entity with a simple POJO or DTO object.(¢ä¿ÿÿÿÿÿ8ğÁŸÍ¯1
-b
-java:S4684F"@Replace this persistent entity with a simple POJO or DTO object.(¢ä¿ÿÿÿÿÿ8ñÁŸÍ¯1
-H
-java:S1452b"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8óÁŸÍ¯1
-b
-java:S1854º"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8şÁŸÍ¯1
-S
-java:S1481º"5Remove this unused "outstandingCases" local variable.(Ç šÙ8ÿÁŸÍ¯1
-k
-java:S5361×"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8ÂŸÍ¯1
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8ª®Ô®Ê1

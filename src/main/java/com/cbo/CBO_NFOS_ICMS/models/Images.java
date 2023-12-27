@@ -6,4 +6,6 @@ import lombok.Data;
 public class Images {
 
     private byte[] file;
+    private String contentType;
+
 }

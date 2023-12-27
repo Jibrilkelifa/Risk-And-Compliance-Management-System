@@ -1,17 +1,2 @@
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“
-S
-java:S1128
-"8Remove this unused import 'javax.persistence.ManyToOne'.(ÇÑ²øÿÿÿÿ
-=======
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(’œÌ“8±«ÒÈÄ1

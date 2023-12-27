@@ -30,22 +30,9 @@ public class DailyActivityGapController {
 
 
     @GetMapping("/getSize")
-<<<<<<< HEAD
-<<<<<<<HEAD
-<<<<<<<HEAD
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION')")
-=======
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH', 'ICMS_PROVISION')")
->>>>>>>a0b69334fa61468010b3649472556044a1ddafbf
-=======
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH', 'ICMS_PROVISION')")
->>>>>>>a0b69334fa61468010b3649472556044a1ddafbf
-
-    public int getDACGMSize() {
-=======
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH', 'ICMS_PROVISION')")
     public int  getDACGMSize(){
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+
         return dACGMService.findDACGMSize();
     }
 
@@ -58,7 +45,7 @@ public class DailyActivityGapController {
     }
 
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasRole('ICMS_DISTRICT_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<List<DailyActivityGapControl>> getAllDailyActivityGapInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<DailyActivityGapControl> DailyActivityGapControl;
         DailyActivityGapControl = dACGMService.findAllDACGMInSpecificSubProcess(subProcessId);
@@ -102,38 +89,12 @@ public class DailyActivityGapController {
         dACGMService.deleteDACGM(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-<<<<<<< HEAD
+
+
+
 
     @PatchMapping("/approveActionPlan/{id}")
-<<<<<<<HEAD
-<<<<<<<HEAD
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT_IC')")
-=======
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT')")
->>>>>>>a0b69334fa61468010b3649472556044a1ddafbf
-=======
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT')")
->>>>>>>a0b69334fa61468010b3649472556044a1ddafbf
-
-    public ResponseEntity<DailyActivityGapControl> approveActionPlan(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
-        try {
-            DailyActivityGapControl row = dACGMService.approveActionPlan(id, requestBody.get("actionPlanDueDate"));
-            return ResponseEntity.ok(row);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PatchMapping("/escalate/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
-    public ResponseEntity<DailyActivityGapControl> escalatePlan(@PathVariable("id") Long id) {
-        try {
-            DailyActivityGapControl row = dACGMService.escalatePlan(id);
-            return ResponseEntity.ok(row);
-        } catch (Exception e) {
-=======
-    @PatchMapping("/approveActionPlan/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT')")
     public ResponseEntity<DailyActivityGapControl> approveActionPlan(@PathVariable Long id, @RequestBody Map<String, String> requestBody)
     {
         try
@@ -157,17 +118,11 @@ public class DailyActivityGapController {
         }
         catch (Exception e)
         {
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-
-<<<<<<< HEAD
-}
-=======
-    }
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+        }
 
     /*@GetMapping("/getFrequencyForAccountNumber/{accountNumber}")
     public Frequency getDCFrequency

@@ -7,7 +7,10 @@ import com.cbo.CBO_NFOS_ICMS.models.Images;
 import com.cbo.CBO_NFOS_ICMS.repositories.IFRRepository.IncidentOrFraudRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -15,6 +18,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -49,38 +55,133 @@ public class IncidentOrFraudService {
         return incidentOrFraudRepository.findAll().size();
     }
 
-    public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
+//    public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
+//
+////
+//        Optional<IncidentOrFraud> optionalIncidentOrFraud = incidentOrFraudRepository.findById(incidentOrFraud.getId());
+//        if (optionalIncidentOrFraud.isPresent()) {
+//            IncidentOrFraud existingIncidentOrFraud = optionalIncidentOrFraud.get();
+//            existingIncidentOrFraud.setCaseStatus(incidentOrFraud.getCaseStatus());
+//            existingIncidentOrFraud.setAmountRecovered(incidentOrFraud.getAmountRecovered());
+//            existingIncidentOrFraud.setIsAuthorized(false);
+//            return incidentOrFraudRepository.save(existingIncidentOrFraud);
+//        } else {
+//            throw new ResourceNotFoundException("Incident or Fraud not found");
+//        }
+//    }
+public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
+    Optional<IncidentOrFraud> optionalIncidentOrFraud = incidentOrFraudRepository.findById(incidentOrFraud.getId());
 
-//      incidentOrFraud.setIsAuthorized(false);
-        Optional<IncidentOrFraud> optionalIncidentOrFraud = incidentOrFraudRepository.findById(incidentOrFraud.getId());
-        if (optionalIncidentOrFraud.isPresent()) {
-            IncidentOrFraud existingIncidentOrFraud = optionalIncidentOrFraud.get();
-            existingIncidentOrFraud.setCaseStatus(incidentOrFraud.getCaseStatus());
-            existingIncidentOrFraud.setAmountRecovered(incidentOrFraud.getAmountRecovered());
-            existingIncidentOrFraud.setIsAuthorized(false);
-            return incidentOrFraudRepository.save(existingIncidentOrFraud);
-        } else {
-            throw new ResourceNotFoundException("Incident or Fraud not found");
+    if (optionalIncidentOrFraud.isPresent()) {
+        IncidentOrFraud existingIncidentOrFraud = optionalIncidentOrFraud.get();
+        existingIncidentOrFraud.setCaseStatus(incidentOrFraud.getCaseStatus());
+        existingIncidentOrFraud.setAmountRecovered(incidentOrFraud.getAmountRecovered());
+        existingIncidentOrFraud.setIsAuthorized(false);
+
+        // Update the file details if a new file is provided
+        if (incidentOrFraud.getFileName() != null && incidentOrFraud.getFilePath() != null) {
+            existingIncidentOrFraud.setFileName(incidentOrFraud.getFileName());
+            existingIncidentOrFraud.setFilePath(incidentOrFraud.getFilePath());
         }
+
+        return incidentOrFraudRepository.save(existingIncidentOrFraud);
+    } else {
+        throw new ResourceNotFoundException("Incident or Fraud not found");
     }
+}
+//    public Images getImage(Long id) throws IOException {
+//
+//        IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
+//        if (fraud != null) {
+//
+//            BufferedImage stampImage = ImageIO.read(new File(fraud.getFilePath()));
+//            ByteArrayOutputStream stbos = new ByteArrayOutputStream();
+//            ImageIO.write(stampImage, "png", stbos);
+//            byte[] stadata = stbos.toByteArray();
+//            Images images = new Images();
+//            images.setFile(stadata);
+//            return images;
+//        }
+//
+//        return null;
+//
+//    }
+//public Images getDocument(Long id) throws IOException {
+//    IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
+//
+//    if (fraud != null && !StringUtils.isEmpty(fraud.getFilePath())) {
+//        Path filePath = Paths.get(fraud.getFilePath());
+//        byte[] documentData = Files.readAllBytes(filePath);
+//
+//        Images document = new Images();
+//        document.setFile(documentData);
+//        document.setContentType(getContentType(fraud.getFileName()));
+//
+//        return document;
+//    }
+//
+//    return null;
+//}
 
-    public Images getImage(Long id) throws IOException {
-
+    public Images getDocument(Long id) throws IOException {
         IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
-        if (fraud != null) {
 
-            BufferedImage stampImage = ImageIO.read(new File(fraud.getFilePath()));
-            ByteArrayOutputStream stbos = new ByteArrayOutputStream();
-            ImageIO.write(stampImage, "png", stbos);
-            byte[] stadata = stbos.toByteArray();
-            Images images = new Images();
-            images.setFile(stadata);
-            return images;
+        if (fraud != null && !StringUtils.isEmpty(fraud.getFilePath())) {
+            Path filePath = Paths.get(fraud.getFilePath());
+            byte[] documentData = Files.readAllBytes(filePath);
+
+            Images document = new Images();
+            document.setFile(documentData);
+            document.setContentType(getContentType(fraud.getFileName()));
+
+            return document;
         }
 
         return null;
-
     }
+
+
+    private String getContentType(String fileName) {
+        String extension = FilenameUtils.getExtension(fileName);
+        String contentType;
+
+        switch (extension.toLowerCase()) {
+            case "pdf":
+                contentType = "application/pdf";
+                break;
+            case "doc":
+                contentType = "application/msword";
+                break;
+            case "docx":
+                contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                break;
+            // Add more cases for other file extensions and their corresponding content types
+
+            default:
+                contentType = "application/octet-stream";
+                break;
+        }
+
+        return contentType;
+    }
+
+    public ByteArrayResource downloadDocFile(Long id) {
+        IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
+        try {
+            File file = new File(fraud.getFilePath());
+            byte[] data = Files.readAllBytes(file.toPath());
+            return new ByteArrayResource(data);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public String getPath(Long id){
+        IncidentOrFraud fraud = incidentOrFraudRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Fraud not found with id " + id));
+
+        return fraud.getFilePath();
+    }
+
 
     public IncidentOrFraud findIncidentFraudReportById(Long id) {
         return incidentOrFraudRepository.findIncidentFraudReportById(id)

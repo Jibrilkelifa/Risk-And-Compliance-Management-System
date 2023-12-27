@@ -5,13 +5,15 @@ import com.cbo.CBO_NFOS_ICMS.models.Images;
 import com.cbo.CBO_NFOS_ICMS.services.IFRService.IncidentOrFraudService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -24,6 +26,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/incidentFraudReport")
@@ -57,7 +60,7 @@ public class IncidentOrFraudController {
     }
 
     @GetMapping("/getSize")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
     public int getIncidentFraudReportSize() {
         return incidentOrFraudService.findIncidentFraudReportSize();
     }
@@ -72,7 +75,7 @@ public class IncidentOrFraudController {
     }
 
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReportInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<IncidentOrFraud> IncidentOrFraud;
         IncidentOrFraud = incidentOrFraudService.findAllIncidentFraudReportInSpecificSubProcess(subProcessId);
@@ -86,12 +89,61 @@ public class IncidentOrFraudController {
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
     }
 
+//    @PostMapping("/add")
+//    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC','ICMS_DISTRICT_IC','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
+//    public ResponseEntity<IncidentOrFraud> addIncidentFraudReport(
+//            @RequestPart("incidentOrFraud") String incidentOrFraudJson,
+//            @RequestPart(value ="file" , required = false) MultipartFile file ,
+//            Authentication authentication) { // Add Authentication parameter
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        IncidentOrFraud incidentOrFraud;
+//
+//        try {
+//            incidentOrFraud = objectMapper.readValue(incidentOrFraudJson, IncidentOrFraud.class);
+//
+//            // Set the addedByRole property based on the role of the user
+//            String role = authentication.getAuthorities().iterator().next().getAuthority();
+//            incidentOrFraud.setAddedByRole(role);
+//            System.out.println("Added by role: " + role);
+//
+//
+//        } catch (JsonProcessingException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//
+//        try {
+//
+//            String fileName = file != null ? file.getOriginalFilename() : null;
+//            String filePath = file != null ? "src/uploads/" + fileName : null;
+//            Path path = file != null ? Paths.get(filePath) : null;
+//
+//            if (file != null) {
+//                Files.write(path, file.getBytes());
+//            }
+//
+//
+//            incidentOrFraud.setFileName(fileName);
+//            incidentOrFraud.setFilePath(filePath);
+//
+//
+//            IncidentOrFraud newIncidentOrFraud = incidentOrFraudService.addIncidentFraudReport(incidentOrFraud);
+//
+//            return new ResponseEntity<>(newIncidentOrFraud, HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//
+//    }
+
+
+
     @PostMapping("/add")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC','ICMS_DISTRICT_IC','ICMS_ADMIN')")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC','ICMS_DISTRICT_IC','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<IncidentOrFraud> addIncidentFraudReport(
             @RequestPart("incidentOrFraud") String incidentOrFraudJson,
-            @RequestPart("file") MultipartFile file,
-            Authentication authentication) { // Add Authentication parameter
+            @RequestPart(value = "file", required = false) MultipartFile file,
+            Authentication authentication) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         IncidentOrFraud incidentOrFraud;
@@ -103,48 +155,139 @@ public class IncidentOrFraudController {
             String role = authentication.getAuthorities().iterator().next().getAuthority();
             incidentOrFraud.setAddedByRole(role);
             System.out.println("Added by role: " + role);
-
-
         } catch (JsonProcessingException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         try {
-            // Save the file to the upload directory
-            String fileName = file.getOriginalFilename();
-            String filePath = "src/uploads/" + fileName;
-            Path path = Paths.get(filePath);
-            Files.write(path, file.getBytes());
+            if (file != null && !file.isEmpty()) {
+                // Check if the file is not empty
 
-            // Set the file information in the incident or fraud report object
-            incidentOrFraud.setFileName(fileName);
-            incidentOrFraud.setFilePath(filePath);
+                // Generate a unique file name
+                String fileName = UUID.randomUUID().toString() + "." + getFileExtension(file.getOriginalFilename());
 
-            // Save the incident or fraud report in the database
+                // Specify the file storage directory
+                String filePath = "src/uploads/" + fileName;
+                Path path = Paths.get(filePath);
+
+                // Save the file to the specified path
+                Files.write(path, file.getBytes());
+
+                incidentOrFraud.setFileName(fileName);
+                incidentOrFraud.setFilePath(filePath);
+            }
+
             IncidentOrFraud newIncidentOrFraud = incidentOrFraudService.addIncidentFraudReport(incidentOrFraud);
 
             return new ResponseEntity<>(newIncidentOrFraud, HttpStatus.CREATED);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
 
-    @GetMapping("/image/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC')")
-    public Images getImage(@PathVariable Long id) throws IOException {
-        Images imageBytes = incidentOrFraudService.getImage(id);
-//        System.out.println(imageBytes.getFile().length);
-        return imageBytes;
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf(".");
+        if (dotIndex > 0 && dotIndex < fileName.length() - 1) {
+            return fileName.substring(dotIndex + 1).toLowerCase();
+        }
+        return "";
+    }
+
+//    @GetMapping("/image/{id}")
+//    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR','ICMS_BRANCH_MANAGER')")
+//    public Images getImage(@PathVariable Long id) throws IOException {
+//        Images imageBytes = incidentOrFraudService.getDocument(id);
+//       System.out.println(imageBytes.getFile().length);
+//        return imageBytes;
+//    }
+//
+//    @GetMapping("/image/{id}")
+//    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR','ICMS_BRANCH_MANAGER')")
+//    public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException {
+//        Images image = incidentOrFraudService.getDocument(id);
+//        byte[] fileBytes = image.getFile();
+//        String contentType = image.getContentType();
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.parseMediaType(contentType));
+//        headers.setContentLength(fileBytes.length);
+//        System.out.println(fileBytes.length);
+//        return new ResponseEntity<>(fileBytes, headers, HttpStatus.OK);
+//    }
+@GetMapping("/image/{id}")
+@PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR','ICMS_BRANCH_MANAGER')")
+public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException {
+    Images image = incidentOrFraudService.getDocument(id);
+    byte[] fileBytes = image.getFile();
+    String contentType = image.getContentType();
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.parseMediaType(contentType));
+    headers.setContentLength(fileBytes.length);
+//    System.out.println(contentType);
+//    System.out.println(fileBytes.length);
+    MediaType mediaType = MediaTypeFactory
+            .getMediaType(contentType)
+            .orElse(MediaType.APPLICATION_OCTET_STREAM);
+
+    return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=\"" + id)
+            .contentType(mediaType)
+            .contentLength(fileBytes.length)
+            .body(fileBytes);
+}
+
+    @GetMapping("/images/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR','ICMS_BRANCH_MANAGER')")
+    public ResponseEntity<ByteArrayResource> getImages(@PathVariable Long id) throws IOException {
+        ByteArrayResource image = incidentOrFraudService.downloadDocFile(id);
+        String filePath = incidentOrFraudService.getPath(id);
+
+        //setting media type of the file
+        MediaType mediaType = MediaTypeFactory
+                .getMediaType(filePath)
+                .orElse(MediaType.APPLICATION_OCTET_STREAM);
+        System.out.println(image.contentLength());
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=\"" + filePath)
+                .contentLength(image.contentLength())
+                .contentType(mediaType)
+                .body(image);
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC')")
-    public ResponseEntity<IncidentOrFraud> updateIncidentOrFraud
-            (@RequestBody IncidentOrFraud incidentOrFraud) {
-        IncidentOrFraud updateIncidentOrFraud = incidentOrFraudService.updateIncidentFraudReport(incidentOrFraud);
-        return new ResponseEntity<>(updateIncidentOrFraud, HttpStatus.CREATED);
+   @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_IC')")
+   public ResponseEntity<IncidentOrFraud> updateIncidentOrFraud(@RequestPart("incidentOrFraud") String incidentOrFraudJson,
+                                                             @RequestPart(value = "file", required = false) MultipartFile file) {
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    IncidentOrFraud incidentOrFraud;
+
+    try {
+        incidentOrFraud = objectMapper.readValue(incidentOrFraudJson, IncidentOrFraud.class);
+
+        // Update the file only if a new file is provided
+        if (file != null && !file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
+            String filePath = "src/uploads/" + fileName;
+            Path path = Paths.get(filePath);
+
+            try {
+                Files.write(path, file.getBytes());
+                incidentOrFraud.setFileName(fileName);
+                incidentOrFraud.setFilePath(filePath);
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+        }
+
+        IncidentOrFraud updatedIncidentOrFraud = incidentOrFraudService.updateIncidentFraudReport(incidentOrFraud);
+        return new ResponseEntity<>(updatedIncidentOrFraud, HttpStatus.CREATED);
+
+    } catch (JsonProcessingException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+}
 
     @PatchMapping("/calculateProvision/{id}")
     @PreAuthorize("hasAnyRole('ICMS_PROVISION')")

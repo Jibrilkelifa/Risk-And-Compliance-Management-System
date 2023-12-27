@@ -1,6 +1,8 @@
 package com.cbo.CBO_NFOS_ICMS.services.DCQService;
 
+import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
+import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.DishonoredCheque;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.DishonoredChequeRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
@@ -11,10 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class DishonoredChequeService {
@@ -38,13 +37,29 @@ public class DishonoredChequeService {
         return dishonoredChequeRepository.findAll();
     }
 
-    public DishonoredCheque updateDishonouredCheque(DishonoredCheque DishonoredCheque) {
-        return dishonoredChequeRepository.save(DishonoredCheque);
+    public DishonoredCheque updateDishonouredCheque(DishonoredCheque dishonoredCheque) {
+        Optional<DishonoredCheque> optionalDsihonoured = dishonoredChequeRepository.findById(dishonoredCheque.getId());
+        if (optionalDsihonoured.isPresent()) {
+            DishonoredCheque existingDishonoured = optionalDsihonoured.get();
+            existingDishonoured.setTin(dishonoredCheque.getTin());
+            existingDishonoured.setNameOfBeneficiary(dishonoredCheque.getNameOfBeneficiary());
+            existingDishonoured.setAmountInBirr(dishonoredCheque.getAmountInBirr());
+            existingDishonoured.setAccountNumber(dishonoredCheque.getAccountNumber());
+            existingDishonoured.setFullNameOfDrawer(dishonoredCheque.getFullNameOfDrawer());
+            existingDishonoured.setDrawerAddress(dishonoredCheque.getDrawerAddress());
+            existingDishonoured.setChequeType(dishonoredCheque.getChequeType());
+            existingDishonoured.setChequeNumber(dishonoredCheque.getChequeNumber());
+
+
+            return dishonoredChequeRepository.save(existingDishonoured);
+        } else {
+            throw new ResourceNotFoundException("Dishonoured cheque not found");
+        }
     }
 
     public DishonoredCheque findDishonouredChequeById(Long id) {
         return dishonoredChequeRepository.findDishonouredChequeById(id)
-                .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
+                .orElseThrow(() -> new UserNotFoundException("dishounered cheque by id" + id + " was not found"));
     }
 
     public int findDishonouredChequeByAccountNumber(String accountNumber) {
@@ -128,20 +143,20 @@ public class DishonoredChequeService {
         return dishonoredCheques;
     }
 
-    public List<DishonoredCheque> getDishonouredChequesThreeTimesInLastWeek() {
-        LocalDate startDate = LocalDate.now().minusDays(7);
-        LocalDate endDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
-        List<DishonoredCheque> dishonoredCheques = new ArrayList<>();
-
-        for (DishonoredCheque dcq : dishonoredChequeRepository.findByFrequencyGreaterThanEqual(3)) {
-            LocalDate datePresented = LocalDate.parse(dcq.getDatePresented(), formatter);
-            if (datePresented.isAfter(startDate) && datePresented.isBefore(endDate.plusDays(1))) {
-                dishonoredCheques.add(dcq);
-            }
-        }
-
-        return dishonoredCheques;
-    }
+//    public List<DishonoredCheque> getDishonouredChequesThreeTimesInLastWeek() {
+//        LocalDate startDate = LocalDate.now().minusDays(7);
+//        LocalDate endDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
+//        List<DishonoredCheque> dishonoredCheques = new ArrayList<>();
+//
+//        for (DishonoredCheque dcq : dishonoredChequeRepository.findByFrequencyGreaterThanEqual(3)) {
+//            LocalDate datePresented = LocalDate.parse(dcq.getDatePresented(), formatter);
+//            if (datePresented.isAfter(startDate) && datePresented.isBefore(endDate.plusDays(1))) {
+//                dishonoredCheques.add(dcq);
+//            }
+//        }
+//
+//        return dishonoredCheques;
+//    }
 
 }

@@ -23,7 +23,7 @@ public class DishonoredChequeController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN','ICMS_BANKING_OPERATION')")
     public ResponseEntity<List<DishonoredCheque>> getAllDishonouredCheque() {
         List<DishonoredCheque> DishonoredCheque = dishonoredChequeService.findAllDishonouredCheque();
         return new ResponseEntity<>(DishonoredCheque, HttpStatus.OK);
@@ -38,7 +38,7 @@ public class DishonoredChequeController {
     }
 
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public @ResponseBody List<DishonoredCheque> getAllDishonouredChequeInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<DishonoredCheque> dishonoredCheque;
         dishonoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificSubProcess(subProcessId);
@@ -109,19 +109,13 @@ public class DishonoredChequeController {
         int count = dishonoredChequeService.countDishonouredChequesThreeTimesInLastWeek();
         return ResponseEntity.ok(count);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-    @GetMapping("/three-times-in-last-week-list")
+/*    @GetMapping("/three-times-in-last-week-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<DishonoredCheque>> getDishonouredChequesThreeTimesInLastWeek() {
         List<DishonoredCheque> dishonoredCheques = dishonoredChequeService.getDishonouredChequesThreeTimesInLastWeek();
         return ResponseEntity.ok(dishonoredCheques);
+    }*/
+
     }
-<<<<<<< HEAD
-}
-=======
-    }
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
 
