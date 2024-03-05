@@ -49,6 +49,9 @@ public class DailyActivityGapControlService {
 
         return dACGMRepository.save(row);
     }
+    public boolean isCaseIdExists(String caseId) {
+        return dACGMRepository.existsByCaseId(caseId);
+    }
 
 /*    public DailyActivityGapControl approveActionPlan(Long id, String actionPlanDueDate) {
         DailyActivityGapControl row = dACGMRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));

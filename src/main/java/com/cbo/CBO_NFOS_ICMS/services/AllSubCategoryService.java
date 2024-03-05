@@ -35,9 +35,7 @@ public class AllSubCategoryService {
 
     public List<AllSubCategory> findAllSubCategoryByCategoryName(String subModuleName, String categoryName) {
         List<AllSubCategory> subCategories = allSubCategoryRepository.findAll();
-        System.out.println(subCategories);
         subCategories.removeIf(subCategory -> !subCategory.getAllcategory().getName().equals(categoryName) || !subCategory.getAllcategory().getSubModule().getCode().equals(subModuleName));
-        System.out.println(subCategories);
         return subCategories;
     }
 

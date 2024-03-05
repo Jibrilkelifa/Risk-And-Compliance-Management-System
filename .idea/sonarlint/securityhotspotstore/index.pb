@@ -41,3 +41,17 @@ o
 ?src/main/java/com/cbo/CBO_NFOS_ICMS/seeders/DatabaseSeeder.java,8\a\8a7d395cc41b796a775f32c793a060441fbc39c0
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+Ü
+Vsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/FraudTypeController.java,b\9\b9261542cf3ec2bf13aa786f9a29f6eb979dc8ec
+õ
+ksrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/UserAndEmployeeController/OrganizationalUnitController.java,6\7\678eb52716020f94fff8c3f574fd0da0182f175f
+t
+Dsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/UserAndEmployee/User.java,5\5\55772a0a9cd9145e125066200adb5a0b84483c45
+~
+Nsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/CIPM/CollateralInsurancePolicy.java,a\e\ae1009116040ef7e2d2e7f02edf0f31827417db8
+Ñ
+Tsrc/main/java/com/cbo/CBO_NFOS_ICMS/services/DACGMService/ActivityStatusService.java,5\f\5f3e3367f4152e7c2b5b94e3d16f497b6925b9b3
+ó
+gsrc/main/java/com/cbo/CBO_NFOS_ICMS/repositories/DACGMRepository/DailyActivityGapControlRepository.java,d\6\d6ff84b43d7bb0d32838a0db0b1117171be7b36a
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/repositories/IFRRepository/IncidentOrFraudRepository.java,1\c\1ccca46179a0a043b511ffe5e82e697f4907eaf5

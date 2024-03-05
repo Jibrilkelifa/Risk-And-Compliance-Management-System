@@ -20,4 +20,6 @@ public interface DailyActivityGapControlRepository extends JpaRepository<DailyAc
     //    @Query("SELECT dc FROM daily_activities_gap_control dc JOIN Organizational_unit b ON dc.organizational_unit.id = b.id JOIN sub_process d ON b.sub_process.id = d.id WHERE d.id = :id")
 //    List<DailyActivityGapControl> findDACGMBySubProcessId(Long id);
     List<DailyActivityGapControl> findDACGMBySubProcessId(Long subProcessId);
+
+    boolean existsByCaseId(String caseId);
 }

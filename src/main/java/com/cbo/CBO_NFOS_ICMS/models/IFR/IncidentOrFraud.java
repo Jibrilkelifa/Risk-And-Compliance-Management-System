@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 
@@ -85,7 +87,6 @@ public class IncidentOrFraud {
     @JoinColumn(name = "branch_id")
     private Branch branch;
 
-//    private Boolean isWrittenOff= false;
     @ManyToOne
     @JoinColumn(name = "sub_process_id")
     private SubProcess subProcess;

@@ -48,9 +48,6 @@ public class IncidentOrFraudController {
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC')")
     public ResponseEntity<String> uploadForWrittenOff(@RequestParam("writtenOff") MultipartFile file) {
         try {
-            // Validate file size, type, or perform any other necessary checks
-
-            // Save the file and process it using the service
             incidentOrFraudService.processIncidentFraudReport(file);
 
             return ResponseEntity.ok("File uploaded successfully.");
@@ -167,7 +164,7 @@ public class IncidentOrFraudController {
                 String fileName = UUID.randomUUID().toString() + "." + getFileExtension(file.getOriginalFilename());
 
                 // Specify the file storage directory
-                String filePath = "src/uploads/" + fileName;
+                String filePath = "uploads/" + fileName;
                 Path path = Paths.get(filePath);
 
                 // Save the file to the specified path
@@ -175,7 +172,16 @@ public class IncidentOrFraudController {
 
                 incidentOrFraud.setFileName(fileName);
                 incidentOrFraud.setFilePath(filePath);
+
             }
+
+            // Check if the caseId already exists
+            String caseId = incidentOrFraud.getCaseId();
+            while (incidentOrFraudService.isCaseIdExists(caseId)) {
+                // Increment the caseId until it is unique
+                caseId = incrementCaseId(caseId);
+            }
+            incidentOrFraud.setCaseId(caseId);
 
             IncidentOrFraud newIncidentOrFraud = incidentOrFraudService.addIncidentFraudReport(incidentOrFraud);
 
@@ -183,6 +189,37 @@ public class IncidentOrFraudController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+
+    }
+    // Helper method to increment the caseId
+    // Helper method to increment the caseId
+    private String incrementCaseId(String caseId) {
+        String[] parts = caseId.split("/");
+        int year = Integer.parseInt(parts[2]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[0]);
+
+        // Increment the day, month, or year as needed
+        // Here we assume a simple increment, but you can implement your own logic based on your requirements
+        if (day < 31) {
+            day++;
+        } else {
+            day = 1;
+            if (month < 12) {
+                month++;
+            } else {
+                month = 1;
+                year++;
+            }
+        }
+
+        // Reset the caseId to "001" if the year has changed
+        if (year > Integer.parseInt(parts[2])) {
+            return "001/01/01/" + String.format("%04d", year);
+        }
+
+        // Format the incremented values into the new caseId
+        return String.format("%03d/%02d/%02d/%04d", day, month, year);
     }
 
     private String getFileExtension(String fileName) {
@@ -269,7 +306,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         // Update the file only if a new file is provided
         if (file != null && !file.isEmpty()) {
             String fileName = file.getOriginalFilename();
-            String filePath = "src/uploads/" + fileName;
+            String filePath = "uploads/" + fileName;
             Path path = Paths.get(filePath);
 
             try {
