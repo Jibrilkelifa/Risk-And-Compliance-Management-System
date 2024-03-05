@@ -10,7 +10,6 @@ import javax.persistence.*;
 
 
 @Data
-
 @NoArgsConstructor
 @Entity
 @Table(name = "collateral_insurance_policies")

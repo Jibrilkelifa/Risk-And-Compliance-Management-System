@@ -36,8 +36,6 @@ public class AllSubCategoryController {
     public List<AllSubCategory> getAllSubCategoriesBySubModuleNameAndCategoryName(@RequestBody Map<String, String> requestBody) {
         String subModuleName = requestBody.get("subModuleName");
         String categoryName = requestBody.get("categoryName");
-        System.out.println("subModuleName = " + subModuleName);
-        System.out.println("categoryName = " + categoryName);
         return allSubCategoryService.findAllSubCategoryByCategoryName(subModuleName, categoryName);
     }
 
