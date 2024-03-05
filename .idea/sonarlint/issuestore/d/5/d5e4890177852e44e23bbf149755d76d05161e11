@@ -3,15 +3,16 @@ r
 java:S1192¼"ODefine a constant instead of duplicating this literal " was not found" 3 times.(Ÿ‚±›ıÿÿÿÿ8ĞÆç¨Ê1
 {
 java:S1192"YDefine a constant instead of duplicating this literal "Fraud not found with id " 3 times.(–¯ÿÿÿÿÿ8Ëœê¨Ê1
-s	java:S117È"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Àµùÿÿÿÿ8ÑÆç¨Ê1
+s	java:S117Ñ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Àµùÿÿÿÿ8ÑÆç¨Ê1
 €
-java:S1488ÿ"]Immediately return this expression instead of assigning it to the temporary variable "count".(ƒ–ßÀÿÿÿÿÿ8ÑÆç¨Ê1
+java:S1488ˆ"]Immediately return this expression instead of assigning it to the temporary variable "count".(ƒ–ßÀÿÿÿÿÿ8ÑÆç¨Ê1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‡›½‰ıÿÿÿÿ8ÓÆç¨Ê1
 ]	java:S125:"<This block of commented-out lines of code should be removed.(Øß©şÿÿÿÿ8êÆç¨Ê1
 X	java:S125\"<This block of commented-out lines of code should be removed.(÷õ€ñ8ìÆç¨Ê1
 L
 java:S1874"/Remove this use of "isEmpty"; it is deprecated.(«ğE8íÆç¨Ê1
-^	java:S125Í"<This block of commented-out lines of code should be removed.(ßØ²¸ıÿÿÿÿ8òÆç¨Ê1
+M	java:S106À"+Replace this use of System.out by a logger.(¼Å Òûÿÿÿÿ8ìÿ Ã×1
+^	java:S125Ö"<This block of commented-out lines of code should be removed.(ßØ²¸ıÿÿÿÿ8òÆç¨Ê1
 O
 java:S1128"2Remove this unused import 'javax.imageio.ImageIO'.(‘çÔû8¼¥é¨Ê1
 [

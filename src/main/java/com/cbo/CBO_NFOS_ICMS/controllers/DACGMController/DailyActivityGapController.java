@@ -63,10 +63,34 @@ public class DailyActivityGapController {
     @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
     public ResponseEntity<DailyActivityGapControl> addDACGM
             (@RequestBody DailyActivityGapControl dACGM) {
+        String caseId = dACGM.getCaseId();
+        while (dACGMService.isCaseIdExists(caseId)) {
+            // Increment the caseId until it is unique
+            caseId = incrementCaseId(caseId);
+        }
+        dACGM.setCaseId(caseId);
+        System.out.println(caseId);
         DailyActivityGapControl newDailyActivityGapControl = dACGMService.addDACGM(dACGM);
         return new ResponseEntity<>(newDailyActivityGapControl, HttpStatus.CREATED);
     }
+    private String incrementCaseId(String caseId) {
+        String[] parts = caseId.split("/");
+        int year = Integer.parseInt(parts[3]);
+        int month = Integer.parseInt(parts[2]);
+        int day = Integer.parseInt(parts[1]);
+        int caseNumber = Integer.parseInt(parts[0]);
 
+        // Increment the case number
+        caseNumber++;
+
+        // Reset the case number to 1 if the year has changed
+        if (year > Integer.parseInt(parts[3])) {
+            caseNumber = 1;
+        }
+
+        // Format the incremented values into the new caseId
+        return String.format("%04d/%02d/%02d/%04d", caseNumber, day, month, year);
+    }
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
     public ResponseEntity<DailyActivityGapControl> updateDACGM

@@ -12,7 +12,8 @@ import java.util.Arrays;
 @SpringBootApplication
 public class CBO_NFOS_ICMS_Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         SpringApplication.run(CBO_NFOS_ICMS_Application.class, args);
     }
 

@@ -187,6 +187,15 @@ public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud
         return incidentOrFraudRepository.findIncidentFraudReportById(id)
                 .orElseThrow(() -> new UserNotFoundException("User by id" + id + " was not found"));
     }
+    public int getLatestCaseNumber() {
+        Integer latestCaseNumber = incidentOrFraudRepository.getLatestCaseNumber();
+        System.out.println(getLatestCaseNumber());
+        return latestCaseNumber != null ? latestCaseNumber : 0;
+
+    }
+    public boolean isCaseIdExists(String caseId) {
+        return incidentOrFraudRepository.existsByCaseId(caseId);
+    }
 
     public void deleteIncidentFraudReport(Long id) {
         incidentOrFraudRepository.deleteById(id);

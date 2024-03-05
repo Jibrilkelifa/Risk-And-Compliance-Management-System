@@ -10,8 +10,11 @@ import java.util.Optional;
 
 public interface IncidentOrFraudRepository extends JpaRepository<IncidentOrFraud, Long> {
     Optional<IncidentOrFraud> findIncidentFraudReportById(Long id);
+    @Query(value = "SELECT MAX(case_number) FROM your_table_name", nativeQuery = true)
+    Integer getLatestCaseNumber();
 
     List<IncidentOrFraud> findIncidentFraudReportByBranchId(Long id);
+    boolean existsByCaseId(String caseId);
 
     List<IncidentOrFraud> findAllByFraudDetectionDateBetween(String startDate, String endDate);
 
