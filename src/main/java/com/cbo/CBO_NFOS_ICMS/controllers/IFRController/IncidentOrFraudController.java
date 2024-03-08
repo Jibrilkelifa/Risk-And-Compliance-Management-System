@@ -187,11 +187,31 @@ public class IncidentOrFraudController {
 
             return new ResponseEntity<>(newIncidentOrFraud, HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace(); // Print the stack trace for detailed error information
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
     }
     // Helper method to increment the caseId
+<<<<<<< HEAD
+    private String incrementCaseId(String caseId) {
+        String[] parts = caseId.split("/");
+        int year = Integer.parseInt(parts[3]);
+        int month = Integer.parseInt(parts[2]);
+        int day = Integer.parseInt(parts[1]);
+        int caseNumber = Integer.parseInt(parts[0]);
+
+        // Increment the case number
+        caseNumber++;
+
+        // Reset the case number to 1 if the year has changed
+        if (year > Integer.parseInt(parts[3])) {
+            caseNumber = 1;
+        }
+
+        // Format the incremented values into the new caseId
+        return String.format("%04d/%02d/%02d/%04d", caseNumber, day, month, year);
+=======
     // Helper method to increment the caseId
     private String incrementCaseId(String caseId) {
         String[] parts = caseId.split("/");
@@ -220,6 +240,7 @@ public class IncidentOrFraudController {
 
         // Format the incremented values into the new caseId
         return String.format("%03d/%02d/%02d/%04d", day, month, year);
+>>>>>>> daee81c8c31a4d330f9fb199b891a66bfdcb146d
     }
 
     private String getFileExtension(String fileName) {

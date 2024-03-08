@@ -1,22 +1,14 @@
 
-r	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Å¯Ûşÿÿÿÿ8æ¯ÒÈÄ1
-r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8æ¯ÒÈÄ1
-r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8æ¯ÒÈÄ1
-r	java:S1179"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı©î¢ùÿÿÿÿ8æ¯ÒÈÄ1
-{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îéââùÿÿÿÿ8è¯ÒÈÄ1
-]
-java:S4684@"@Replace this persistent entity with a simple POJO or DTO object.(üÂÚé8°ÒÈÄ1
-]
-java:S4684N"@Replace this persistent entity with a simple POJO or DTO object.(üÂÚé8Ÿ°ÒÈÄ1
-G	java:S106O"+Replace this use of System.out by a logger.(ìİì‰8 °ÒÈÄ1
-X	java:S125X"<This block of commented-out lines of code should be removed.(üÂÚé8¡°ÒÈÄ1
+r	java:S117""QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Å¯Ûşÿÿÿÿ8šÔÙòà1
+r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8šÔÙòà1
+r	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í¸Ëõùÿÿÿÿ8šÔÙòà1
+r	java:S1179"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı©î¢ùÿÿÿÿ8šÔÙòà1
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(îéââùÿÿÿÿ8ÔÙòà1
+G	java:S106O"+Replace this use of System.out by a logger.(ìİì‰8¯ÕÙòà1
+X	java:S125X"<This block of commented-out lines of code should be removed.(üÂÚé8±ÕÙòà1
 H
-java:S1452m"&Remove usage of generic wildcard type.(ğïÕ×ùÿÿÿÿ8£°ÒÈÄ1
-]	java:S125y"<This block of commented-out lines of code should be removed.(…¶ä§ùÿÿÿÿ8¥°ÒÈÄ1
-^	java:S125£"<This block of commented-out lines of code should be removed.(ö‡Ò£ùÿÿÿÿ8ª°ÒÈÄ1
+java:S1452m"&Remove usage of generic wildcard type.(ğïÕ×ùÿÿÿÿ8´ÕÙòà1
+]	java:S125y"<This block of commented-out lines of code should be removed.(…¶ä§ùÿÿÿÿ8·ÕÙòà1
+^	java:S125£"<This block of commented-out lines of code should be removed.(ö‡Ò£ùÿÿÿÿ8¾ÕÙòà1
 M
-java:S1905Ä"*Remove this unnecessary cast to "Integer".(¼àØÿüÿÿÿÿ8¯°ÒÈÄ1
-V
-java:S1128"9Remove this unused import 'javax.xml.bind.JAXBException'.(ª¥åå8µ°ÒÈÄ1
-R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úıÿÿÿÿ8¶°ÒÈÄ1
+java:S1905Ä"*Remove this unnecessary cast to "Integer".(¼àØÿüÿÿÿÿ8ÃÕÙòà1

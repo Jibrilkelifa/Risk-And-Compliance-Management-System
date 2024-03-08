@@ -75,6 +75,23 @@ public class DailyActivityGapController {
     }
     private String incrementCaseId(String caseId) {
         String[] parts = caseId.split("/");
+<<<<<<< HEAD
+        int year = Integer.parseInt(parts[3]);
+        int month = Integer.parseInt(parts[2]);
+        int day = Integer.parseInt(parts[1]);
+        int caseNumber = Integer.parseInt(parts[0]);
+
+        // Increment the case number
+        caseNumber++;
+
+        // Reset the case number to 1 if the year has changed
+        if (year > Integer.parseInt(parts[3])) {
+            caseNumber = 1;
+        }
+
+        // Format the incremented values into the new caseId
+        return String.format("%04d/%02d/%02d/%04d", caseNumber, day, month, year);
+=======
         int year = Integer.parseInt(parts[2]);
         int month = Integer.parseInt(parts[1]);
         int day = Integer.parseInt(parts[0]);
@@ -100,6 +117,7 @@ public class DailyActivityGapController {
 
         // Format the incremented values into the new caseId
         return String.format("%03d/%02d/%02d/%04d", day, month, year);
+>>>>>>> daee81c8c31a4d330f9fb199b891a66bfdcb146d
     }
     @PutMapping("/update")
     @PreAuthorize("hasRole('ICMS_BRANCH_IC')")

@@ -1,12 +1,8 @@
 
-r	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ¨é›þÿÿÿÿ8æ°‹½·1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÇÙ±Ç8è°‹½·1
-G	java:S106;"+Replace this use of System.out by a logger.(ìÝì‰8Ÿì’û·1
-]	java:S125L"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8•È²¶É1
-]	java:S125Q"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8–È²¶É1
-~
-java:S1128"\Remove this unused import 'com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit'.(õÝßŠûÿÿÿÿ8¡È²¶É1
-u
-java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡ž¸Îùÿÿÿÿ8óë¼û·1
+r	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ¨é›þÿÿÿÿ8™ÖÙòà1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÇÙ±Ç8›ÖÙòà1
+G	java:S106;"+Replace this use of System.out by a logger.(ìÝì‰8ñÖÙòà1
+]	java:S125L"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8ôÖÙòà1
+]	java:S125Q"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ8õÖÙòà1
 _
-java:S1068"=Remove this unused "organizationalUnitService" private field.(³Žªòûÿÿÿÿ8¢È²¶É1
+java:S1068"=Remove this unused "organizationalUnitService" private field.(³Žªòûÿÿÿÿ8€×Ùòà1
