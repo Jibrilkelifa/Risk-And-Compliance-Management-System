@@ -193,6 +193,7 @@ public class IncidentOrFraudController {
 
     }
     // Helper method to increment the caseId
+<<<<<<< HEAD
     private String incrementCaseId(String caseId) {
         String[] parts = caseId.split("/");
         int year = Integer.parseInt(parts[3]);
@@ -210,6 +211,36 @@ public class IncidentOrFraudController {
 
         // Format the incremented values into the new caseId
         return String.format("%04d/%02d/%02d/%04d", caseNumber, day, month, year);
+=======
+    // Helper method to increment the caseId
+    private String incrementCaseId(String caseId) {
+        String[] parts = caseId.split("/");
+        int year = Integer.parseInt(parts[2]);
+        int month = Integer.parseInt(parts[1]);
+        int day = Integer.parseInt(parts[0]);
+
+        // Increment the day, month, or year as needed
+        // Here we assume a simple increment, but you can implement your own logic based on your requirements
+        if (day < 31) {
+            day++;
+        } else {
+            day = 1;
+            if (month < 12) {
+                month++;
+            } else {
+                month = 1;
+                year++;
+            }
+        }
+
+        // Reset the caseId to "001" if the year has changed
+        if (year > Integer.parseInt(parts[2])) {
+            return "001/01/01/" + String.format("%04d", year);
+        }
+
+        // Format the incremented values into the new caseId
+        return String.format("%03d/%02d/%02d/%04d", day, month, year);
+>>>>>>> daee81c8c31a4d330f9fb199b891a66bfdcb146d
     }
 
     private String getFileExtension(String fileName) {

@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 java:S1192‡"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8şÔ®Ê1
 j
 java:S1192Ù"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8ÿÔ®Ê1
@@ -7,6 +8,15 @@ o
 java:S1192‹"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8ÿÔ®Ê1
 X
 java:S1141®"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ŸÔ®Ê1
+=======
+java:S1192‘"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8şÔ®Ê1
+j
+java:S1192ã"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8ÿÔ®Ê1
+o
+java:S1192•"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8ÿÔ®Ê1
+X
+java:S1141¸"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ŸÔ®Ê1
+>>>>>>> daee81c8c31a4d330f9fb199b891a66bfdcb146d
 r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8ŸÔ®Ê1
 r	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ŸÔ®Ê1
 r	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8ŸÔ®Ê1
@@ -14,6 +24,7 @@ m	java:S117U"QRename this local variable to match the regular expression '^[a-
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8‡ŸÔ®Ê1
 W	java:S125`"<This block of commented-out lines of code should be removed.(Ö…€j8Ç­Ô®Ê1
 H	java:S106š"+Replace this use of System.out by a logger.(ô¿½´8æ­Ô®Ê1
+<<<<<<< HEAD
 ^	java:S125á"<This block of commented-out lines of code should be removed.(§Ÿ…ùÿÿÿÿ8ë­Ô®Ê1
 Y	java:S125ş"<This block of commented-out lines of code should be removed.(ÄúäÁ8äÆ®ÙÊ1
 ‰
@@ -28,6 +39,24 @@ S
 java:S1481„"5Remove this unused "outstandingCases" local variable.(Ç šÙ8•®Ô®Ê1
 k
 java:S5361¡"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8˜®Ô®Ê1
+=======
+8
+java:S2275Ş"Not enough arguments.(““Ëæúÿÿÿÿ8Šü Ã×1
+^	java:S125ë"<This block of commented-out lines of code should be removed.(§Ÿ…ùÿÿÿÿ8ë­Ô®Ê1
+Y	java:S125ˆ"<This block of commented-out lines of code should be removed.(ÄúäÁ8äÆ®ÙÊ1
+‰
+java:S1130—"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(È‚ŠO8ï­Ô®Ê1
+H	java:S106Ÿ"+Replace this use of System.out by a logger.(Ïä™ø8ñ­Ô®Ê1
+I
+java:S1452ã"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8ù­Ô®Ê1
+b
+java:S1854"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8’®Ô®Ê1
+^	java:S125»"<This block of commented-out lines of code should be removed.(«§˜‰ùÿÿÿÿ8”®Ô®Ê1
+S
+java:S1481"5Remove this unused "outstandingCases" local variable.(Ç šÙ8•®Ô®Ê1
+k
+java:S5361«"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8˜®Ô®Ê1
+>>>>>>> daee81c8c31a4d330f9fb199b891a66bfdcb146d
 S
 java:S1128"6Remove this unused import 'javax.annotation.Resource'.(î¾Ì—8ª®Ô®Ê1
 F

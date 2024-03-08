@@ -10,6 +10,7 @@ import com.cbo.CBO_NFOS_ICMS.models.CIPM.SuspectedFraudsterProfession;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.ActivityStatus;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.ActionTaken;
 import com.cbo.CBO_NFOS_ICMS.models.DCQ.ChequeType;
+import com.cbo.CBO_NFOS_ICMS.models.IFB.ProductType;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.CaseStatus;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.FraudType;
 import com.cbo.CBO_NFOS_ICMS.models.SubModule;
@@ -23,6 +24,8 @@ import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.SuspectedFraudsterProfe
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.ActivityStatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.ActionTakenRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DCQRepository.ChequeTypeRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.IFBRepository.IfbStatusRepository;
+import com.cbo.CBO_NFOS_ICMS.repositories.IFBRepository.ProductTypeRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.IFRRepository.CaseStatusRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.IFRRepository.FraudTypeRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.SubModuleRepository;
@@ -43,6 +46,7 @@ public class DatabaseSeeder {
     //private Logger logger = Logger.getLogger(DatabaseSeeder.class);
     private JdbcTemplate jdbcTemplate;
     private CollateralTypeRepository collateralTypeRepository;
+    private ProductTypeRepository productTypeRepository;
     private StatusRepository statusRepository;
     private InsuranceCoverageTypeRepository insuranceCoverageTypeRepository;
     private ChequeTypeRepository chequeTypeRepository;
@@ -67,7 +71,9 @@ public class DatabaseSeeder {
             JdbcTemplate jdbcTemplate,
             AllSubCategoryRepository allSubCategoryRepository,
             CollateralTypeRepository collateralTypeRepository,
+            ProductTypeRepository productTypeRepository,
             StatusRepository statusRepository,
+            IfbStatusRepository ifbStatusRepository,
             InsuranceCoverageTypeRepository insuranceCoverageTypeRepository,
             ChequeTypeRepository chequeTypeRepository,
             ActionTakenRepository actionTakenRepository,
@@ -83,9 +89,9 @@ public class DatabaseSeeder {
             AllIrregularityRepository allIrregularityRepository
     ) {
         this.jdbcTemplate = jdbcTemplate;
-        this.statusRepository = statusRepository;
         this.allSubCategoryRepository = allSubCategoryRepository;
         this.collateralTypeRepository = collateralTypeRepository;
+        this.productTypeRepository = productTypeRepository;
         this.insuranceCoverageTypeRepository = insuranceCoverageTypeRepository;
         this.chequeTypeRepository = chequeTypeRepository;
         this.actionTakenRepository = actionTakenRepository;
@@ -118,6 +124,16 @@ public class DatabaseSeeder {
         seedCollateralType("Share Certificates");
         seedCollateralType("Movable Collateral");
         seedCollateralType("Other");
+
+        seedProductType("Murabaha");
+        seedProductType("Salam");
+        seedProductType("Istisna");
+        seedProductType("Qard");
+        seedProductType("Kafala");
+        seedProductType("Deposit Account");
+        seedProductType("Pool Administration");
+        seedProductType("Profit/Loss Sharing Management");
+        seedProductType("Other");
 
 
         seedStatus("Active");
@@ -207,60 +223,27 @@ public class DatabaseSeeder {
         seedAllCategoriesTable("Fixed Asset Management", findSubModuleByCode("DACGM"));
         seedAllCategoriesTable("Human Resource Management", findSubModuleByCode("DACGM"));
 
+        seedAllCategoriesTable("Documentation", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Data inputting to the CBS", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Files Handling", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Compliance", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Fees, Commissions, Penalties and Charges Handling", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Collateral", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Insurance Policy", findSubModuleByCode("IFBPIC"));
+        seedAllCategoriesTable("Loan Follow-Up", findSubModuleByCode("IFBPIC"));
 
-//        seedAllCategoriesTable("Share Sales", this.subModules.get(1));
-//        seedAllCategoriesTable("Share Transfer", this.subModules.get(1));
-//        seedAllCategoriesTable("Dividend", this.subModules.get(1));
-//        seedAllCategoriesTable("Share Certificate", this.subModules.get(1));
-//        seedAllCategoriesTable("Capital contribution.", this.subModules.get(1));
-//        seedAllCategoriesTable("Qualification shares", this.subModules.get(1));
-//        seedAllCategoriesTable("Limitation on share acquisition", this.subModules.get(1));
-//        seedAllCategoriesTable("Joint shareholding", this.subModules.get(1));
-//        seedAllCategoriesTable("Share register.", this.subModules.get(1));
-//        seedAllCategoriesTable("Proxy", this.subModules.get(1));
-//        seedAllCategoriesTable("Voting rights", this.subModules.get(1));
-//        seedAllCategoriesTable("Floating", this.subModules.get(1));
-//        seedAllCategoriesTable("Loss of share certificates", this.subModules.get(1));
-//
-//        seedAllCategoriesTable("HRM", this.subModules.get(2));
-//        seedAllCategoriesTable("Other", this.subModules.get(2));
-//        seedAllCategoriesTable("Export", this.subModules.get(2));
-//        seedAllCategoriesTable("Import", this.subModules.get(2));
-//        seedAllCategoriesTable("Letter Of Foreign Bank Guarantee", this.subModules.get(2));
-//        seedAllCategoriesTable("Foreign Currency Account", this.subModules.get(2));
-//        seedAllCategoriesTable("Foreign Transfer", this.subModules.get(2));
-//        seedAllCategoriesTable("HRM", this.subModules.get(2));
-//        seedAllCategoriesTable("Other", this.subModules.get(2));
-//
-//        seedAllCategoriesTable("Financing", this.subModules.get(3));
-//        seedAllCategoriesTable("HRM", this.subModules.get(3));
-//        seedAllCategoriesTable("Other", this.subModules.get(3));
-//
-//        seedAllCategoriesTable("Account Reconciliation", this.subModules.get(4));
-//        seedAllCategoriesTable("RTGS", this.subModules.get(4));
-//        seedAllCategoriesTable("Payment of Purchase", this.subModules.get(4));
-//        seedAllCategoriesTable("Payment of per diem and advance", this.subModules.get(4));
-//        seedAllCategoriesTable("Payment to Gov’t Office", this.subModules.get(4));
-//        seedAllCategoriesTable("Petty Cash Replenishment", this.subModules.get(4));
-//        seedAllCategoriesTable("Settlement of Payment Documents", this.subModules.get(4));
-//        seedAllCategoriesTable("Stock", this.subModules.get(4));
-//        seedAllCategoriesTable("Other", this.subModules.get(4));
-//
-//        seedAllCategoriesTable("Sourcing", this.subModules.get(5));
-//        seedAllCategoriesTable("Purchasing", this.subModules.get(5));
-//        seedAllCategoriesTable("Payment", this.subModules.get(5));
-//        seedAllCategoriesTable("Acquired Asset", this.subModules.get(5));
-//        seedAllCategoriesTable("Other", this.subModules.get(5));
-//
-//        seedAllCategoriesTable("Cash", this.subModules.get(6));
-//        seedAllCategoriesTable("Deposit", this.subModules.get(6));
-//        seedAllCategoriesTable("Loan", this.subModules.get(6));
-//        seedAllCategoriesTable("Forex", this.subModules.get(6));
-//        seedAllCategoriesTable("Interbank", this.subModules.get(6));
-//        seedAllCategoriesTable("Clearing", this.subModules.get(6));
-//        seedAllCategoriesTable("Off Balance Sheet", this.subModules.get(6));
-//        seedAllCategoriesTable("Cheques/DDs", this.subModules.get(6));
-//        seedAllCategoriesTable("Other", this.subModules.get(6));
+        seedAllCategoriesTable("Liquidity Management", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Financial Reports", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Procurement", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Depreciation", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Disposal of Fixed Assets", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Payroll", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Fund Management", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Tax", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Reconciliation", findSubModuleByCode("FPIC"));
+        seedAllCategoriesTable("Other", findSubModuleByCode("FPIC"));
+
+
 
         this.allCategories = this.allCategoryService.findAllAllCategory();
         seedAllSubCategoriesTable("Financial", findAllCategoryByName("Cash Management"));
@@ -288,36 +271,61 @@ public class DatabaseSeeder {
         seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Human Resource Management"));
 
 
-//        seedAllSubCategoriesTable("Limits", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Security", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Balance", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Handling", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Reporting", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Other", findAllCategoryByName(""));
-//
-//        seedAllSubCategoriesTable("Balance", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Documentation", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Posting", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Aging", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Other", findAllCategoryByName(""));
-//
-//        seedAllSubCategoriesTable("Handling", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Completeness", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Balance", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Disposal", findAllCategoryByName(""));
-//
-//        seedAllSubCategoriesTable("Documentation", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Compliance", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Completeness and accuracy", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Encoding/Posting", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Other", findAllCategoryByName(""));
-//
-//        seedAllSubCategoriesTable("Documentation", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Fees and Charges", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Collateral", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Insurance", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Encoding", findAllCategoryByName(""));
-//        seedAllSubCategoriesTable("Other", findAllCategoryByName(""));
+        //IFB
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Documentation"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Documentation"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Data inputting to the CBS"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Data inputting to the CBS"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Files Handling"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Files Handling"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Compliance"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Compliance"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Fees, Commissions, Penalties and Charges Handling"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Fees, Commissions, Penalties and Charges Handling"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Insurance Policy"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Insurance Policy"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Loan Follow-Up"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Loan Follow-Up"));
+
+
+        //FPIC
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Liquidity Management"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Liquidity Management"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Financial Reports"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Financial Reports"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Procurement"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Procurement"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Depreciation"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Depreciation"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Disposal of Fixed Assets"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Disposal of Fixed Assets"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Payroll"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Payroll"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Fund Management"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Fund Management"));
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Tax"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Tax"));
+
+
+        seedAllSubCategoriesTable("Financial", findAllCategoryByName("Reconciliation"));
+        seedAllSubCategoriesTable("Non-Financial", findAllCategoryByName("Reconciliation"));
+
+
 
         this.allSubCategories = this.allSubCategoryService.findAllSubCategory();
         seedAllIrregularitiesTable("Cash difference between physical count and GL balance", findAllSubCategoryByNameAndCategoryName("Financial", "Cash Management"));
@@ -597,6 +605,19 @@ public class DatabaseSeeder {
             collateralType.setName(name);
             collateralTypeRepository.save(collateralType);
             // logger.info("SubProcess Seeded");
+        } else {
+            //  logger.info("SubProcess Seeding Not Required");
+        }
+    }
+
+    @Transactional
+    public void seedProductType(String name) {
+        String sql = "SELECT name FROM product_types PT WHERE PT.name = ? LIMIT 1";
+        List<ProductType> pt = jdbcTemplate.query(sql, new Object[]{name}, (resultSet, rowNum) -> null);
+        if (pt == null || pt.size() == 0) {
+            ProductType productType = new ProductType();
+            productType.setName(name);
+            productTypeRepository.save(productType);
         } else {
             //  logger.info("SubProcess Seeding Not Required");
         }

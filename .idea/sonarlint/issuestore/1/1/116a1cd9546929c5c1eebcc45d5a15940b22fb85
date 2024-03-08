@@ -1,0 +1,6 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ø¨É8­ĞÙòà1
+a
+java:S1874"DRemove this use of "WebSecurityConfigurerAdapter"; it is deprecated.(Ë¶Ï“8×ĞÙòà1
+X	java:S125!"<This block of commented-out lines of code should be removed.(ŒÙ8ÚĞÙòà1
+]	java:S1251"<This block of commented-out lines of code should be removed.(‹›íõùÿÿÿÿ8àĞÙòà1
