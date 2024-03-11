@@ -1,10 +1,14 @@
 package com.cbo.CBO_NFOS_ICMS.models.share;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+
+@NoArgsConstructor
+@Entity
 public class ShareStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
