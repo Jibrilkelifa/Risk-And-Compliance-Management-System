@@ -1,0 +1,17 @@
+
+r	java:S1172"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½±İÜÿÿÿÿÿ8æ‰˜â1
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(÷ØÓ&8’æ‰˜â1
+b
+java:S4684A"@Replace this persistent entity with a simple POJO or DTO object.(¢ºùÿÿÿÿ8šç‰˜â1
+L	java:S106H"+Replace this use of System.out by a logger.(àãéËüÿÿÿÿ8 ç‰˜â1
+]	java:S125_"<This block of commented-out lines of code should be removed.(ë€üéúÿÿÿÿ8Öç‰˜â1
+b
+java:S4684}"@Replace this persistent entity with a simple POJO or DTO object.(¢ºùÿÿÿÿ8Ùç‰˜â1
+D
+java:S1452Œ"&Remove usage of generic wildcard type.(ä°ü8àç‰˜â1
+Y	java:S125…"<This block of commented-out lines of code should be removed.(Õ¥Â°8âç‰˜â1
+Y	java:S125µ"<This block of commented-out lines of code should be removed.(•öğ†8ÿç‰˜â1
+n
+java:S1128"RRemove this unused import 'com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException'.(ÙÊÃb8‹è‰˜â1
+j
+java:S1128"MRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud'.(¦Ïü˜8Œè‰˜â1
