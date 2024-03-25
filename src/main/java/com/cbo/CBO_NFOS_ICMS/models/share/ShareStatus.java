@@ -1,4 +1,4 @@
-package com.cbo.CBO_NFOS_ICMS.models.Finance;
+package com.cbo.CBO_NFOS_ICMS.models.share;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,18 +9,15 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
-@Table(name = "financies_status")
-
-public class FinanceStatus {
+public class ShareStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-
     private Long id;
     @Column(nullable = false, length = 64)
     private String name;
 
-    public FinanceStatus(String name) {
+    public ShareStatus(String name) {
         this.name = name;
     }
 }

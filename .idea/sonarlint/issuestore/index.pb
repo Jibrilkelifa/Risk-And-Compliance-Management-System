@@ -19,3 +19,11 @@ Nsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/CIPM/CollateralInsurancePolicy.java
 _src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/DACGMController/DailyActivityGapController.java,1\a\1a8d879e719a84491304d2f9f56672662f73b87c
 „
 Tsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/CIPMController/StatusController.java,f\b\fb44668c2f717fdb545559b455cb732ffe3284e7
+Œ
+\src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/IncidentOrFraudController.java,7\9\79c08484e47844d149b82bee0c8f952a1a6b83c3
+‡
+Wsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/CaseStatusController.java,8\7\87a30b1243a2c589a35fcd252cd69e75a86a038d
+†
+Vsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/FraudTypeController.java,b\9\b9261542cf3ec2bf13aa786f9a29f6eb979dc8ec
+š
+jsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/FireExtinguisherController/FireExtinguisherController.java,6\4\6436ccd9d07b8efd771c61fa2df80fb293c209d0
