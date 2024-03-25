@@ -11,7 +11,7 @@ public interface DailyActivityGapControlRepository extends JpaRepository<DailyAc
 
     Optional<DailyActivityGapControl> findDACGMById(Long id);
 
-    List<DailyActivityGapControl> findDACGMByBranchId(Long id);
+    List<DailyActivityGapControl> findDACGMByBranchId(String id);
     List<DailyActivityGapControl> findDACGMBySubProcessId(Long subProcessId);
 
     boolean existsByCaseId(String caseId);

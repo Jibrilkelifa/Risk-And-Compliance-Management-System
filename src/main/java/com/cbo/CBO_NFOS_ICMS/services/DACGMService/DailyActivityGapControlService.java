@@ -92,7 +92,7 @@ public class DailyActivityGapControlService {
         dACGMRepository.deleteById(id);
     }
 
-    public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(Long id) {
+    public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(String id) {
         return dACGMRepository.findDACGMByBranchId(id);
     }
 

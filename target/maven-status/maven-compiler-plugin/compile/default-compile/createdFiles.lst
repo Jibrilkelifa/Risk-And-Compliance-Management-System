@@ -1,5 +1,4 @@
 com\cbo\CBO_NFOS_ICMS\configuration\SecurityConfig.class
-com\cbo\CBO_NFOS_ICMS\repositories\IFBRepository\IFBStatusRepository.class
 com\cbo\CBO_NFOS_ICMS\repositories\DACGMRepository\DailyActivityGapControlRepository.class
 com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\User.class
 com\cbo\CBO_NFOS_ICMS\repositories\IFBRepository\IFBRepository.class
@@ -8,17 +7,14 @@ com\cbo\CBO_NFOS_ICMS\services\UserDetailsImpl.class
 com\cbo\CBO_NFOS_ICMS\models\IFR\IncidentOrFraud.class
 com\cbo\CBO_NFOS_ICMS\services\DACGMService\DailyActivityGapControlService.class
 com\cbo\CBO_NFOS_ICMS\exception\UserAlreadyExistsException.class
-com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\RoleRepository.class
 com\cbo\CBO_NFOS_ICMS\controllers\TimeController.class
 com\cbo\CBO_NFOS_ICMS\models\AllIrregularity.class
 com\cbo\CBO_NFOS_ICMS\controllers\SubModuleController.class
-com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\SubProcessController.class
 com\cbo\CBO_NFOS_ICMS\models\DACGM\DailyActivityGapControl.class
 com\cbo\CBO_NFOS_ICMS\services\CIPMService\StatusService.class
 com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\UserRepository.class
 com\cbo\CBO_NFOS_ICMS\utils\JwtUtils.class
 com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\DishonoredChequeRepository.class
-com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\EmployeeService.class
 com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\ActivityStatusController.class
 com\cbo\CBO_NFOS_ICMS\services\IFBService\ProductTypeService.class
 com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\SubProcessRepository.class
@@ -26,7 +22,6 @@ com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Module.class
 com\cbo\CBO_NFOS_ICMS\controllers\AllCategoryController.class
 com\cbo\CBO_NFOS_ICMS\repositories\IFRRepository\IncidentOrFraudRepository.class
 com\cbo\CBO_NFOS_ICMS\controllers\IFRController\CaseStatusController.class
-com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\RoleService.class
 com\cbo\CBO_NFOS_ICMS\models\DCQ\ChequeType.class
 com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralType.class
 com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\BranchService.class
@@ -47,7 +42,6 @@ com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\LocationGroup.class
 com\cbo\CBO_NFOS_ICMS\controllers\DCQController\ChequeTypeController.class
 com\cbo\CBO_NFOS_ICMS\models\CIPM\SuspectedFraudsterProfession.class
 com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ChequeTypeRepository.class
-com\cbo\CBO_NFOS_ICMS\services\IFBService\StatusService.class
 com\cbo\CBO_NFOS_ICMS\services\DACGMService\ActivityStatusService.class
 com\cbo\CBO_NFOS_ICMS\repositories\SubModuleRepository.class
 com\cbo\CBO_NFOS_ICMS\models\IFB\IFB.class
@@ -58,6 +52,7 @@ com\cbo\CBO_NFOS_ICMS\services\DCQService\ChequeTypeService.class
 com\cbo\CBO_NFOS_ICMS\services\IFRService\IncidentOrFraudService.class
 com\cbo\CBO_NFOS_ICMS\controllers\DCQController\DishonoredChequeController.class
 com\cbo\CBO_NFOS_ICMS\configuration\CorsConfiguration.class
+com\cbo\CBO_NFOS_ICMS\repositories\IFBRepository\IfbStatusRepository.class
 com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\BranchRepository.class
 com\cbo\CBO_NFOS_ICMS\repositories\DCQRepository\ActionTakenRepository.class
 com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\StatusController.class
@@ -66,7 +61,6 @@ com\cbo\CBO_NFOS_ICMS\exception\NoSuchUserExistsException.class
 com\cbo\CBO_NFOS_ICMS\repositories\UserAndEmployeeRepository\EmployeeRepository.class
 com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\SubProcessService.class
 com\cbo\CBO_NFOS_ICMS\controllers\AllSubCategoryController.class
-com\cbo\CBO_NFOS_ICMS\services\JwtService.class
 com\cbo\CBO_NFOS_ICMS\controllers\IFRController\IncidentOrFraudController.class
 com\cbo\CBO_NFOS_ICMS\models\IFR\CaseStatus.class
 com\cbo\CBO_NFOS_ICMS\models\IFR\FraudType.class
@@ -80,7 +74,6 @@ com\cbo\CBO_NFOS_ICMS\models\CIPM\Frequency.class
 com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\ERole.class
 com\cbo\CBO_NFOS_ICMS\services\DCQService\ActionTakenService.class
 com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\CollateralTypeController.class
-com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\EmployeeController.class
 com\cbo\CBO_NFOS_ICMS\models\AllSubCategory.class
 com\cbo\CBO_NFOS_ICMS\repositories\AllIrregularityRepository.class
 com\cbo\CBO_NFOS_ICMS\repositories\IFBRepository\ProductTypeRepository.class
@@ -109,17 +102,14 @@ com\cbo\CBO_NFOS_ICMS\repositories\AllCategoryRepository.class
 com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralInsurancePolicyService.class
 com\cbo\CBO_NFOS_ICMS\exception\NoSuchActionTakenExistsException.class
 com\cbo\CBO_NFOS_ICMS\services\UserAndEmployeeService\ModuleService.class
-com\cbo\CBO_NFOS_ICMS\models\IFB\Status.class
 com\cbo\CBO_NFOS_ICMS\models\CIPM\CollateralInsurancePolicy.class
 com\cbo\CBO_NFOS_ICMS\configuration\JwtAuthenticationFilter.class
 com\cbo\CBO_NFOS_ICMS\controllers\CIPMController\InsuranceCoverageTypeController.class
 com\cbo\CBO_NFOS_ICMS\services\CIPMService\CollateralTypeService.class
-com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\RoleController.class
 com\cbo\CBO_NFOS_ICMS\services\TimeService.class
 com\cbo\CBO_NFOS_ICMS\controllers\DACGMController\DailyActivityGapController.class
 com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Role.class
 com\cbo\CBO_NFOS_ICMS\models\Time.class
-com\cbo\CBO_NFOS_ICMS\controllers\UserAndEmployeeController\OrganizationalUnitController.class
 com\cbo\CBO_NFOS_ICMS\controllers\IFRController\FraudTypeController.class
 com\cbo\CBO_NFOS_ICMS\services\UserDetailsServiceImpl.class
 com\cbo\CBO_NFOS_ICMS\models\UserAndEmployee\Employee.class

@@ -17,7 +17,7 @@ public interface DishonoredChequeRepository extends JpaRepository<DishonoredCheq
 
     Optional<DishonoredCheque> findDishonouredChequeById(Long id);
 
-    List<DishonoredCheque> findDishonouredChequeByBranchId(Long branchId);
+    List<DishonoredCheque> findDishonouredChequeByBranchId(String branchId);
 
     List<DishonoredCheque> findByFrequencyGreaterThanEqual(int frequency);
 

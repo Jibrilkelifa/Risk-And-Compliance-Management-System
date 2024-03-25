@@ -38,7 +38,7 @@ public class DailyActivityGapController {
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
-    public ResponseEntity<List<DailyActivityGapControl>> getAllDACGMInSpecificOrganizationalUnit(@PathVariable("id") Long id) {
+    public ResponseEntity<List<DailyActivityGapControl>> getAllDACGMInSpecificOrganizationalUnit(@PathVariable("id") String id) {
         List<DailyActivityGapControl> dACGM;
         dACGM = dACGMService.findAllDACGMInSpecificOrganizationalUnit(id);
         return new ResponseEntity<>(dACGM, HttpStatus.OK);

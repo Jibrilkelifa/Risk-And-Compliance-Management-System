@@ -27,3 +27,17 @@ Vsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/FraudTypeControll
 \src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/IncidentOrFraudController.java,7\9\79c08484e47844d149b82bee0c8f952a1a6b83c3
 á
 Wsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/IFRController/CaseStatusController.java,8\7\87a30b1243a2c589a35fcd252cd69e75a86a038d
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/services/DACGMService/DailyActivityGapControlService.java,9\c\9cf42d23f8a7449b3c94a833a6e74415e061c88a
+q
+Asrc/main/java/com/cbo/CBO_NFOS_ICMS/models/share/ShareStatus.java,7\3\732dec8ee77770983b75b0dccfe97e223988cfba
+Ö
+Usrc/main/java/com/cbo/CBO_NFOS_ICMS/repositories/shareRepository/ShareRepository.java,4\1\41e03be909a2ee59779cceca3e05c6f9b83f3cde
+k
+;src/main/java/com/cbo/CBO_NFOS_ICMS/models/share/Share.java,2\e\2ed0a02a2af7d125076e9a6ce9cb49df8387a349
+t
+Dsrc/main/java/com/cbo/CBO_NFOS_ICMS/services/share/ShareService.java,c\1\c108eee974fb8cdbcd247fb143914dbf27d316b3
+z
+Jsrc/main/java/com/cbo/CBO_NFOS_ICMS/controllers/share/ShareController.java,3\5\35e675ba8645c6e47d7a741d321f9e1fdea8d8f1
+é
+^src/main/java/com/cbo/CBO_NFOS_ICMS/repositories/DACGMRepository/ActivityStatusRepository.java,0\d\0d7f6503cc2274e586190097b68c1f9b96240923

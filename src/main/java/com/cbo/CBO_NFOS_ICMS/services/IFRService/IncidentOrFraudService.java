@@ -201,7 +201,7 @@ public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud
         incidentOrFraudRepository.deleteById(id);
     }
 
-    public List<IncidentOrFraud> findAllIncidentFraudReportInSpecificOrganizationalUnit(Long branchId) {
+    public List<IncidentOrFraud> findAllIncidentFraudReportInSpecificOrganizationalUnit(String branchId) {
 
         return incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
     }
