@@ -16,4 +16,5 @@ public interface FinanceRepository extends JpaRepository<Finance, Long> {
 
     boolean existsByCaseId(String caseId);
 
+    List<Finance> findFinanceByTeamId(Long id);
 }

@@ -2,6 +2,7 @@ package com.cbo.CBO_NFOS_ICMS.services.FinanceService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
+import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.Finance.Finance;
 import com.cbo.CBO_NFOS_ICMS.repositories.FinanceRepository.FinanceRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
@@ -39,7 +40,7 @@ public class FinanceService {
         Optional<Finance> optionalFinance = financeRepository.findById(finance.getId());
         if (optionalFinance.isPresent()) {
             Finance existingFinance = optionalFinance.get();
-            existingFinance.setStatus(finance.getStatus());
+            existingFinance.setFinanceStatus(finance.getFinanceStatus());
             existingFinance.setFinanceDate(finance.getFinanceDate()); // Add this line
             return financeRepository.save(existingFinance);
         } else {
@@ -66,6 +67,31 @@ public class FinanceService {
         return financeRepository.findAll();
     }
     public List<Finance> findAllFinanceSubProcess(Long subProcessId) {
+        return financeRepository.findFinanceBySubProcessId(subProcessId);
+    }
+
+    public Finance approveActionPlan(Finance finance) {
+        Finance row = financeRepository.findById(finance.getId())
+                .orElseThrow(() -> new UserNotFoundException("Finance by id = " + finance.getId() + " was not found"));
+        row.setActionPlanDueDate(finance.getActionPlanDueDate());
+
+        row.setActionTaken(true);
+        return financeRepository.save(row);
+    }
+
+
+    public Finance escalatePlan(Long id) {
+        Finance row = financeRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Finance by id = " + id + " was not found"));
+        row.setEscalatedByManager(true);
+        return financeRepository.save(row);
+    }
+
+    public List<Finance> findAllFinanceInSpecificOrganizationalUnit(Long id) {
+
+        return financeRepository.findFinanceByTeamId(id);
+    }
+
+    public List<Finance> findAllFinanceInSpecificSubProcess(Long subProcessId) {
         return financeRepository.findFinanceBySubProcessId(subProcessId);
     }
 

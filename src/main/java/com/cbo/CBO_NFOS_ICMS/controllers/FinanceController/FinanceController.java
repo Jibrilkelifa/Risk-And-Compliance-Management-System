@@ -1,5 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.FinanceController;
 
+import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.Finance.Finance;
 import com.cbo.CBO_NFOS_ICMS.models.IFB.IFB;
 import com.cbo.CBO_NFOS_ICMS.services.FinanceService.FinanceService;
@@ -27,8 +28,8 @@ public class FinanceController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC')")
-    public ResponseEntity<List<Finance>> getIFB() {
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    public ResponseEntity<List<Finance>> getFinance() {
         List<Finance> Finance = financeService.findAllFinance();
         return new ResponseEntity<>(Finance, HttpStatus.OK);
     }
@@ -54,8 +55,6 @@ public class FinanceController {
             caseId = incrementCaseId(caseId);
         }
         finance.setCaseId(caseId);
-        System.out.println(caseId);
-
         Finance newfinance = financeService.addIFB(finance);
         return new ResponseEntity<>(newfinance, HttpStatus.CREATED);
     }
@@ -83,7 +82,7 @@ public class FinanceController {
     @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
     public ResponseEntity<Finance> updateIFB
             (@RequestBody Finance finance) {
-        System.out.println(finance.getStatus());
+        System.out.println(finance.getFinanceStatus());
         Finance updateFinance = financeService.updateFinance(finance);
         return new ResponseEntity<>(updateFinance, HttpStatus.CREATED);
 
@@ -103,4 +102,53 @@ public class FinanceController {
         financeService.deleteFinance(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT_IC')")
+    @PatchMapping("/approveActionPlan/{id}")
+    public ResponseEntity<Finance> approveActionPlan(@PathVariable Long id, @RequestBody Finance finance) {
+        System.out.println("rrrr" + finance);
+        try {
+            if (!id.equals(finance.getId())) {
+                throw new IllegalArgumentException("ID in the path variable and finance object must match");
+            }
+            Finance updatedFinance = financeService.approveActionPlan(finance);
+            return ResponseEntity.ok(updatedFinance);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+
+    @PatchMapping("/escalate/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
+    public ResponseEntity<Finance>escalatePlan(@PathVariable("id") Long id)
+    {
+        try
+        {
+            Finance row = financeService.escalatePlan(id);
+            return ResponseEntity.ok(row);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/findByOrganizationalUnitId/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
+    public ResponseEntity<List<Finance>> getAllFinanceInSpecificOrganizationalUnit(@PathVariable("id") Long id) {
+        List<Finance> Finance;
+        Finance = financeService.findAllFinanceInSpecificOrganizationalUnit(id);
+        return new ResponseEntity<>(Finance, HttpStatus.OK);
+    }
+
+    @GetMapping("/findBySubProcessId/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
+    public ResponseEntity<List<Finance>> getAllFinanceInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
+        List<Finance> Finance;
+        Finance = financeService.findAllFinanceInSpecificSubProcess(subProcessId);
+        return new ResponseEntity<>(Finance, HttpStatus.OK);
+    }
+
 }
+
