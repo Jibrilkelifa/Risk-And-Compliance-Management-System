@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 
@@ -15,14 +16,16 @@ import javax.persistence.*;
 @Table(name = "daily_activities_gap_control")
 public class DailyActivityGapControl {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "dacgm_Sequence")
+    @SequenceGenerator(name = "dacgm_Sequence", sequenceName = "ID_SEQQ")
     private Long id;
     @Column(length = 64)
+    @NotNull
     private String date;
     @Column(length = 64)
     private String preparedBy;
     @Column(length = 64)
+    @NotNull
     private String caseId;
     @Column(length = 64)
     private String accountNumber;
@@ -31,6 +34,7 @@ public class DailyActivityGapControl {
     @Column(length = 64)
     private String amountInvolved;
     @Column(length = 64)
+    @NotNull
     private String responsiblePerson;
     @Column(length = 64)
     private String actionPlanDueDate;
@@ -53,9 +57,11 @@ public class DailyActivityGapControl {
     private String otherIrregularity;
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @NotNull
     private Branch branch;
     @ManyToOne
     @JoinColumn(name = "sub_Process_id")
+    @NotNull
     private SubProcess subProcess;
 }
 

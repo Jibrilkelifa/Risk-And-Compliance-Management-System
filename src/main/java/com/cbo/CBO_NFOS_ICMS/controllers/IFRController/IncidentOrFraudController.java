@@ -1,7 +1,9 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.IFRController;
 
+import com.cbo.CBO_NFOS_ICMS.models.IFR.DashboardDTOBranchIc;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.Images;
+import com.cbo.CBO_NFOS_ICMS.services.IFRService.DashboardBranchIcService;
 import com.cbo.CBO_NFOS_ICMS.services.IFRService.IncidentOrFraudService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,8 +14,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,9 +32,11 @@ import java.util.UUID;
 @RequestMapping("/incidentFraudReport")
 public class IncidentOrFraudController {
     private final IncidentOrFraudService incidentOrFraudService;
+    private  final DashboardBranchIcService dashboardBranchIcService;
 
-    public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService) {
+    public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService, DashboardBranchIcService dashboardBranchIcService) {
         this.incidentOrFraudService = incidentOrFraudService;
+        this.dashboardBranchIcService = dashboardBranchIcService;
     }
 
     @GetMapping("/getAll")
@@ -58,7 +60,7 @@ public class IncidentOrFraudController {
 
     @GetMapping("/getSize")
     @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
-    public int getIncidentFraudReportSize() {
+    public Long getIncidentFraudReportSize() {
         return incidentOrFraudService.findIncidentFraudReportSize();
     }
 
@@ -508,86 +510,6 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
     }
 
-    /*@GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
-        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
-        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
-
-        // Get the start and end dates for the current quarter
-        LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
-            startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
-            startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
-            startMonth = Month.JULY;
-        } else {
-            startMonth = Month.OCTOBER;
-        }
-
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
-        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
-            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
-                    (caseItem.getCaseStatus().getName().equals("Closed") ||
-                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
-                closedAndWrittenOffCases.add(caseItem);
-            }
-        }
-
-        return new ResponseEntity<>(closedAndWrittenOffCases.size(), HttpStatus.OK);
-    }
-
-    @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter-list")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<List<IncidentOrFraud>> getClosedAndWrittenOffCasesDuringQuarterlist() {
-        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
-        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
-
-        // Get the start and end dates for the current quarter
-        LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
-            startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
-            startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
-            startMonth = Month.JULY;
-        } else {
-            startMonth = Month.OCTOBER;
-        }
-
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
-        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
-            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
-                    (caseItem.getCaseStatus().getName().equals("Closed") ||
-                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
-                closedAndWrittenOffCases.add(caseItem);
-            }
-        }
-
-        return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
-    }
-*/
 
     @GetMapping("/getOutstandingCasesAmountDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
@@ -778,5 +700,10 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         }
 
         return new ResponseEntity<>(newCases, HttpStatus.OK);
+    }
+    @GetMapping("/dashboard/{branchId}")
+    public ResponseEntity<DashboardDTOBranchIc> getDashboardData(@PathVariable String branchId) {
+        DashboardDTOBranchIc dashboardData = dashboardBranchIcService.getDashboardData(branchId);
+        return new ResponseEntity<>(dashboardData, HttpStatus.OK);
     }
 }

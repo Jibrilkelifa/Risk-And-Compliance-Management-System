@@ -89,26 +89,34 @@ public class CollateralInsurancePolicyService {
         List<CollateralInsurancePolicy> allPolicies = collateralInsurancePolicyRepository.findAll();
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
         for (CollateralInsurancePolicy policy : allPolicies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(currentDate)) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null) {
+                LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                if (expiryDate.isBefore(currentDate)) {
+                    expiredPolicies.add(policy);
+                }
             }
         }
         return expiredPolicies.size();
     }
+
 
     public List<CollateralInsurancePolicy> getExpiredPolicies() {
         LocalDate currentDate = LocalDate.now();
         List<CollateralInsurancePolicy> allPolicies = collateralInsurancePolicyRepository.findAll();
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
         for (CollateralInsurancePolicy policy : allPolicies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(currentDate)) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null) {
+                LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                if (expiryDate.isBefore(currentDate)) {
+                    expiredPolicies.add(policy);
+                }
             }
         }
         return expiredPolicies;
     }
+
 
     public int getNumberOfPoliciesExpiringWithinThirtyDays() {
         LocalDate currentDate = LocalDate.now();
