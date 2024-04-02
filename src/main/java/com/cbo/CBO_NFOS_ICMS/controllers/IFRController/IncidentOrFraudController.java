@@ -1,9 +1,7 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.IFRController;
 
-import com.cbo.CBO_NFOS_ICMS.models.IFR.DashboardDTOBranchIc;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.Images;
-import com.cbo.CBO_NFOS_ICMS.services.IFRService.DashboardBranchIcService;
 import com.cbo.CBO_NFOS_ICMS.services.IFRService.IncidentOrFraudService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,11 +30,10 @@ import java.util.UUID;
 @RequestMapping("/incidentFraudReport")
 public class IncidentOrFraudController {
     private final IncidentOrFraudService incidentOrFraudService;
-    private  final DashboardBranchIcService dashboardBranchIcService;
 
-    public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService, DashboardBranchIcService dashboardBranchIcService) {
+    public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService) {
         this.incidentOrFraudService = incidentOrFraudService;
-        this.dashboardBranchIcService = dashboardBranchIcService;
+
     }
 
     @GetMapping("/getAll")
@@ -701,9 +698,5 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         return new ResponseEntity<>(newCases, HttpStatus.OK);
     }
-    @GetMapping("/dashboard/{branchId}")
-    public ResponseEntity<DashboardDTOBranchIc> getDashboardData(@PathVariable String branchId) {
-        DashboardDTOBranchIc dashboardData = dashboardBranchIcService.getDashboardData(branchId);
-        return new ResponseEntity<>(dashboardData, HttpStatus.OK);
-    }
+
 }

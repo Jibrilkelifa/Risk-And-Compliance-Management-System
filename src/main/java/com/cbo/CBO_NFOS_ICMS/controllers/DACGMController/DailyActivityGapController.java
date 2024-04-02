@@ -30,7 +30,6 @@ public class DailyActivityGapController {
 
 
     @GetMapping("/getSize")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_PROVISION')")
     public Long getDACGMSize(){
 
         return dACGMService.findDACGMSize();
