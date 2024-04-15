@@ -5,7 +5,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class DashboardDTOBranchIc {
+public class DashboardDTODistrictIc {
     private int  OutstandingCases;
     private int newCasesDuringQuarter;
     private int closedCases;

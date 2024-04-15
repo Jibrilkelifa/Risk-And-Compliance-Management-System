@@ -74,7 +74,7 @@ public class DailyActivityGapController {
     }
     private String incrementCaseId(String caseId) {
         String[] parts = caseId.split("/");
-//<<<<<<< HEAD
+
         int year = Integer.parseInt(parts[3]);
         int month = Integer.parseInt(parts[2]);
         int day = Integer.parseInt(parts[1]);

@@ -5,6 +5,7 @@ import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.FireExtinguisher.FireExtinguisher;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
 import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTOBranchIc;
+import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTODistrictIc;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralInsurancePolicyRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.DailyActivityGapControlRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.FireExtinguisherRepository.FireExtinguisherRepository;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DashboardBranchIcService {
+public class DashboardDistrictIcService {
     @Autowired
     private IncidentOrFraudService incidentOrFraudService;
     @Autowired
@@ -44,44 +45,44 @@ public class DashboardBranchIcService {
     @Autowired
     private CollateralInsurancePolicyRepository collateralInsurancePolicyRepository;
 
-    public DashboardDTOBranchIc getDashboardData(String branchId) {
+    public DashboardDTODistrictIc getDashboardDataDistrictIc(Long subProcessId) {
 
-        int totalOutstandingCases = calculateTotalOutstandingCases(branchId);
-        Object[] newCases = calculateNewCasesDuringQuarter(branchId);
+        int totalOutstandingCases = calculateTotalOutstandingCases(subProcessId);
+        Object[] newCases = calculateNewCasesDuringQuarter(subProcessId);
         int newCasesToday = (int) newCases[0];
         int dueIn30Days = (int) newCases[1];
         int dueCases = (int) newCases[2];
         int outstandingEscalatedCases =(int) newCases[3];
 
-        int closedCases = calculateClosedCases(branchId);
-        BigDecimal outstandingCasesAmount = calculateOutstandingCasesAmount(branchId);
+        int closedCases = calculateClosedCases(subProcessId);
+        BigDecimal outstandingCasesAmount = calculateOutstandingCasesAmount(subProcessId);
         // Calculate insurance policy-related data
-        int totalActivePolicies = getActivePoliciesByBranch(branchId);
-        int expiringIn30Days = calculateExpiringIn30Days(branchId);
-        int expiredPolicies = calculateExpiredPolicies(branchId);
-        BigDecimal estimatedLossAmount = calculateEstimatedLossAmount(branchId);
+        int totalActivePolicies = getActivePoliciesByBranch(subProcessId);
+        int expiringIn30Days = calculateExpiringIn30Days(subProcessId);
+        int expiredPolicies = calculateExpiredPolicies(subProcessId);
+        BigDecimal estimatedLossAmount = calculateEstimatedLossAmount(subProcessId);
         // Calculate results for FireExtinguisher module
-        int totalFireExtinguishers = calculateTotalFireExtinguishers(branchId);
-        int eexpiringIn30Days = calculateEexpiringIn30DaysExtinguiser(branchId);
-        int expired = calculateExpiredFireExtinguishers(branchId);
-        BigDecimal estimatedFineAmount = calculateEstimatedFineAmount(branchId);
+        int totalFireExtinguishers = calculateTotalFireExtinguishers(subProcessId);
+        int eexpiringIn30Days = calculateEexpiringIn30DaysExtinguiser(subProcessId);
+        int expired = calculateExpiredFireExtinguishers(subProcessId);
+        BigDecimal estimatedFineAmount = calculateEstimatedFineAmount(subProcessId);
         // Calculate results for DailyActivityGapControl module
 
-//        BigDecimal outstandingCasesDuringMonth = calculateOutstandingCasesDuringMonth(branchId);
-        Object[] result = calculateOutstandingCasesForBranch(branchId);
+//        BigDecimal outstandingCasesDuringMonth = calculateOutstandingCasesDuringMonth(subProcessId);
+        Object[] result = calculateOutstandingCasesForBranch(subProcessId);
         BigDecimal totalFinancialOutstandingCases = (BigDecimal) result[0];
         int totalNonFinancialOutstandingCases = (int) result[1];
         BigDecimal outstandingCasesDuringMonth = (BigDecimal) result[2];
         BigDecimal financialPercentageFromLastOutstanding = (BigDecimal) result[3];
         BigDecimal nonFinancialPercentageFromLastOutstanding = (BigDecimal) result[4];
-        Object[] resultt = calculateRectifiedCasesForBranch(branchId);
+        Object[] resultt = calculateRectifiedCasesForBranch(subProcessId);
         BigDecimal totalFinancialRectifiedCases = (BigDecimal) result[0];
         int totalNonFinancialRectifiedCases = (int) resultt[1];
         BigDecimal rectifiedCasesDuringMonth = (BigDecimal) resultt[2];
         BigDecimal financialPercentageFromLastRectified = (BigDecimal) resultt[3];
         BigDecimal nonFinancialPercentageFromLastRectified = (BigDecimal) resultt[4];
 
-        Object[] resulttt = calculateIdentifiedCasesForBranch(branchId);
+        Object[] resulttt = calculateIdentifiedCasesForBranch(subProcessId);
         BigDecimal totalFinancialIdentifiedCases = (BigDecimal) resulttt[0];
         int totalNonFinancialIdentifiedCases = (int) resulttt[1];
         BigDecimal identifiedCasesDuringMonth = (BigDecimal) resulttt[2];
@@ -91,7 +92,7 @@ public class DashboardBranchIcService {
 
         // Populate the DashboardDTO
         //fraud
-        DashboardDTOBranchIc dashboardDTO = new DashboardDTOBranchIc();
+        DashboardDTODistrictIc dashboardDTO = new DashboardDTODistrictIc();
         dashboardDTO.setOutstandingCases(totalOutstandingCases);
         dashboardDTO.setClosedCases(closedCases);
         dashboardDTO.setOutstandingCasesAmount(outstandingCasesAmount);
@@ -134,9 +135,9 @@ public class DashboardBranchIcService {
         return dashboardDTO;
     }
 
-    public Object[] calculateOutstandingCasesForBranch(String branchId) {
+    public Object[] calculateOutstandingCasesForBranch(Long subProcessId) {
         // Fetch daily activity gap controls for the branch
-        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
         controls.removeIf(control -> {
@@ -225,9 +226,9 @@ public class DashboardBranchIcService {
 
 ///// for rectified cases
 
-    public Object[] calculateRectifiedCasesForBranch(String branchId) {
+    public Object[] calculateRectifiedCasesForBranch(Long subProcessId) {
         // Fetch daily activity gap controls for the branch
-        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
         controls.removeIf(controll -> {
@@ -307,9 +308,9 @@ public class DashboardBranchIcService {
     }
 
 
-    public Object[] calculateIdentifiedCasesForBranch(String branchId) {
+    public Object[] calculateIdentifiedCasesForBranch(Long subProcessId) {
         // Fetch daily activity gap controls for the branch
-        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
         controls.removeIf(control -> {
@@ -390,20 +391,20 @@ public class DashboardBranchIcService {
 
 
 
-    public BigDecimal calculateEstimatedFineAmount(String branchId) {
+    public BigDecimal calculateEstimatedFineAmount(Long subProcessId) {
         // Fetch the list of fire extinguishers for the branch
-        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
+        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
 
         // Calculate the total fine amount
-        int totalExpiredFires = calculateeExpiredFireExtinguishers(branchId);
+        int totalExpiredFires = calculateeExpiredFireExtinguishers(subProcessId);
         BigDecimal totalFineAmount = BigDecimal.valueOf(totalExpiredFires * 10000);
 
         return totalFineAmount;
     }
 
-    private int calculateeExpiredFireExtinguishers(String branchId) {
+    private int calculateeExpiredFireExtinguishers(Long subProcessId) {
         // Fetch the list of fire extinguishers for the branch
-        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
+        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
 
         // Count the number of expired fire extinguishers
         int expiredCount = 0;
@@ -418,14 +419,14 @@ public class DashboardBranchIcService {
         return expiredCount;
     }
 
-    private int calculateTotalFireExtinguishers(String branchId) {
-        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
+    private int calculateTotalFireExtinguishers(Long subProcessId) {
+        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
         return fires.size();
     }
 
-    public BigDecimal calculateEstimatedLossAmount(String branchId) {
+    public BigDecimal calculateEstimatedLossAmount(Long subProcessId) {
         // Fetch the list of expired policies for the branch
-        List<CollateralInsurancePolicy> expiredPolicies = findExpiredPoliciesByBranchId(branchId);
+        List<CollateralInsurancePolicy> expiredPolicies = findExpiredPoliciesBySubProcessId(subProcessId);
 
         // Calculate the total sum insured for all expired policies
         BigDecimal totalLossAmount = BigDecimal.ZERO;
@@ -437,9 +438,9 @@ public class DashboardBranchIcService {
         return totalLossAmount;
     }
 
-    private List<CollateralInsurancePolicy> findExpiredPoliciesByBranchId(String branchId) {
+    private List<CollateralInsurancePolicy> findExpiredPoliciesBySubProcessId(Long subProcessId) {
         // Fetch the list of all policies for the branch
-        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyByBranchId(branchId);
+        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcessId);
 
         // Create a list to hold the expired policies
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
@@ -456,8 +457,8 @@ public class DashboardBranchIcService {
     }
 
 
-    private int calculateExpiredPolicies(String branchId) {
-        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyByBranchId(branchId);
+    private int calculateExpiredPolicies(Long subProcessId) {
+        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcessId);
         int expiredCount = 0;
 
         // Count the number of policies that are expired
@@ -470,8 +471,8 @@ public class DashboardBranchIcService {
 
         return expiredCount;
     }
-    private int calculateExpiredFireExtinguishers(String branchId) {
-        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
+    private int calculateExpiredFireExtinguishers(Long subProcessId) {
+        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
         int expiredCount = 0;
 
         // Count the number of policies that are expired
@@ -485,8 +486,8 @@ public class DashboardBranchIcService {
         return expiredCount;
     }
 
-    private int calculateExpiringIn30Days(String branchId) {
-        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyByBranchId(branchId);
+    private int calculateExpiringIn30Days(Long subProcessId) {
+        List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcessId);
         int expiringCount = 0;
 
         // Count the number of policies expiring in the next 30 days
@@ -499,8 +500,8 @@ public class DashboardBranchIcService {
 
         return expiringCount;
     }
-    private int calculateEexpiringIn30DaysExtinguiser(String branchId) {
-        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
+    private int calculateEexpiringIn30DaysExtinguiser(Long subProcessId) {
+        List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
         int expiringCount = 0;
 
         // Count the number of policies expiring in the next 30 days
@@ -514,17 +515,17 @@ public class DashboardBranchIcService {
         return expiringCount;
     }
 
-    public int getActivePoliciesByBranch(String branchId) {
+    public int getActivePoliciesByBranch(Long subProcessId) {
 
-        List<CollateralInsurancePolicy> activePolicies = collateralInsurancePolicyRepository.findByBranchIdAndStatusName(branchId, "Active");
+        List<CollateralInsurancePolicy> activePolicies = collateralInsurancePolicyRepository.findBySubProcessIdAndStatusName(subProcessId, "Active");
 
         return activePolicies.size();
     }
 
 
 
-    private int calculateTotalOutstandingCases(String branchId) {
-        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
+    private int calculateTotalOutstandingCases(Long subProcessId) {
+        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportBySubProcessId(subProcessId);
         int totalOutstandingCases = 0;
 
         // Count the number of cases with status "Outstanding"
@@ -538,9 +539,9 @@ public class DashboardBranchIcService {
     }
 
 
-    public BigDecimal calculateOutstandingCasesAmount(String branchId) {
+    public BigDecimal calculateOutstandingCasesAmount(Long subProcessId) {
         // Fetch all cases for the branch
-        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
+        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportBySubProcessId(subProcessId);
 
         // Calculate the total outstanding amount
         BigDecimal totalOutstandingAmount = BigDecimal.ZERO;
@@ -557,8 +558,8 @@ public class DashboardBranchIcService {
     }
 
 
-    private int calculateClosedCases(String branchId) {
-        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
+    private int calculateClosedCases(Long subProcessId) {
+        List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportBySubProcessId(subProcessId);
         List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
 
         // Get the start and end dates for the current quarter
@@ -595,9 +596,9 @@ public class DashboardBranchIcService {
     }
 
 
-    public Object[] calculateNewCasesDuringQuarter(String branchId) {
+    public Object[] calculateNewCasesDuringQuarter(Long subProcessId) {
         // Fetch daily activity gap controls for the branch
-        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+        List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate today = LocalDate.now();
 

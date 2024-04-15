@@ -1,0 +1,9 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¿€§É
+u	java:S116	"[Rename this field "OutstandingCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›¦¸™ùÿÿÿÿ
+|	java:S116"gRename this field "NonFinancialOutstandingCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò„Ó¢
+~	java:S116"dRename this field "FinancialOutstandingCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›Œ€ùÿÿÿÿ
+	java:S116!"eRename this field "NonFinancialRectifiedCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Àß–³úÿÿÿÿ
+w	java:S116""bRename this field "FinancialRectifiedCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©÷Á±
+{	java:S116'"fRename this field "NonFinancialIdentifiedCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ãé¿è
+x	java:S116("cRename this field "FinancialIdentifiedCases" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­‡‚Ö
