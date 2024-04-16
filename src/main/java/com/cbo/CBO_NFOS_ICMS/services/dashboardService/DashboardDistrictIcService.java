@@ -645,13 +645,14 @@ public class DashboardDistrictIcService {
 
     private boolean isDueIn30Days(DailyActivityGapControl control) {
         String actionPlanDueDate = control.getActionPlanDueDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-        if (actionPlanDueDate != null) {
+        if (actionPlanDueDate != null && !actionPlanDueDate.equalsIgnoreCase("NULL")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
             LocalDate dueDate = LocalDate.parse(actionPlanDueDate, formatter);
             return dueDate.isBefore(LocalDate.now().plusDays(30));
         }
         return false;
     }
+
 
 
     private boolean isDueCase(DailyActivityGapControl control) {
