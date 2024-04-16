@@ -1,24 +1,17 @@
 package com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Getter
-@Setter
+import javax.persistence.*;
+import lombok.*;
+import java.io.Serializable;
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "sub_processes")
-public class SubProcess {
+public class SubProcess implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String code;
     private String name;
-
+    private String code;
 }

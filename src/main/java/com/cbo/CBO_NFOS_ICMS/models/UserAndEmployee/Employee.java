@@ -1,10 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import javax.persistence.*;
 
 @Data
@@ -14,45 +10,28 @@ import javax.persistence.*;
 @Table(name = "employees")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY,
-            generator = "employee_sequence")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employee_id")
     private Long employeeId;
-    private String fullName;
-    private Boolean active;
-    private String jobTitle;
-    @ManyToOne
-    private OrganizationalUnit organizationalUnit;
-    private String phoneNumber;
-    private String personalEmail;
-    private String companyEmail;
+    private String employeeFullName;
+    private Long supervisorId;
+    private String supervisorFullName;
+    private String companyEntryDate;
     private String gender;
-    private String birthDate;
-    private String employeeImage;
-    private String signatureImage;
-
-    @OneToOne(mappedBy = "employee")
-    @JsonIgnore
-    private User user;
-
-    public Employee(Long employeeId, String fullName, String jobTitle, OrganizationalUnit organizationalUnit, String personalEmail, String companyEmail, String phoneNumber, String employeeImage, String signatureImage, String gender, String birthDate) {
-        this.employeeId = employeeId;
-        this.fullName = fullName;
-        this.jobTitle = jobTitle;
-        this.organizationalUnit = organizationalUnit;
-        this.personalEmail = personalEmail;
-        this.companyEmail = companyEmail;
-        this.phoneNumber = phoneNumber;
-        this.employeeImage = employeeImage;
-        this.signatureImage = signatureImage;
-        this.gender = gender;
-        this.birthDate = birthDate;
-    }
-
-    @Transient
-    public String getSignImagePath() {
-        if (signatureImage == null || id == null) return null;
-        return "/user-photos/employee/" + id + "/" + signatureImage;
-    }
+    @ManyToOne
+    @JoinColumn(name="job_id")
+    private Job job;
+    @ManyToOne
+    @JoinColumn(name="branch_id")
+    private Branch branch;
+    @ManyToOne
+    @JoinColumn(name="team_id")
+    private Team team;
+    @ManyToOne
+    @JoinColumn(name="sub_process_id")
+    private SubProcess subProcess;
+    @ManyToOne
+    @JoinColumn(name="process_id")
+    private Process process;
 }
 

@@ -62,7 +62,7 @@ public class FireExtinguisherService {
         fireExtinguisherRepository.deleteById(id);
     }
 
-    public List<FireExtinguisher> findAllFireExtinguisherBYBranch(Long branchId) {
+    public List<FireExtinguisher> findAllFireExtinguisherBYBranch(String branchId) {
         return fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
     }
 

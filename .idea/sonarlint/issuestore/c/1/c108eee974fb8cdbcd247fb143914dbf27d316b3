@@ -1,0 +1,14 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›Í§ë
+V	java:S125,"<This block of commented-out lines of code should be removed.(ÓùÎñüÿÿÿÿ
+Q	java:S1259"<This block of commented-out lines of code should be removed.(øÅ™à
+V	java:S125>"<This block of commented-out lines of code should be removed.(æ¢ûÑüÿÿÿÿ
+V	java:S125V"<This block of commented-out lines of code should be removed.(Þ‚¿®øÿÿÿÿ
+V	java:S125e"<This block of commented-out lines of code should be removed.(‘Îˆúÿÿÿÿ
+P	java:S125j"<This block of commented-out lines of code should be removed.(³ÜÕ%
+P	java:S125{"<This block of commented-out lines of code should be removed.(¡ÿ¸.
+W	java:S125"<This block of commented-out lines of code should be removed.(ü‘•Üøÿÿÿÿ
+K
+java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á
+G
+java:S1068"1Remove this unused "branchService" private field.(þŽó«

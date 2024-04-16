@@ -12,8 +12,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,6 +33,7 @@ public class IncidentOrFraudController {
 
     public IncidentOrFraudController(IncidentOrFraudService incidentOrFraudService) {
         this.incidentOrFraudService = incidentOrFraudService;
+
     }
 
     @GetMapping("/getAll")
@@ -58,14 +57,14 @@ public class IncidentOrFraudController {
 
     @GetMapping("/getSize")
     @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
-    public int getIncidentFraudReportSize() {
+    public Long getIncidentFraudReportSize() {
         return incidentOrFraudService.findIncidentFraudReportSize();
     }
 
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC', 'ICMS_PROVISION')")
-    public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReportInSpecificOrganizationalUnit(@PathVariable("id") Long branchId) {
+    public ResponseEntity<List<IncidentOrFraud>> getAllIncidentFraudReportInSpecificOrganizationalUnit(@PathVariable("id") String branchId) {
         List<IncidentOrFraud> IncidentOrFraud;
         IncidentOrFraud = incidentOrFraudService.findAllIncidentFraudReportInSpecificOrganizationalUnit(branchId);
         return new ResponseEntity<>(IncidentOrFraud, HttpStatus.OK);
@@ -323,25 +322,25 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
         List<IncidentOrFraud> outstandingCases = new ArrayList<>();
 
-        // Get the start and end dates for the current quarter
+        // Calculate the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
+
 
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
@@ -364,22 +363,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
@@ -403,22 +401,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
@@ -441,22 +438,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
         Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
@@ -480,22 +476,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
         Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
@@ -512,86 +507,6 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
     }
 
-    /*@GetMapping("/getClosedAndWrittenOffCasesDuringQuarter")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<Integer> getClosedAndWrittenOffCasesDuringQuarter() {
-        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
-        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
-
-        // Get the start and end dates for the current quarter
-        LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
-            startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
-            startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
-            startMonth = Month.JULY;
-        } else {
-            startMonth = Month.OCTOBER;
-        }
-
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
-        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
-            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
-                    (caseItem.getCaseStatus().getName().equals("Closed") ||
-                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
-                closedAndWrittenOffCases.add(caseItem);
-            }
-        }
-
-        return new ResponseEntity<>(closedAndWrittenOffCases.size(), HttpStatus.OK);
-    }
-
-    @GetMapping("/getClosedAndWrittenOffCasesDuringQuarter-list")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
-    public ResponseEntity<List<IncidentOrFraud>> getClosedAndWrittenOffCasesDuringQuarterlist() {
-        List<IncidentOrFraud> allCases = incidentOrFraudService.findAllIncidentFraudReport();
-        List<IncidentOrFraud> closedAndWrittenOffCases = new ArrayList<>();
-
-        // Get the start and end dates for the current quarter
-        LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
-            startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
-            startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
-            startMonth = Month.JULY;
-        } else {
-            startMonth = Month.OCTOBER;
-        }
-
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
-        LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
-
-        // Filter the cases that occurred during the current quarter and have a status of "Closed" or "Written Off"
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        for (IncidentOrFraud caseItem : allCases) {
-            LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
-            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
-                    (caseItem.getCaseStatus().getName().equals("Closed") ||
-                            caseItem.getCaseStatus().getName().equals("Written Off"))) {
-                closedAndWrittenOffCases.add(caseItem);
-            }
-        }
-
-        return new ResponseEntity<>(closedAndWrittenOffCases, HttpStatus.OK);
-    }
-*/
 
     @GetMapping("/getOutstandingCasesAmountDuringQuarter")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
@@ -602,22 +517,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter and have a status of "Outstanding"
@@ -656,6 +570,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         } else {
             startMonth = Month.JULY;
         }
+
         LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
@@ -663,7 +578,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         for (IncidentOrFraud caseItem : allCases) {
             LocalDate caseDate = LocalDate.parse(caseItem.getFraudDetectionDate(), formatter);
-            if (caseDate.isAfter(startQuarter) && caseDate.isBefore(endQuarter) &&
+            if (caseDate.isAfter(startQuarter.minusMonths(3)) && caseDate.isBefore(startQuarter) &&
                     caseItem.getCaseStatus().getName().equals("Outstanding")) {
                 outstandingCases.add(caseItem);
             }
@@ -671,6 +586,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         return new ResponseEntity<>(outstandingCases.size(), HttpStatus.OK);
     }
+
 
     @GetMapping("/getOutstandingCasesInPreviousQuarter-list")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
@@ -692,6 +608,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         } else {
             startMonth = Month.JULY;
         }
+
         LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
@@ -716,22 +633,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter
@@ -754,22 +670,21 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         // Get the start and end dates for the current quarter
         LocalDate currentDate = LocalDate.now();
-        int yearOffset = 0;
-        Month startMonth = null;
-        if (currentDate.getMonthValue() >= 1 && currentDate.getMonthValue() <= 3) {
+        int currentYear = currentDate.getYear();
+        Month currentMonth = currentDate.getMonth();
+
+        Month startMonth;
+        if (currentMonth == Month.JANUARY || currentMonth == Month.FEBRUARY || currentMonth == Month.MARCH) {
             startMonth = Month.JANUARY;
-        } else if (currentDate.getMonthValue() >= 4 && currentDate.getMonthValue() <= 6) {
+        } else if (currentMonth == Month.APRIL || currentMonth == Month.MAY || currentMonth == Month.JUNE) {
             startMonth = Month.APRIL;
-        } else if (currentDate.getMonthValue() >= 7 && currentDate.getMonthValue() <= 9) {
+        } else if (currentMonth == Month.JULY || currentMonth == Month.AUGUST || currentMonth == Month.SEPTEMBER) {
             startMonth = Month.JULY;
         } else {
             startMonth = Month.OCTOBER;
         }
 
-        if (startMonth.equals(Month.JANUARY)) {
-            yearOffset = -1;
-        }
-        LocalDate startQuarter = LocalDate.of(currentDate.getYear() + yearOffset, startMonth, 1);
+        LocalDate startQuarter = LocalDate.of(currentYear, startMonth, 1);
         LocalDate endQuarter = startQuarter.plusMonths(2).with(TemporalAdjusters.lastDayOfMonth());
 
         // Filter the cases that occurred during the current quarter
@@ -783,4 +698,5 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
 
         return new ResponseEntity<>(newCases, HttpStatus.OK);
     }
+
 }

@@ -13,15 +13,9 @@ import javax.persistence.*;
 @Table(name = "branches")
 public class Branch {
     @Id
-    private Long id;
-    private String code;
+    private String id;
     private String name;
     private String mnemonic;
-    @ManyToOne
-    @JoinColumn(name = "location_id")
-    private Location location;
-    private String telephone;
-    @ManyToOne
-    private SubProcess subProcess;
+    private String location;
 
 }

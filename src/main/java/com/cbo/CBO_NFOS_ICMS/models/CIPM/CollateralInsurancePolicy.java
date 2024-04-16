@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 
 @Data
@@ -15,14 +16,12 @@ import javax.persistence.*;
 @Table(name = "collateral_insurance_policies")
 public class CollateralInsurancePolicy {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "cipm_Sequence")
+    @SequenceGenerator(name = "cipm_Sequence", sequenceName = "ID_SEQ")
     @Column(updatable = false)
     private Long id;
     @Column(length = 64)
     private String preparedBy;
-
-//    @Column( length = 64)
-//    private double outstandingBalance;
     @Column( length = 64)
     private String preparationTimeStamp;
     @Column(length = 64)
@@ -30,12 +29,16 @@ public class CollateralInsurancePolicy {
     @Column(length = 64)
     private String authorizationTimeStamp;
     @Column(length = 64)
+    @NotNull
     private String borrowerName;
     @Column(length = 64)
+    @NotNull
     private String mortgagorName;
     @Column(length = 64)
+    @NotNull
     private String loanAccount;
     @Column(length = 64)
+    @NotNull
     private String loanType;
     @ManyToOne
     @JoinColumn(name = "collateral_type_id")
@@ -48,6 +51,7 @@ public class CollateralInsurancePolicy {
     @Column(length = 64)
     private String otherInsuranceCoverageType;
     @Column(length = 64)
+    @NotNull
     private String insuredName;
     @Column(length = 64)
     private String sumInsured;
@@ -64,6 +68,7 @@ public class CollateralInsurancePolicy {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @NotNull
     private Branch branch;
 
     @ManyToOne
@@ -72,10 +77,12 @@ public class CollateralInsurancePolicy {
 
     @ManyToOne
     @JoinColumn(name = "status_id")
+    @NotNull
     private Status status;
 
     @ManyToOne
     @JoinColumn(name = "sub_process_id")
+    @NotNull
     private SubProcess subProcess;
 
 }

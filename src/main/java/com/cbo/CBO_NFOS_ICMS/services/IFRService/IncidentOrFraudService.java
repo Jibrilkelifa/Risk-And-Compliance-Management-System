@@ -46,14 +46,19 @@ public class IncidentOrFraudService {
     public IncidentOrFraud addIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
         return incidentOrFraudRepository.save(incidentOrFraud);
     }
+    public Long findIncidentFraudReportSize() {
+        Long lastId = incidentOrFraudRepository.findLastAddedFraudId();
+        return lastId != null ? lastId : 0L;
+    }
 
     public List<IncidentOrFraud> findAllIncidentFraudReport() {
         return incidentOrFraudRepository.findAll();
     }
 
-    public int findIncidentFraudReportSize() {
-        return incidentOrFraudRepository.findAll().size();
-    }
+//    public int findIncidentFraudReportSize()
+//    {
+//        return incidentOrFraudRepository.findAll().size();
+//    }
 
 //    public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud) {
 //
@@ -201,7 +206,7 @@ public IncidentOrFraud updateIncidentFraudReport(IncidentOrFraud incidentOrFraud
         incidentOrFraudRepository.deleteById(id);
     }
 
-    public List<IncidentOrFraud> findAllIncidentFraudReportInSpecificOrganizationalUnit(Long branchId) {
+    public List<IncidentOrFraud> findAllIncidentFraudReportInSpecificOrganizationalUnit(String branchId) {
 
         return incidentOrFraudRepository.findIncidentFraudReportByBranchId(branchId);
     }

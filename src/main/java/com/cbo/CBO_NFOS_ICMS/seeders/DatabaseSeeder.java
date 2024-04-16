@@ -431,7 +431,12 @@ public class DatabaseSeeder {
         seedAllIrregularitiesTable("Coopay accounts opened without fulfilling  valid KYC documents", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
         seedAllIrregularitiesTable("Coopay account opening documents were not signed by the account holder/signatories", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
         seedAllIrregularitiesTable("Coopay account opening documents were not signed by authorized staff", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
+        seedAllIrregularitiesTable("Agent accounts opened without fulfilling  valid KYC documents", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
+        seedAllIrregularitiesTable("Merchant accounts opened without fulfilling  valid KYC documents", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
         seedAllIrregularitiesTable("Other", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Digital Banking"));
+
+
+
 
         seedAllIrregularitiesTable("The branch is not adequately guarded", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Branch Opening Requirements"));
         seedAllIrregularitiesTable("All windows and glass walls not grilled", findAllSubCategoryByNameAndCategoryName("Non-Financial", "Branch Opening Requirements"));
