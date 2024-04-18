@@ -6,46 +6,46 @@ import java.math.BigDecimal;
 
 @Data
 public class DashboardDTODistrictIc {
-    private int  OutstandingCases;
-    private int newCasesDuringQuarter;
-    private int closedCases;
-    private BigDecimal outstandingCasesAmount;
+    private int  fraudOutstandingCases;
+    private int fraudNewCasesDuringQuarter;
+    private int fraudClosedCases;
+    private BigDecimal fraudOutstandingCasesAmount;
     // Insurance policy related fields
-    private int totalActivePolicies;
-    private int expiringIn30Days;
-    private int expiredPolicies;
-    private BigDecimal estimatedLossAmount;
+    private int insuranceTotalActivePolicies;
+    private int insuranceExpiringIn30Days;
+    private int insuranceExpiredPolicies;
+    private BigDecimal insuranceEstimatedLossAmount;
     // Fields related to FireExtinguisher module
-    private int totalFireExtinguishers;
-    private int expiringIn30DaysExtinguishers;
-    private int expiredExtinguishers;
-    private BigDecimal estimatedFineAmount;
+    private int fireTotalFireExtinguishers;
+    private int fireExpiringIn30DaysExtinguishers;
+    private int fireExpiredExtinguishers;
+    private BigDecimal fireEstimatedFineAmount;
     // Fields related to DailyActivityGapControl module
-    private int identifiedCasesDuringMonth;
-    private int rectifiedCasesDuringMonth;
-    private BigDecimal totalOutstandingCasesForDacgmDuringTheMonth;
+    private int dacgmIdentifiedCasesDuringMonth;
+    private int dacgmRectifiedCasesDuringMonth;
+    private BigDecimal dacgmTotalOutstandingCasesForDacgmDuringTheMonth;
     private  int NonFinancialOutstandingCases;
     private BigDecimal FinancialOutstandingCases;
     private BigDecimal financialChangePercentage;
     private BigDecimal nonFinancialChangePercentage;
     //rectified
-    private BigDecimal totalRectifiedCasesForDacgmDuringTheMonth;
+    private BigDecimal dacgmTotalRectifiedCasesForDacgmDuringTheMonth;
     private  int NonFinancialRectifiedCases;
     private BigDecimal FinancialRectifiedCases;
-    private BigDecimal financialChangePercentager;
-    private BigDecimal nonFinancialChangePercentager;
+    private BigDecimal financialChangePercentageForRectified;
+    private BigDecimal nonFinancialChangePercentageForRectified;
     //identified
-    private BigDecimal totalIdentifiedCasesForDacgmDuringTheMonth;
+    private BigDecimal dacgmTotalIdentifiedCasesForDacgmDuringTheMonth;
     private  int NonFinancialIdentifiedCases;
     private BigDecimal FinancialIdentifiedCases;
-    private BigDecimal financialChangePercentagei;
-    private BigDecimal nonFinancialChangePercentagei;
+    private BigDecimal financialChangePercentageForIdentified;
+    private BigDecimal nonFinancialChangePercentageForidentified;
 
     //todays cases
-    private int newCasesToday;
-    private int dueIn30Days;
-    private int dueCases;
-    private int outstandingEscalatedCases;
+    private int currentDaynewCasesToday;
+    private int currentDaydueIn30Days;
+    private int currentDaydueCases;
+    private int currentDayoutstandingEscalatedCases;
 
 
 

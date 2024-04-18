@@ -93,39 +93,39 @@ public class DashboardBranchIcService {
         // Populate the DashboardDTO
         //fraud
         DashboardDTOBranchIc dashboardDTO = new DashboardDTOBranchIc();
-        dashboardDTO.setOutstandingCases(totalOutstandingCases);
-        dashboardDTO.setClosedCases(closedCases);
-        dashboardDTO.setOutstandingCasesAmount(outstandingCasesAmount);
+        dashboardDTO.setFraudOutstandingCases(totalOutstandingCases);
+        dashboardDTO.setFraudClosedCases(closedCases);
+        dashboardDTO.setFraudOutstandingCasesAmount(outstandingCasesAmount);
         // Populate CIPMs
-        dashboardDTO.setTotalActivePolicies(totalActivePolicies);
-        dashboardDTO.setExpiringIn30Days(expiringIn30Days);
-        dashboardDTO.setExpiredPolicies(expiredPolicies);
-        dashboardDTO.setEstimatedLossAmount(estimatedLossAmount);
+        dashboardDTO.setInsuranceTotalActivePolicies(totalActivePolicies);
+        dashboardDTO.setInsuranceExpiringIn30Days(expiringIn30Days);
+        dashboardDTO.setInsuranceExpiredPolicies(expiredPolicies);
+        dashboardDTO.setInsuranceEstimatedLossAmount(estimatedLossAmount);
         // for fire
-        dashboardDTO.setTotalFireExtinguishers(totalFireExtinguishers);
-        dashboardDTO.setExpiringIn30DaysExtinguishers(eexpiringIn30Days);
-        dashboardDTO.setExpiredExtinguishers(expired);
-        dashboardDTO.setEstimatedFineAmount(estimatedFineAmount);
+        dashboardDTO.setFireTotalFireExtinguishers(totalFireExtinguishers);
+        dashboardDTO.setFireExpiringIn30DaysExtinguishers(eexpiringIn30Days);
+        dashboardDTO.setFireExpiredExtinguishers(expired);
+        dashboardDTO.setFireEstimatedFineAmount(estimatedFineAmount);
         // for DACGM
-        dashboardDTO.setTotalOutstandingCasesForDacgmDuringTheMonth(outstandingCasesDuringMonth);
+        dashboardDTO.setDacgmTotalOutstandingCasesForDacgmDuringTheMonth(outstandingCasesDuringMonth);
         dashboardDTO.setFinancialOutstandingCases(totalFinancialOutstandingCases);
         dashboardDTO.setNonFinancialOutstandingCases(totalNonFinancialOutstandingCases);
         dashboardDTO.setFinancialChangePercentage(financialPercentageFromLastOutstanding);
         dashboardDTO.setNonFinancialChangePercentage(nonFinancialPercentageFromLastOutstanding);
-        dashboardDTO.setTotalRectifiedCasesForDacgmDuringTheMonth(rectifiedCasesDuringMonth);
+        dashboardDTO.setDacgmTotalRectifiedCasesForDacgmDuringTheMonth(rectifiedCasesDuringMonth);
         dashboardDTO.setFinancialRectifiedCases(totalFinancialRectifiedCases);
         dashboardDTO.setNonFinancialRectifiedCases(totalNonFinancialRectifiedCases);
-        dashboardDTO.setFinancialChangePercentager(financialPercentageFromLastRectified);
-        dashboardDTO.setNonFinancialChangePercentager(nonFinancialPercentageFromLastRectified);
-        dashboardDTO.setTotalIdentifiedCasesForDacgmDuringTheMonth(identifiedCasesDuringMonth);
+        dashboardDTO.setFinancialChangePercentageForRectified(financialPercentageFromLastRectified);
+        dashboardDTO.setNonFinancialChangePercentageForRectified(nonFinancialPercentageFromLastRectified);
+        dashboardDTO.setDacgmTotalIdentifiedCasesForDacgmDuringTheMonth(identifiedCasesDuringMonth);
         dashboardDTO.setFinancialIdentifiedCases(totalFinancialIdentifiedCases);
         dashboardDTO.setNonFinancialIdentifiedCases(totalNonFinancialIdentifiedCases);
-        dashboardDTO.setFinancialChangePercentagei(financialPercentageFromLastIdentified);
-        dashboardDTO.setNonFinancialChangePercentagei(nonFinancialPercentageFromLastIdentified);
-        dashboardDTO.setNewCasesToday(newCasesToday);
-        dashboardDTO.setOutstandingEscalatedCases(outstandingEscalatedCases);
-        dashboardDTO.setDueCases(dueCases);
-        dashboardDTO.setDueIn30Days(dueIn30Days);
+        dashboardDTO.setFinancialChangePercentageForIdentified(financialPercentageFromLastIdentified);
+        dashboardDTO.setNonFinancialChangePercentageForidentified(nonFinancialPercentageFromLastIdentified);
+        dashboardDTO.setCurrentDaynewCasesToday(newCasesToday);
+        dashboardDTO.setCurrentDayoutstandingEscalatedCases(outstandingEscalatedCases);
+        dashboardDTO.setCurrentDaydueCases(dueCases);
+        dashboardDTO.setCurrentDaydueIn30Days(dueIn30Days);
 
 //        dashboardDTO.setNewCasesToday(newCasesToday);
 //        dashboardDTO.setDueIn30Days(dueIn30Days);

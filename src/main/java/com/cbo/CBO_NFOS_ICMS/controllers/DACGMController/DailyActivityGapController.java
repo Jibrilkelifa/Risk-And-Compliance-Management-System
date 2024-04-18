@@ -72,6 +72,20 @@ public class DailyActivityGapController {
         DailyActivityGapControl newDailyActivityGapControl = dACGMService.addDACGM(dACGM);
         return new ResponseEntity<>(newDailyActivityGapControl, HttpStatus.CREATED);
     }
+    @GetMapping("/subcategories/count/by-branch/{branchId}")
+    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    public ResponseEntity<Map<String, Long>> getDacgmNumbersBySubCategoryAndBranch(@PathVariable("branchId") String branchId) {
+        Map<String,Long> subCategoryCounts = dACGMService.getDacgmNumbersBySubCategoryAndBranch(branchId);
+        return ResponseEntity.ok(subCategoryCounts);
+    }
+
+    @GetMapping("/subcategories/count/by-subprocess/{subProcessId}")
+    @PreAuthorize("hasRole('ICMS_DISTRICT_IC')")
+    public ResponseEntity<Map<String, Long>> getDacgmNumbersBySubCategoryAndSubProcess(@PathVariable("subProcessId") Long subProcessId) {
+        Map<String, Long> subCategoryCounts = dACGMService.getDacgmNumbersBySubCategoryAndSubProcess(subProcessId);
+        return ResponseEntity.ok(subCategoryCounts);
+    }
+
     private String incrementCaseId(String caseId) {
         String[] parts = caseId.split("/");
 
