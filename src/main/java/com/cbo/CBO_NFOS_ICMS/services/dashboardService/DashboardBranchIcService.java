@@ -410,7 +410,8 @@ public class DashboardBranchIcService {
         int expiredCount = 0;
         for (FireExtinguisher fire : fires) {
             // Assuming the expiry date is stored in a field called 'inspectionDate'
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(), DATE_FORMATTER);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(), formatter);
             if (expiryDate.isBefore(LocalDate.now())) {
                 expiredCount++;
             }
@@ -473,18 +474,21 @@ public class DashboardBranchIcService {
     }
     private int calculateExpiredFireExtinguishers(String branchId) {
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
-        int expiredCount = 0;
+        int expireddCount = 0;
 
         // Count the number of policies that are expired
         for (FireExtinguisher fire : fires) {
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(),DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredCount++;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            LocalDate expiryDatee = LocalDate.parse(fire.getInspectionDate(),formatter);
+
+            if (expiryDatee.isBefore(LocalDate.now())) {
+                expireddCount++;
             }
         }
 
-        return expiredCount;
+        return expireddCount;
     }
+
 
     private int calculateExpiringIn30Days(String branchId) {
         List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyByBranchId(branchId);
