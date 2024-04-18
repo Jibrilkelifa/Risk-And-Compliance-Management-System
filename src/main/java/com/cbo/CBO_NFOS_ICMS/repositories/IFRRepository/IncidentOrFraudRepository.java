@@ -13,8 +13,11 @@ public interface IncidentOrFraudRepository extends JpaRepository<IncidentOrFraud
     @Query(value = "SELECT MAX(case_number) FROM your_table_name", nativeQuery = true)
     Integer getLatestCaseNumber();
 
-    List<IncidentOrFraud> findIncidentFraudReportByBranchId(Long id);
+    List<IncidentOrFraud> findIncidentFraudReportByBranchId(String id);
     boolean existsByCaseId(String caseId);
+
+    @Query(value = "SELECT MAX(id) FROM IncidentOrFraud")
+    Long findLastAddedFraudId();
 
     List<IncidentOrFraud> findAllByFraudDetectionDateBetween(String startDate, String endDate);
 

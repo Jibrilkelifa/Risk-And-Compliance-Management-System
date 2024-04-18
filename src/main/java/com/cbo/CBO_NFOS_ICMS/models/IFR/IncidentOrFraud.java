@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -19,8 +20,8 @@ import java.util.UUID;
 @Table(name = "incidentFraudReports")
 public class IncidentOrFraud {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "fraud_Sequence")
+    @SequenceGenerator(name = "fraud_Sequence", sequenceName = "ID_SEQQQ")
     private Long id;
     @Column(length = 64)
     private String suspectedFraudsterName;
@@ -39,8 +40,10 @@ public class IncidentOrFraud {
     @JoinColumn(name = "all_category_id")
     private AllCategory allCategory;
     @Column(length = 64)
+    @NotNull
     private String fraudCause;
     @Column(length = 64)
+    @NotNull
     private String caseId;
     @Column(length = 64)
     private String preparedBy;
@@ -53,8 +56,10 @@ public class IncidentOrFraud {
     @Column(length = 64)
     private String provisionHeld;
     @Column(length = 64)
+    @NotNull
     private String fraudOccurrenceDate;
     @Column(length = 64)
+    @NotNull
     private String fraudDetectionDate;
     @Column(length = 64)
     private String reasonForDelay;
@@ -69,6 +74,7 @@ public class IncidentOrFraud {
     @Column(length = 64)
     private String actionTaken;
     @Column(length = 64)
+    @NotNull
     private String amountRecovered;
     @Column(length = 64)
     private String otherFraudCategory;
@@ -89,6 +95,7 @@ public class IncidentOrFraud {
 
     @ManyToOne
     @JoinColumn(name = "sub_process_id")
+    @NotNull
     private SubProcess subProcess;
     @ManyToOne
     @JoinColumn(name = "team_id")

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +16,8 @@ import javax.persistence.*;
 @Table(name = "dishonored_cheques")
 public class DishonoredCheque {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "dcq_Sequence")
+    @SequenceGenerator(name = "dcq_Sequence", sequenceName = "ID_SEQQQQQ")
     @Column(updatable = false)
     private Long id;
     @Column(length = 64)
@@ -46,8 +48,10 @@ public class DishonoredCheque {
     private Long outstandingBalance;*/
     @ManyToOne
     @JoinColumn(name = "branch_id")
+    @NotNull
     private Branch branch;
     @ManyToOne
     @JoinColumn(name = "sub_process_id")
+    @NotNull
     private SubProcess subProcess;
 }

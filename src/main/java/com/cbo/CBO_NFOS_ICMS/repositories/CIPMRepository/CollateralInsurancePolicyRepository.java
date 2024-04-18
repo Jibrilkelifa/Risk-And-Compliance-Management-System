@@ -13,7 +13,7 @@ public interface CollateralInsurancePolicyRepository extends JpaRepository<Colla
 
     Optional<CollateralInsurancePolicy> findCollateralInsurancePolicyById(Long id);
 
-    List<CollateralInsurancePolicy> findCollateralInsurancePolicyByBranchId(Long branchId);
+    List<CollateralInsurancePolicy> findCollateralInsurancePolicyByBranchId(String branchId);
 
 
     @Query("SELECT COUNT(c) FROM CollateralInsurancePolicy c")
@@ -24,5 +24,8 @@ public interface CollateralInsurancePolicyRepository extends JpaRepository<Colla
     List<CollateralInsurancePolicy> findByInsuranceExpireDateBetween(LocalDate currentDate, LocalDate thirtyDaysFromNow);
 
     List<CollateralInsurancePolicy> findCollateralInsurancePolicyBySubProcessId(Long subProcessId);
+
+    List<CollateralInsurancePolicy> findByBranchIdAndStatusName(String branchId, String statusName);
+    List<CollateralInsurancePolicy> findBySubProcessIdAndStatusName(Long subProcessId, String statusName);
 
 }

@@ -1,5 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.configuration;
 
+
 import com.cbo.CBO_NFOS_ICMS.services.UserDetailsServiceImpl;
 import com.cbo.CBO_NFOS_ICMS.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+  private UserDetailsServiceImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

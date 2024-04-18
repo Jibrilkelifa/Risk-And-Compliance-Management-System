@@ -2,7 +2,9 @@ package com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository;
 
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +13,16 @@ public interface DailyActivityGapControlRepository extends JpaRepository<DailyAc
 
     Optional<DailyActivityGapControl> findDACGMById(Long id);
 
-    List<DailyActivityGapControl> findDACGMByBranchId(Long id);
+    List<DailyActivityGapControl> findDACGMByBranchId(String id);
     List<DailyActivityGapControl> findDACGMBySubProcessId(Long subProcessId);
 
     boolean existsByCaseId(String caseId);
+
+    @Query(value = "SELECT MAX(id) FROM DailyActivityGapControl")
+    Long findLastAddedDACGMId();
+
+
+    List<DailyActivityGapControl> findByBranchIdAndActivityStatusAndDateBetween(String branchId, String closed, LocalDate startDate, LocalDate endDate);
+
+
 }

@@ -12,10 +12,10 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
     Optional<Branch> findBranchById(Long id);
 
 
-    List<Branch> findBranchBySubProcess(SubProcess subProcess);
+//    List<Branch> findBranchBySubProcess(SubProcess subProcess);
 
-    @Query("SELECT b FROM Branch b WHERE b.subProcess = (:subProcess)")
-    List<Branch> findAllBySubProcess(SubProcess subProcess);
+//    @Query("SELECT b FROM Branch b WHERE b.subProcess = (:subProcess)")
+//    List<Branch> findAllBySubProcess(SubProcess subProcess);
 
-    Optional<Branch> findBranchByName(String name);
+//    Optional<Branch> findBranchByName(String name);
 }

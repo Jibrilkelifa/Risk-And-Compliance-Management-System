@@ -39,7 +39,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "employee_id")
     private Employee employee;
 
     public User(String username, String password, Boolean active, String createdAt, String updatedAt, Set<Role> roles, Employee employee) {

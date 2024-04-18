@@ -70,7 +70,7 @@ public class DishonoredChequeService {
         dishonoredChequeRepository.deleteById(id);
     }
 
-    public List<DishonoredCheque> findAllDishonouredChequeInSpecificOrganizationalUnit(Long branchid) {
+    public List<DishonoredCheque> findAllDishonouredChequeInSpecificOrganizationalUnit(String branchid) {
         //Branch branch = organizationalUnitService.findBranchById(id);
         return dishonoredChequeRepository.findDishonouredChequeByBranchId(branchid);
     }

@@ -1,19 +1,2 @@
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü
-X	java:S125"<This block of commented-out lines of code should be removed.(ê”î£8«ÂË¸·1
-@
-java:S1128"Remove this duplicated import.(ŠúÕÜûÿÿÿÿ8ƒÕ€¶1
-@
-java:S1128"Remove this duplicated import.(ŠúÕÜûÿÿÿÿ8¯ÂË¸·1
-=======
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü8ŒßÒâ·1
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü8ŒßÒâ·1
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
-=======
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü8ŒßÒâ·1
->>>>>>> a0b69334fa61468010b3649472556044a1ddafbf
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Åˆÿü8ÕŠ©ðê1

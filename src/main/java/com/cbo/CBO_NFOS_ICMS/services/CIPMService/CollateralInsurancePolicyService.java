@@ -2,13 +2,11 @@ package com.cbo.CBO_NFOS_ICMS.services.CIPMService;
 
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
-import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.OrganizationalUnit;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralInsurancePolicyRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -72,7 +70,7 @@ public class CollateralInsurancePolicyService {
         collateralInsurancePolicyRepository.deleteById(id);
     }
 
-    public List<CollateralInsurancePolicy> findAllCollateralInsurancePolicyInSpecificOrganizationalUnit(Long branchId) {
+    public List<CollateralInsurancePolicy> findAllCollateralInsurancePolicyInSpecificOrganizationalUnit(String branchId) {
 //        Branch branch = organizationalUnitService.findBranchById(id);
         return collateralInsurancePolicyRepository.findCollateralInsurancePolicyByBranchId(branchId);
     }
@@ -91,26 +89,34 @@ public class CollateralInsurancePolicyService {
         List<CollateralInsurancePolicy> allPolicies = collateralInsurancePolicyRepository.findAll();
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
         for (CollateralInsurancePolicy policy : allPolicies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(currentDate)) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null) {
+                LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                if (expiryDate.isBefore(currentDate)) {
+                    expiredPolicies.add(policy);
+                }
             }
         }
         return expiredPolicies.size();
     }
+
 
     public List<CollateralInsurancePolicy> getExpiredPolicies() {
         LocalDate currentDate = LocalDate.now();
         List<CollateralInsurancePolicy> allPolicies = collateralInsurancePolicyRepository.findAll();
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
         for (CollateralInsurancePolicy policy : allPolicies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(currentDate)) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null) {
+                LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                if (expiryDate.isBefore(currentDate)) {
+                    expiredPolicies.add(policy);
+                }
             }
         }
         return expiredPolicies;
     }
+
 
     public int getNumberOfPoliciesExpiringWithinThirtyDays() {
         LocalDate currentDate = LocalDate.now();

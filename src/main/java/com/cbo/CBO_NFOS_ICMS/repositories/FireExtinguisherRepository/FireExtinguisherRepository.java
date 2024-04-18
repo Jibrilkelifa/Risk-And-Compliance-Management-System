@@ -11,7 +11,7 @@ public interface FireExtinguisherRepository extends JpaRepository<FireExtinguish
     void deleteFireExtinguisherById(Long id);
 
     Optional<FireExtinguisher> findFireExtinguisherById(Long id);
-    List<FireExtinguisher> findFireExtinguisherByBranchId(Long branchId);
+    List<FireExtinguisher> findFireExtinguisherByBranchId(String branchId);
 
     List<FireExtinguisher> findFireExtinguisherBySubProcessId(Long subprocessId);
 

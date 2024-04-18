@@ -23,6 +23,11 @@ public class DailyActivityGapControlService {
         this.branchService = branchService;
         this.dACGMRepository = dACGMRepository;
     }
+    public Long findDACGMSize() {
+        Long lastId = dACGMRepository.findLastAddedDACGMId();
+        return lastId != null ? lastId : 0L;
+    }
+
 
     public DailyActivityGapControl addDACGM(DailyActivityGapControl dACGM) {
 
@@ -63,9 +68,10 @@ public class DailyActivityGapControlService {
         row.setEscalatedByManager(true);
         return dACGMRepository.save(row);
     }
-    public int findDACGMSize() {
-        return dACGMRepository.findAll().size();
-    }
+//    public int findDACGMSize() {
+//
+//        return dACGMRepository.findAll().size();
+//    }
 
     public DailyActivityGapControl updateDACGM(DailyActivityGapControl dACGM) {
         Optional<DailyActivityGapControl> optionalDACGM = dACGMRepository.findById(dACGM.getId());
@@ -92,7 +98,7 @@ public class DailyActivityGapControlService {
         dACGMRepository.deleteById(id);
     }
 
-    public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(Long id) {
+    public List<DailyActivityGapControl> findAllDACGMInSpecificOrganizationalUnit(String id) {
         return dACGMRepository.findDACGMByBranchId(id);
     }
 

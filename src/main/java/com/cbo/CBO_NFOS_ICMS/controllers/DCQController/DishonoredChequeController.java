@@ -31,7 +31,7 @@ public class DishonoredChequeController {
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
-    public ResponseEntity<List<DishonoredCheque>> getAllDishouneredChequeInSpecificOrganizationalUnit(@PathVariable("id") Long branchId) {
+    public ResponseEntity<List<DishonoredCheque>> getAllDishouneredChequeInSpecificOrganizationalUnit(@PathVariable("id") String branchId) {
         List<DishonoredCheque> DishounoredCheque;
         DishounoredCheque = dishonoredChequeService.findAllDishonouredChequeInSpecificOrganizationalUnit(branchId);
         return new ResponseEntity<>(DishounoredCheque, HttpStatus.OK);

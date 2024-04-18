@@ -3,6 +3,7 @@ package com.cbo.CBO_NFOS_ICMS.controllers.CIPMController;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.services.CIPMService.CollateralInsurancePolicyService;
+
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -37,7 +38,7 @@ public class CollateralInsurancePolicyController {
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC', 'ICMS_BRANCH_MANAGER')")
-    public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicyInSpecificOrganizationalUnit(@PathVariable("id") Long branchId) {
+    public ResponseEntity<List<CollateralInsurancePolicy>> getAllCollateralInsurancePolicyInSpecificOrganizationalUnit(@PathVariable("id") String branchId) {
         List<CollateralInsurancePolicy> CollateralInsurancePolicy;
         CollateralInsurancePolicy = collateralInsurancePolicyService.findAllCollateralInsurancePolicyInSpecificOrganizationalUnit(branchId);
         return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);

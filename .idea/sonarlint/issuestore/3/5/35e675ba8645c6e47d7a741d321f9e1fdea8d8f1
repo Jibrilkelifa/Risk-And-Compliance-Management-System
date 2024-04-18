@@ -1,0 +1,15 @@
+
+k	java:S1171"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡ÔÚåşÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(È ÷µ
+V
+java:S4684@"@Replace this persistent entity with a simple POJO or DTO object.(’¢åó
+E	java:S106G"+Replace this use of System.out by a logger.(àãéËüÿÿÿÿ
+V	java:S125^"<This block of commented-out lines of code should be removed.(ë€üéúÿÿÿÿ
+V
+java:S4684|"@Replace this persistent entity with a simple POJO or DTO object.(’¢åó
+B
+java:S1452‹"&Remove usage of generic wildcard type.(û””îıÿÿÿÿ
+W	java:S125„"<This block of commented-out lines of code should be removed.(ú·ÇÓùÿÿÿÿ
+R	java:S125•"<This block of commented-out lines of code should be removed.(•öğ†
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
