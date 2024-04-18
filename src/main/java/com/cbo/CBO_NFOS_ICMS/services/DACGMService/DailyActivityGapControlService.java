@@ -8,8 +8,11 @@ import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DailyActivityGapControlService {
@@ -33,6 +36,7 @@ public class DailyActivityGapControlService {
 
         return dACGMRepository.save(dACGM);
     }
+//
 
     public DailyActivityGapControl authorizeDACGM(DailyActivityGapControl dACGM) {
 
@@ -145,6 +149,35 @@ public class DailyActivityGapControlService {
             dACGMRepository.deleteById((long) id);
         }
     }
+
+    public Map<String, Long> getDacgmNumbersBySubCategoryAndBranch(String branchId) {
+        List<Object[]> results = dACGMRepository.countByCategoryAndBranch(branchId);
+
+        Map<String, Long> subCategoryCounts = new HashMap<>();
+
+        for (Object[] result : results) {
+            String subCategoryName = (String) result[0];
+            Long count = (Long) result[1];
+            subCategoryCounts.put(subCategoryName, count);
+        }
+
+        return subCategoryCounts;
+    }
+
+    public Map<String, Long> getDacgmNumbersBySubCategoryAndSubProcess(Long subProcessId) {
+        List<Object[]> results = dACGMRepository.countByCategoryAndSubProcess(subProcessId);
+
+        Map<String, Long> subCategoryCounts = new HashMap<>();
+
+        for (Object[] result : results) {
+            String subCategoryName = (String) result[0];
+            Long count = (Long) result[1];
+            subCategoryCounts.put(subCategoryName, count);
+        }
+
+        return subCategoryCounts;
+    }
+
 
 //    public DailyActivityGapControl approveDACGM(DailyActivityGapControl dACGM) {
 //
