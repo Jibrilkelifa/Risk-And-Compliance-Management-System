@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
@@ -505,7 +506,10 @@ public class DashboardBranchIcService {
 
         // Count the number of policies expiring in the next 30 days
         for (FireExtinguisher fire : fires) {
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(),DATE_FORMATTER);
+            String inspectionDateString = fire.getInspectionDate();
+            // Assuming the input date string is in ISO 8601 format
+            LocalDateTime inspectionDateTime = LocalDateTime.parse(inspectionDateString, DateTimeFormatter.ISO_DATE_TIME);
+            LocalDate expiryDate = inspectionDateTime.toLocalDate();
             if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
                 expiringCount++;
             }
@@ -642,10 +646,11 @@ public class DashboardBranchIcService {
     }
 
 
+
     private boolean isDueIn30Days(DailyActivityGapControl control) {
         String actionPlanDueDate = control.getActionPlanDueDate();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-        if (actionPlanDueDate != null) {
+        if (actionPlanDueDate != null && !actionPlanDueDate.equalsIgnoreCase("NULL")) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
             LocalDate dueDate = LocalDate.parse(actionPlanDueDate, formatter);
             return dueDate.isBefore(LocalDate.now().plusDays(30));
         }
