@@ -78,7 +78,7 @@ public class CollateralInsurancePolicyController {
     public ResponseEntity<CollateralInsurancePolicy> updateEmloyee
             (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy) {
         System.out.println(collateralInsurancePolicy.getStatus());
-        CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService.updateCollateralInsurancePolicy(collateralInsurancePolicy);
+        CollateralInsurancePolicy updateCollateralInsurancePolicy = collateralInsurancePolicyService.updateColateralInsurancePolicy(collateralInsurancePolicy);
         return new ResponseEntity<>(updateCollateralInsurancePolicy, HttpStatus.CREATED);
 
     }

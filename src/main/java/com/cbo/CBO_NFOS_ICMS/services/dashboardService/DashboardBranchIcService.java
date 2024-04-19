@@ -1,5 +1,7 @@
 package com.cbo.CBO_NFOS_ICMS.services.dashboardService;
 
+import com.cbo.CBO_NFOS_ICMS.models.AllIrregularity;
+import com.cbo.CBO_NFOS_ICMS.models.AllSubCategory;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.FireExtinguisher.FireExtinguisher;
@@ -138,6 +140,8 @@ public class DashboardBranchIcService {
     public Object[] calculateOutstandingCasesForBranch(String branchId) {
         // Fetch daily activity gap controls for the branch
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
         controls.removeIf(control -> {
@@ -159,10 +163,11 @@ public class DashboardBranchIcService {
                 tottalOutstandingCases = tottalOutstandingCases.add(BigDecimal.ONE);
             }
         }
+        System.out.println("dame"+totalNonFinancialOutstandingCases);
 
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controls), totalFinancialOutstandingCases);
-        BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
+        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controlss), totalFinancialOutstandingCases);
+        BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
 
         // Return all four values as an array
         return new Object[] {
@@ -185,8 +190,19 @@ public class DashboardBranchIcService {
     }
 
     private boolean isFinancialCategory(DailyActivityGapControl control) {
-        return control.getIrregularity().getAllSubCategory().equals("Financial");
+        AllIrregularity irregularity = control.getIrregularity();
+        if (irregularity == null) {
+            return false; // Handle case where irregularity is null
+        }
+        AllSubCategory subCategory = irregularity.getAllSubCategory();
+        // Check if the subcategory is of the "Financial" category
+        return subCategory.getName().equals("Financial");
     }
+
+
+
+
+
 
     private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
         return new BigDecimal(control.getAmountInvolved());
@@ -196,31 +212,42 @@ public class DashboardBranchIcService {
     private BigDecimal getTotalFinancialOutstandingCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
+        int totalFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
-            LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
+            // Parse the date string
+            LocalDate controlDate = LocalDate.parse(control.getDate(),formatter);
+
+
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
-                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
+                    System.out.println(control);
+                    totalFinancialOutstandingCases++;
                 }
             }
         }
-        return totalFinancialOutstandingCases;
+        System.out.println("jibrillllllllllllllll" + totalFinancialOutstandingCases);
+        return BigDecimal.valueOf(totalFinancialOutstandingCases);
     }
+
 
     private BigDecimal getTotalNonFinancialOutstandingCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
+
         int totalNonFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
-            LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
+            LocalDate controlDate = LocalDate.parse(control.getDate(),formatter);
+            System.out.println("lastmontrh" + lastMonth);
+            System.out.println("controldatelastmonth" + controlDate);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
+
                 if (!isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
                     totalNonFinancialOutstandingCases++;
+                    System.out.println(control);
                 }
             }
         }
-
+      System.out.println("jibrillllllllllllllll  non financial"+totalNonFinancialOutstandingCases);
         return BigDecimal.valueOf(totalNonFinancialOutstandingCases);
     }
 
@@ -228,6 +255,8 @@ public class DashboardBranchIcService {
 
     public Object[] calculateRectifiedCasesForBranch(String branchId) {
         // Fetch daily activity gap controls for the branch
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
@@ -252,8 +281,8 @@ public class DashboardBranchIcService {
         }
 
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageR = calculateChangePercentageR(getTotalFinancialRectifiedCasesFromLastMonth(controls), totalFinancialRectifiedCases);
-        BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
+        BigDecimal financialChangePercentageR = calculateChangePercentageR(getTotalFinancialRectifiedCasesFromLastMonth(controlss), totalFinancialRectifiedCases);
+        BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
 
         // Return all four values as an array
         return new Object[] {
@@ -310,6 +339,8 @@ public class DashboardBranchIcService {
 
     public Object[] calculateIdentifiedCasesForBranch(String branchId) {
         // Fetch daily activity gap controls for the branch
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
+
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMByBranchId(branchId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
@@ -319,12 +350,15 @@ public class DashboardBranchIcService {
         });
 
         // Calculate financial and non-financial identified cases
+        int totalFinancialIdentifiedCasess = 0;
         BigDecimal totalFinancialIdentifiedCases = BigDecimal.ZERO;
         int totalNonFinancialIdentifiedCases = 0;
         BigDecimal totalIdentifiedCases = BigDecimal.ZERO;
+        int totalNonFinancialIdentifiedCasess=0;
         for (DailyActivityGapControl control : controls) {
             if (control.getActivityStatus() != null) {
                 if (isFinancialCategory(control)) {
+                    totalFinancialIdentifiedCasess++;
                     totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
                 } else {
                     totalNonFinancialIdentifiedCases++;
@@ -332,10 +366,10 @@ public class DashboardBranchIcService {
                 totalIdentifiedCases = totalIdentifiedCases.add(BigDecimal.ONE);
             }
         }
-
+        System.out.println("abdyyyyyyy"+totalFinancialIdentifiedCasess);
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageI = calculateChangePercentageI(getTotalFinancialIdentifiedCasesFromLastMonth(controls), totalFinancialIdentifiedCases);
-        BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
+        BigDecimal financialChangePercentageI = calculateChangePercentageI(getTotalFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalFinancialIdentifiedCasess));
+        BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
 
         // Return all four values as an array
         return new Object[] {
@@ -343,7 +377,8 @@ public class DashboardBranchIcService {
                 totalNonFinancialIdentifiedCases,
                 totalIdentifiedCases,
                 financialChangePercentageI,
-                nonFinancialChangePercentageI
+                nonFinancialChangePercentageI,
+                totalNonFinancialIdentifiedCasess
         };
     }
 
@@ -360,6 +395,7 @@ public class DashboardBranchIcService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
         BigDecimal totalFinancialIdentifiedCases = BigDecimal.ZERO;
+
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {

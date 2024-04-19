@@ -3,6 +3,7 @@ package com.cbo.CBO_NFOS_ICMS.services.CIPMService;
 import com.cbo.CBO_NFOS_ICMS.exception.ResourceNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.exception.UserNotFoundException;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
+import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralInsurancePolicyRepository;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.BranchService;
@@ -52,13 +53,6 @@ public class CollateralInsurancePolicyService {
         }
     }
 
-    public CollateralInsurancePolicy updateCollateralInsurancePolicy(CollateralInsurancePolicy collateralInsurancePolicy) {
-        collateralInsurancePolicy.setIsAuthorized(false);
-        System.out.println(collateralInsurancePolicy.getStatus());
-        return collateralInsurancePolicyRepository.save(collateralInsurancePolicy);
-
-
-    }
 
 
     public CollateralInsurancePolicy findCollateralInsurancePolicyById(Long id) {
