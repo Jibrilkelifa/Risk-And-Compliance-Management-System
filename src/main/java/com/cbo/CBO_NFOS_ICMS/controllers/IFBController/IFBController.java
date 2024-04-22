@@ -28,7 +28,7 @@ public class IFBController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_IFB','ICMS_ADMIN')")
     public ResponseEntity<List<IFB>> getIFB() {
         List<IFB> IFB = ifbService.findAllIFB();
         return new ResponseEntity<>(IFB, HttpStatus.OK);
@@ -42,10 +42,9 @@ public class IFBController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_IFB')")
     public ResponseEntity<IFB> addIFB
             (@RequestBody IFB ifb) {
-        System.out.println("ppppp" + ifb);
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
         String formattedDate = date.format(formatter);
@@ -82,7 +81,7 @@ public class IFBController {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasRole('ICMS_IFB')")
     public ResponseEntity<IFB> updateIFB
             (@RequestBody IFB ifb) {
         System.out.println(ifb.getStatus());
@@ -92,13 +91,13 @@ public class IFBController {
     }
 
     @GetMapping("/getSize")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
+    @PreAuthorize("hasAnyRole('ICMS_IFB')")
     public int getIFBSize() {
         return ifbService.findIFBSize();
     }
 
     @PatchMapping("/authorize/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
+    @PreAuthorize("hasAnyRole('ICMS_IFB')")
     public ResponseEntity<IFB> updateTableRow(@PathVariable Long id, @RequestBody Map<String, String> requestBody) {
         try {
             IFB row = ifbService.authorizeIFR(id, requestBody.get("authorizer"));
@@ -109,7 +108,7 @@ public class IFBController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasRole('ICMS_IFB')")
 
     public ResponseEntity<?> deleteIFB(@PathVariable("id") Long id) {
         ifbService.deleteIFB(id);
