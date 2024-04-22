@@ -150,12 +150,14 @@ public class DashboardBranchIcService {
         });
 
         // Calculate financial and non-financial outstanding cases
+        int  totalFinancialOutstandingCasess=0;
         BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
         int totalNonFinancialOutstandingCases = 0;
         BigDecimal tottalOutstandingCases = BigDecimal.ZERO;
         for (DailyActivityGapControl control : controls) {
             if (control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
                 if (isFinancialCategory(control)) {
+                    totalFinancialOutstandingCasess++;
                     totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
                 } else {
                     totalNonFinancialOutstandingCases++;
@@ -163,11 +165,12 @@ public class DashboardBranchIcService {
                 tottalOutstandingCases = tottalOutstandingCases.add(BigDecimal.ONE);
             }
         }
-        System.out.println("dame"+totalNonFinancialOutstandingCases);
+
 
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controlss), totalFinancialOutstandingCases);
+        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalFinancialOutstandingCasess));
         BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
+        System.out.println("jibrilllllllllllllllthis" + totalFinancialOutstandingCasess);
 
         // Return all four values as an array
         return new Object[] {
@@ -175,7 +178,10 @@ public class DashboardBranchIcService {
                 totalNonFinancialOutstandingCases,
                 tottalOutstandingCases,
                 financialChangePercentage,
-                nonFinancialChangePercentage
+                nonFinancialChangePercentage,
+                totalFinancialOutstandingCasess
+
+
 
         };
     }
@@ -220,12 +226,11 @@ public class DashboardBranchIcService {
 
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
-                    System.out.println(control);
                     totalFinancialOutstandingCases++;
                 }
             }
         }
-        System.out.println("jibrillllllllllllllll" + totalFinancialOutstandingCases);
+        System.out.println("jibrillllllllllllllllast" + totalFinancialOutstandingCases);
         return BigDecimal.valueOf(totalFinancialOutstandingCases);
     }
 
@@ -247,7 +252,7 @@ public class DashboardBranchIcService {
                 }
             }
         }
-      System.out.println("jibrillllllllllllllll  non financial"+totalNonFinancialOutstandingCases);
+
         return BigDecimal.valueOf(totalNonFinancialOutstandingCases);
     }
 
@@ -267,12 +272,14 @@ public class DashboardBranchIcService {
 
         // Calculate financial and non-financial outstanding cases
         BigDecimal totalFinancialRectifiedCases = BigDecimal.ZERO;
+        int totalFinancialRectifiedCasess=0;
         int totalNonFinancialRectifiedCases = 0;
         BigDecimal totalRectifiedCases = BigDecimal.ZERO;
         for (DailyActivityGapControl controll : controls) {
             if (controll.getActivityStatus() != null && controll.getActivityStatus().getName().equals("Closed")) {
                 if (isFinancialCategory(controll)) {
                     totalFinancialRectifiedCases = totalFinancialRectifiedCases.add(getAmountInvolved(controll));
+                    totalFinancialRectifiedCasess++;
                 } else {
                     totalNonFinancialRectifiedCases++;
                 }
@@ -281,16 +288,17 @@ public class DashboardBranchIcService {
         }
 
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageR = calculateChangePercentageR(getTotalFinancialRectifiedCasesFromLastMonth(controlss), totalFinancialRectifiedCases);
+        BigDecimal financialChangePercentageR = calculateChangePercentageR(BigDecimal.valueOf(getTotalFinancialRectifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialRectifiedCasess));
         BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
-
+        System.out.println("abdythis"+totalFinancialRectifiedCasess);
         // Return all four values as an array
         return new Object[] {
                 totalFinancialRectifiedCases,
                 totalNonFinancialRectifiedCases,
                 totalRectifiedCases,
                 financialChangePercentageR,
-                nonFinancialChangePercentageR
+                nonFinancialChangePercentageR,
+                totalFinancialRectifiedCasess
 
         };
     }
@@ -305,18 +313,20 @@ public class DashboardBranchIcService {
     }
 
     // Placeholder methods to get total financial and non-financial outstanding cases from last month
-    private BigDecimal getTotalFinancialRectifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
+    private int getTotalFinancialRectifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
+        int totalFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
-                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
+                    totalFinancialOutstandingCases++;
+//                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
                 }
             }
         }
+        System.out.println("abdylast"+totalFinancialOutstandingCases);
         return totalFinancialOutstandingCases;
     }
 
@@ -368,7 +378,7 @@ public class DashboardBranchIcService {
         }
         System.out.println("abdyyyyyyy"+totalFinancialIdentifiedCasess);
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageI = calculateChangePercentageI(getTotalFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalFinancialIdentifiedCasess));
+        BigDecimal financialChangePercentageI = calculateChangePercentageI(BigDecimal.valueOf(getTotalFinancialIdentifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialIdentifiedCasess));
         BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
 
         // Return all four values as an array
@@ -378,7 +388,7 @@ public class DashboardBranchIcService {
                 totalIdentifiedCases,
                 financialChangePercentageI,
                 nonFinancialChangePercentageI,
-                totalNonFinancialIdentifiedCasess
+                totalFinancialIdentifiedCasess
         };
     }
 
@@ -391,19 +401,21 @@ public class DashboardBranchIcService {
     }
 
     // Placeholder methods to get total financial and non-financial identified cases from last month
-    private BigDecimal getTotalFinancialIdentifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
+    private int getTotalFinancialIdentifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialIdentifiedCases = BigDecimal.ZERO;
+        int totalFinancialIdentifiedCases = 0;
 
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null) {
-                    totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
+                    totalFinancialIdentifiedCases++;
+//                    totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
                 }
             }
         }
+
         return totalFinancialIdentifiedCases;
     }
 
@@ -655,23 +667,23 @@ public class DashboardBranchIcService {
         for (DailyActivityGapControl control : controls) {
 
 
-                // Check if it's a new case today
-                if (isNewCaseToday(control)) {
-                    newCasesToday++;
-                }
-                // Check if it's due in the next 30 days
-                if (isDueIn30Days(control)) {
-                    dueIn30Days++;
-                }
-                // Check if it's a due case
-                if (isDueCase(control)) {
-                    dueCases++;
-                }
-                // Check if it's an outstanding escalated case
-                if (isOutstandingEscalatedCase(control)) {
-                    outstandingEscalatedCases++;
-                }
+            // Check if it's a new case today
+            if (isNewCaseToday(control)) {
+                newCasesToday++;
             }
+            // Check if it's due in the next 30 days
+            if (isDueIn30Days(control)) {
+                dueIn30Days++;
+            }
+            // Check if it's a due case
+            if (isDueCase(control)) {
+                dueCases++;
+            }
+            // Check if it's an outstanding escalated case
+            if (isOutstandingEscalatedCase(control)) {
+                outstandingEscalatedCases++;
+            }
+        }
 
 
         // Return the counts as an array
