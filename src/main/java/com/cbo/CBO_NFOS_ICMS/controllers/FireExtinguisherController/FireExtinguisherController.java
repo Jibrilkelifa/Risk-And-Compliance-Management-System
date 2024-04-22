@@ -1,5 +1,6 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.FireExtinguisherController;
 
+import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.FireExtinguisher.FireExtinguisher;
 import com.cbo.CBO_NFOS_ICMS.services.FireExtinguisherService.FireExtinguisherService;
 import com.cbo.CBO_NFOS_ICMS.services.UserAndEmployeeService.SubProcessService;
@@ -24,10 +25,25 @@ public class FireExtinguisherController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
     public ResponseEntity<List<FireExtinguisher>> getFireExtinguisher() {
         List<FireExtinguisher> FireExtinguisher = fireExtinguisherService.findAllFireExtinguisher();
         return new ResponseEntity<>(FireExtinguisher, HttpStatus.OK);
+    }
+    @GetMapping("/findByOrganizationalUnitId/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
+    public ResponseEntity<List<FireExtinguisher>> getAllFEInSpecificOrganizationalUnit(@PathVariable("id") String id) {
+        List<FireExtinguisher> fire;
+        fire = fireExtinguisherService.findAllFireExtinguisherBYBranch(id);
+        return new ResponseEntity<>(fire, HttpStatus.OK);
+    }
+
+    @GetMapping("/findBySubProcessId/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
+    public ResponseEntity<List<FireExtinguisher>> getAllFEInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
+        List<FireExtinguisher> fireExtinguisher;
+        fireExtinguisher = fireExtinguisherService.findAllFireExtinguisherSubProcess(subProcessId);
+        return new ResponseEntity<>(fireExtinguisher, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
