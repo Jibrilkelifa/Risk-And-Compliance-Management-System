@@ -1,11 +1,13 @@
 package com.cbo.CBO_NFOS_ICMS.services.dashboardService;
 
+import com.cbo.CBO_NFOS_ICMS.models.AllIrregularity;
+import com.cbo.CBO_NFOS_ICMS.models.AllSubCategory;
 import com.cbo.CBO_NFOS_ICMS.models.CIPM.CollateralInsurancePolicy;
 import com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl;
 import com.cbo.CBO_NFOS_ICMS.models.FireExtinguisher.FireExtinguisher;
 import com.cbo.CBO_NFOS_ICMS.models.IFR.IncidentOrFraud;
-import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTOBranchIc;
 import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTODistrictIc;
+
 import com.cbo.CBO_NFOS_ICMS.repositories.CIPMRepository.CollateralInsurancePolicyRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.DACGMRepository.DailyActivityGapControlRepository;
 import com.cbo.CBO_NFOS_ICMS.repositories.FireExtinguisherRepository.FireExtinguisherRepository;
@@ -19,8 +21,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +49,7 @@ public class DashboardDistrictIcService {
     @Autowired
     private CollateralInsurancePolicyRepository collateralInsurancePolicyRepository;
 
-    public DashboardDTODistrictIc getDashboardDataDistrictIc(Long subProcessId) {
+    public DashboardDTODistrictIc getDashboardData(Long subProcessId) {
 
         int totalOutstandingCases = calculateTotalOutstandingCases(subProcessId);
         Object[] newCases = calculateNewCasesDuringQuarter(subProcessId);
@@ -57,7 +61,7 @@ public class DashboardDistrictIcService {
         int closedCases = calculateClosedCases(subProcessId);
         BigDecimal outstandingCasesAmount = calculateOutstandingCasesAmount(subProcessId);
         // Calculate insurance policy-related data
-        int totalActivePolicies = getActivePoliciesByBranch(subProcessId);
+        int totalActivePolicies = getActivePoliciesBySubProcess(subProcessId);
         int expiringIn30Days = calculateExpiringIn30Days(subProcessId);
         int expiredPolicies = calculateExpiredPolicies(subProcessId);
         BigDecimal estimatedLossAmount = calculateEstimatedLossAmount(subProcessId);
@@ -69,20 +73,21 @@ public class DashboardDistrictIcService {
         // Calculate results for DailyActivityGapControl module
 
 //        BigDecimal outstandingCasesDuringMonth = calculateOutstandingCasesDuringMonth(subProcessId);
-        Object[] result = calculateOutstandingCasesForBranch(subProcessId);
+
+        Object[] result = calculateOutstandingCasesForSubProcess(subProcessId);
         BigDecimal totalFinancialOutstandingCases = (BigDecimal) result[0];
         int totalNonFinancialOutstandingCases = (int) result[1];
         BigDecimal outstandingCasesDuringMonth = (BigDecimal) result[2];
         BigDecimal financialPercentageFromLastOutstanding = (BigDecimal) result[3];
         BigDecimal nonFinancialPercentageFromLastOutstanding = (BigDecimal) result[4];
-        Object[] resultt = calculateRectifiedCasesForBranch(subProcessId);
-        BigDecimal totalFinancialRectifiedCases = (BigDecimal) result[0];
+        Object[] resultt = calculateRectifiedCasesForSubProcess(subProcessId);
+        BigDecimal totalFinancialRectifiedCases = (BigDecimal) resultt[0];
         int totalNonFinancialRectifiedCases = (int) resultt[1];
         BigDecimal rectifiedCasesDuringMonth = (BigDecimal) resultt[2];
         BigDecimal financialPercentageFromLastRectified = (BigDecimal) resultt[3];
         BigDecimal nonFinancialPercentageFromLastRectified = (BigDecimal) resultt[4];
 
-        Object[] resulttt = calculateIdentifiedCasesForBranch(subProcessId);
+        Object[] resulttt = calculateIdentifiedCasesForSubProcess(subProcessId);
         BigDecimal totalFinancialIdentifiedCases = (BigDecimal) resulttt[0];
         int totalNonFinancialIdentifiedCases = (int) resulttt[1];
         BigDecimal identifiedCasesDuringMonth = (BigDecimal) resulttt[2];
@@ -126,6 +131,7 @@ public class DashboardDistrictIcService {
         dashboardDTO.setCurrentDayoutstandingEscalatedCases(outstandingEscalatedCases);
         dashboardDTO.setCurrentDaydueCases(dueCases);
         dashboardDTO.setCurrentDaydueIn30Days(dueIn30Days);
+
 //        dashboardDTO.setNewCasesToday(newCasesToday);
 //        dashboardDTO.setDueIn30Days(dueIn30Days);
 //        dashboardDTO.setDueCases(dueCases);
@@ -134,9 +140,11 @@ public class DashboardDistrictIcService {
         return dashboardDTO;
     }
 
-    public Object[] calculateOutstandingCasesForBranch(Long subProcessId) {
-        // Fetch daily activity gap controls for the branch
+    public Object[] calculateOutstandingCasesForSubProcess(Long subProcessId) {
+        // Fetch daily activity gap controls for the district
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
         controls.removeIf(control -> {
@@ -145,12 +153,14 @@ public class DashboardDistrictIcService {
         });
 
         // Calculate financial and non-financial outstanding cases
+        int  totalFinancialOutstandingCasess=0;
         BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
         int totalNonFinancialOutstandingCases = 0;
         BigDecimal tottalOutstandingCases = BigDecimal.ZERO;
         for (DailyActivityGapControl control : controls) {
             if (control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
                 if (isFinancialCategory(control)) {
+                    totalFinancialOutstandingCasess++;
                     totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
                 } else {
                     totalNonFinancialOutstandingCases++;
@@ -159,9 +169,11 @@ public class DashboardDistrictIcService {
             }
         }
 
+
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controls), totalFinancialOutstandingCases);
-        BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
+        BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalFinancialOutstandingCasess));
+        BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
+
 
         // Return all four values as an array
         return new Object[] {
@@ -169,7 +181,10 @@ public class DashboardDistrictIcService {
                 totalNonFinancialOutstandingCases,
                 tottalOutstandingCases,
                 financialChangePercentage,
-                nonFinancialChangePercentage
+                nonFinancialChangePercentage,
+                totalFinancialOutstandingCasess
+
+
 
         };
     }
@@ -184,36 +199,69 @@ public class DashboardDistrictIcService {
     }
 
     private boolean isFinancialCategory(DailyActivityGapControl control) {
-        return control.getIrregularity().getAllSubCategory().equals("Financial");
+        AllIrregularity irregularity = control.getIrregularity();
+        if (irregularity == null) {
+            return false; // Handle case where irregularity is null
+        }
+        AllSubCategory subCategory = irregularity.getAllSubCategory();
+        // Check if the subcategory is of the "Financial" category
+        return subCategory.getName().equals("Financial");
     }
 
-    private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
-        return new BigDecimal(control.getAmountInvolved());
+
+
+
+
+
+//    private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
+//        return new BigDecimal(control.getAmountInvolved());
+//    }
+private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
+    String amountInvolved = control.getAmountInvolved();
+    if (amountInvolved != null && !amountInvolved.isEmpty()) {
+        try {
+            return new BigDecimal(amountInvolved);
+        } catch (NumberFormatException e) {
+            // Log the error or handle it as needed
+            e.printStackTrace();
+        }
     }
+    return BigDecimal.ZERO;
+}
+
+
+
 
     // Placeholder methods to get total financial and non-financial outstanding cases from last month
     private BigDecimal getTotalFinancialOutstandingCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
+        int totalFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
-            LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
+            // Parse the date string
+            LocalDate controlDate = LocalDate.parse(control.getDate(),formatter);
+
+
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
-                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
+                    totalFinancialOutstandingCases++;
                 }
             }
         }
-        return totalFinancialOutstandingCases;
+        return BigDecimal.valueOf(totalFinancialOutstandingCases);
     }
+
 
     private BigDecimal getTotalNonFinancialOutstandingCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
+
         int totalNonFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
-            LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
+            LocalDate controlDate = LocalDate.parse(control.getDate(),formatter);
+
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
+
                 if (!isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
                     totalNonFinancialOutstandingCases++;
                 }
@@ -225,8 +273,10 @@ public class DashboardDistrictIcService {
 
 ///// for rectified cases
 
-    public Object[] calculateRectifiedCasesForBranch(Long subProcessId) {
-        // Fetch daily activity gap controls for the branch
+    public Object[] calculateRectifiedCasesForSubProcess(Long subProcessId) {
+        // Fetch daily activity gap controls for the district
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
+
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
@@ -237,12 +287,15 @@ public class DashboardDistrictIcService {
 
         // Calculate financial and non-financial outstanding cases
         BigDecimal totalFinancialRectifiedCases = BigDecimal.ZERO;
+        int totalFinancialRectifiedCasess=0;
         int totalNonFinancialRectifiedCases = 0;
         BigDecimal totalRectifiedCases = BigDecimal.ZERO;
         for (DailyActivityGapControl controll : controls) {
             if (controll.getActivityStatus() != null && controll.getActivityStatus().getName().equals("Closed")) {
                 if (isFinancialCategory(controll)) {
                     totalFinancialRectifiedCases = totalFinancialRectifiedCases.add(getAmountInvolved(controll));
+
+                    totalFinancialRectifiedCasess++;
                 } else {
                     totalNonFinancialRectifiedCases++;
                 }
@@ -251,8 +304,8 @@ public class DashboardDistrictIcService {
         }
 
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageR = calculateChangePercentageR(getTotalFinancialRectifiedCasesFromLastMonth(controls), totalFinancialRectifiedCases);
-        BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
+        BigDecimal financialChangePercentageR = calculateChangePercentageR(BigDecimal.valueOf(getTotalFinancialRectifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialRectifiedCasess));
+        BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
 
         // Return all four values as an array
         return new Object[] {
@@ -260,7 +313,8 @@ public class DashboardDistrictIcService {
                 totalNonFinancialRectifiedCases,
                 totalRectifiedCases,
                 financialChangePercentageR,
-                nonFinancialChangePercentageR
+                nonFinancialChangePercentageR,
+                totalFinancialRectifiedCasess
 
         };
     }
@@ -275,15 +329,16 @@ public class DashboardDistrictIcService {
     }
 
     // Placeholder methods to get total financial and non-financial outstanding cases from last month
-    private BigDecimal getTotalFinancialRectifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
+    private int getTotalFinancialRectifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialOutstandingCases = BigDecimal.ZERO;
+        int totalFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
-                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
+                    totalFinancialOutstandingCases++;
+//                    totalFinancialOutstandingCases = totalFinancialOutstandingCases.add(getAmountInvolved(control));
                 }
             }
         }
@@ -307,8 +362,10 @@ public class DashboardDistrictIcService {
     }
 
 
-    public Object[] calculateIdentifiedCasesForBranch(Long subProcessId) {
-        // Fetch daily activity gap controls for the branch
+    public Object[] calculateIdentifiedCasesForSubProcess(Long subProcessId) {
+        // Fetch daily activity gap controls for the district
+        List<DailyActivityGapControl> controlss = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
+
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         // Filter controls based on the current month
@@ -318,12 +375,15 @@ public class DashboardDistrictIcService {
         });
 
         // Calculate financial and non-financial identified cases
+        int totalFinancialIdentifiedCasess = 0;
         BigDecimal totalFinancialIdentifiedCases = BigDecimal.ZERO;
         int totalNonFinancialIdentifiedCases = 0;
         BigDecimal totalIdentifiedCases = BigDecimal.ZERO;
+        int totalNonFinancialIdentifiedCasess=0;
         for (DailyActivityGapControl control : controls) {
             if (control.getActivityStatus() != null) {
                 if (isFinancialCategory(control)) {
+                    totalFinancialIdentifiedCasess++;
                     totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
                 } else {
                     totalNonFinancialIdentifiedCases++;
@@ -331,10 +391,9 @@ public class DashboardDistrictIcService {
                 totalIdentifiedCases = totalIdentifiedCases.add(BigDecimal.ONE);
             }
         }
-
         // Calculate the percentage change from last month for financial and non-financial cases
-        BigDecimal financialChangePercentageI = calculateChangePercentageI(getTotalFinancialIdentifiedCasesFromLastMonth(controls), totalFinancialIdentifiedCases);
-        BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controls), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
+        BigDecimal financialChangePercentageI = calculateChangePercentageI(BigDecimal.valueOf(getTotalFinancialIdentifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialIdentifiedCasess));
+        BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
 
         // Return all four values as an array
         return new Object[] {
@@ -342,7 +401,8 @@ public class DashboardDistrictIcService {
                 totalNonFinancialIdentifiedCases,
                 totalIdentifiedCases,
                 financialChangePercentageI,
-                nonFinancialChangePercentageI
+                nonFinancialChangePercentageI,
+                totalFinancialIdentifiedCasess
         };
     }
 
@@ -355,18 +415,21 @@ public class DashboardDistrictIcService {
     }
 
     // Placeholder methods to get total financial and non-financial identified cases from last month
-    private BigDecimal getTotalFinancialIdentifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
+    private int getTotalFinancialIdentifiedCasesFromLastMonth(List<DailyActivityGapControl> controls) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate lastMonth = LocalDate.now().minusMonths(1);
-        BigDecimal totalFinancialIdentifiedCases = BigDecimal.ZERO;
+        int totalFinancialIdentifiedCases = 0;
+
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(), formatter);
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
                 if (isFinancialCategory(control) && control.getActivityStatus() != null) {
-                    totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
+                    totalFinancialIdentifiedCases++;
+//                    totalFinancialIdentifiedCases = totalFinancialIdentifiedCases.add(getAmountInvolved(control));
                 }
             }
         }
+
         return totalFinancialIdentifiedCases;
     }
 
@@ -391,7 +454,7 @@ public class DashboardDistrictIcService {
 
 
     public BigDecimal calculateEstimatedFineAmount(Long subProcessId) {
-        // Fetch the list of fire extinguishers for the branch
+        // Fetch the list of fire extinguishers for the district
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
 
         // Calculate the total fine amount
@@ -402,14 +465,15 @@ public class DashboardDistrictIcService {
     }
 
     private int calculateeExpiredFireExtinguishers(Long subProcessId) {
-        // Fetch the list of fire extinguishers for the branch
+        // Fetch the list of fire extinguishers for the district
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
 
         // Count the number of expired fire extinguishers
         int expiredCount = 0;
         for (FireExtinguisher fire : fires) {
             // Assuming the expiry date is stored in a field called 'inspectionDate'
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(), DATE_FORMATTER);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(), formatter);
             if (expiryDate.isBefore(LocalDate.now())) {
                 expiredCount++;
             }
@@ -424,7 +488,7 @@ public class DashboardDistrictIcService {
     }
 
     public BigDecimal calculateEstimatedLossAmount(Long subProcessId) {
-        // Fetch the list of expired policies for the branch
+        // Fetch the list of expired policies for the district
         List<CollateralInsurancePolicy> expiredPolicies = findExpiredPoliciesBySubProcessId(subProcessId);
 
         // Calculate the total sum insured for all expired policies
@@ -438,7 +502,7 @@ public class DashboardDistrictIcService {
     }
 
     private List<CollateralInsurancePolicy> findExpiredPoliciesBySubProcessId(Long subProcessId) {
-        // Fetch the list of all policies for the branch
+        // Fetch the list of all policies for the district
         List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcessId);
 
         // Create a list to hold the expired policies
@@ -446,14 +510,22 @@ public class DashboardDistrictIcService {
 
         // Check each policy for expiration
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isBefore(LocalDate.now())) {
+                        expiredPolicies.add(policy);
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiredPolicies;
     }
+
 
 
     private int calculateExpiredPolicies(Long subProcessId) {
@@ -462,28 +534,45 @@ public class DashboardDistrictIcService {
 
         // Count the number of policies that are expired
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(),DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredCount++;
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isBefore(LocalDate.now())) {
+                        expiredCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiredCount;
     }
+
     private int calculateExpiredFireExtinguishers(Long subProcessId) {
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
         int expiredCount = 0;
 
-        // Count the number of policies that are expired
+        // Count the number of fire extinguishers that are expired
         for (FireExtinguisher fire : fires) {
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(),DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredCount++;
+            String inspectionDateStr = fire.getInspectionDate();
+            if (inspectionDateStr != null && !inspectionDateStr.isEmpty()) {
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+                    LocalDate inspectionDate = LocalDate.parse(inspectionDateStr, formatter);
+                    if (inspectionDate.isBefore(LocalDate.now())) {
+                        expiredCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this fire extinguisher
+                }
             }
         }
 
         return expiredCount;
     }
+
 
     private int calculateExpiringIn30Days(Long subProcessId) {
         List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcessId);
@@ -491,21 +580,33 @@ public class DashboardDistrictIcService {
 
         // Count the number of policies expiring in the next 30 days
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(),DATE_FORMATTER);
-            if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
-                expiringCount++;
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
+                        expiringCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiringCount;
     }
+
+
     private int calculateEexpiringIn30DaysExtinguiser(Long subProcessId) {
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherBySubProcessId(subProcessId);
         int expiringCount = 0;
 
         // Count the number of policies expiring in the next 30 days
         for (FireExtinguisher fire : fires) {
-            LocalDate expiryDate = LocalDate.parse(fire.getInspectionDate(),DATE_FORMATTER);
+            String inspectionDateString = fire.getInspectionDate();
+            // Assuming the input date string is in ISO 8601 format
+            LocalDateTime inspectionDateTime = LocalDateTime.parse(inspectionDateString, DateTimeFormatter.ISO_DATE_TIME);
+            LocalDate expiryDate = inspectionDateTime.toLocalDate();
             if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
                 expiringCount++;
             }
@@ -514,7 +615,7 @@ public class DashboardDistrictIcService {
         return expiringCount;
     }
 
-    public int getActivePoliciesByBranch(Long subProcessId) {
+    public int getActivePoliciesBySubProcess(Long subProcessId) {
 
         List<CollateralInsurancePolicy> activePolicies = collateralInsurancePolicyRepository.findBySubProcessIdAndStatusName(subProcessId, "Active");
 
@@ -539,7 +640,7 @@ public class DashboardDistrictIcService {
 
 
     public BigDecimal calculateOutstandingCasesAmount(Long subProcessId) {
-        // Fetch all cases for the branch
+        // Fetch all cases for the district
         List<IncidentOrFraud> allCases = incidentOrFraudRepository.findIncidentFraudReportBySubProcessId(subProcessId);
 
         // Calculate the total outstanding amount
@@ -590,13 +691,12 @@ public class DashboardDistrictIcService {
                 closedAndWrittenOffCases.add(caseItem);
             }
         }
-        System.out.println("closed&writtenOff" + closedAndWrittenOffCases.size());
         return closedAndWrittenOffCases.size();
     }
 
 
     public Object[] calculateNewCasesDuringQuarter(Long subProcessId) {
-        // Fetch daily activity gap controls for the branch
+        // Fetch daily activity gap controls for the district
         List<DailyActivityGapControl> controls = dailyActivityGapControlRepository.findDACGMBySubProcessId(subProcessId);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
         LocalDate today = LocalDate.now();
@@ -611,23 +711,23 @@ public class DashboardDistrictIcService {
         for (DailyActivityGapControl control : controls) {
 
 
-                // Check if it's a new case today
-                if (isNewCaseToday(control)) {
-                    newCasesToday++;
-                }
-                // Check if it's due in the next 30 days
-                if (isDueIn30Days(control)) {
-                    dueIn30Days++;
-                }
-                // Check if it's a due case
-                if (isDueCase(control)) {
-                    dueCases++;
-                }
-                // Check if it's an outstanding escalated case
-                if (isOutstandingEscalatedCase(control)) {
-                    outstandingEscalatedCases++;
-                }
+            // Check if it's a new case today
+            if (isNewCaseToday(control)) {
+                newCasesToday++;
             }
+            // Check if it's due in the next 30 days
+            if (isDueIn30Days(control)) {
+                dueIn30Days++;
+            }
+            // Check if it's a due case
+            if (isDueCase(control)) {
+                dueCases++;
+            }
+            // Check if it's an outstanding escalated case
+            if (isOutstandingEscalatedCase(control)) {
+                outstandingEscalatedCases++;
+            }
+        }
 
 
         // Return the counts as an array
@@ -642,6 +742,7 @@ public class DashboardDistrictIcService {
     }
 
 
+
     private boolean isDueIn30Days(DailyActivityGapControl control) {
         String actionPlanDueDate = control.getActionPlanDueDate();
         if (actionPlanDueDate != null && !actionPlanDueDate.equalsIgnoreCase("NULL")) {
@@ -651,7 +752,6 @@ public class DashboardDistrictIcService {
         }
         return false;
     }
-
 
 
     private boolean isDueCase(DailyActivityGapControl control) {

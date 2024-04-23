@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -84,10 +85,14 @@ public class CollateralInsurancePolicyService {
         List<CollateralInsurancePolicy> expiredPolicies = new ArrayList<>();
         for (CollateralInsurancePolicy policy : allPolicies) {
             String expireDateStr = policy.getInsuranceExpireDate();
-            if (expireDateStr != null) {
-                LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
-                if (expiryDate.isBefore(currentDate)) {
-                    expiredPolicies.add(policy);
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isBefore(currentDate)) {
+                        expiredPolicies.add(policy);
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
                 }
             }
         }
@@ -118,13 +123,21 @@ public class CollateralInsurancePolicyService {
         List<CollateralInsurancePolicy> allPolicies = collateralInsurancePolicyRepository.findAll();
         int count = 0;
         for (CollateralInsurancePolicy policy : allPolicies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isAfter(currentDate) && expiryDate.isBefore(thirtyDaysFromNow)) {
-                count++;
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isAfter(currentDate) && expiryDate.isBefore(thirtyDaysFromNow)) {
+                        count++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
         return count;
     }
+
 
     public List<CollateralInsurancePolicy> getPoliciesExpiringWithinThirtyDays() {
         LocalDate currentDate = LocalDate.now();
@@ -149,9 +162,16 @@ public class CollateralInsurancePolicyService {
             List<CollateralInsurancePolicy> policies = collateralInsurancePolicyRepository.findCollateralInsurancePolicyBySubProcessId(subProcess.getId());
             int expiredPoliciesCount = 0;
             for (CollateralInsurancePolicy policy : policies) {
-                LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-                if (expiryDate.isBefore(expirationDate)) {
-                    expiredPoliciesCount++;
+                String expireDateStr = policy.getInsuranceExpireDate();
+                if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                    try {
+                        LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                        if (expiryDate.isBefore(expirationDate)) {
+                            expiredPoliciesCount++;
+                        }
+                    } catch (DateTimeParseException e) {
+                        // Handle parsing error, maybe log it or skip this policy
+                    }
                 }
             }
             Object[] row = {subProcess, expiredPoliciesCount};
@@ -159,6 +179,7 @@ public class CollateralInsurancePolicyService {
         }
         return expiredPoliciesCountBySubProcess;
     }
+
 
     public CollateralInsurancePolicy authorizeIFR(Long id, String caseAuthorizer) {
         CollateralInsurancePolicy row = collateralInsurancePolicyRepository.findById(id).orElseThrow(() -> new UserNotFoundException("IncidentFraudReport by id = " + id + " was not found"));

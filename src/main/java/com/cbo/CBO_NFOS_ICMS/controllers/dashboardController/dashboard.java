@@ -29,7 +29,7 @@ public class dashboard {
     }
     @GetMapping("/dashboard/forDistrictIc/{subProcessId}")
     public ResponseEntity<DashboardDTODistrictIc> getDashboardDataForDistrictIc(@PathVariable Long subProcessId) {
-        DashboardDTODistrictIc dashboardData = dashboardDistrictIcService.getDashboardDataDistrictIc(subProcessId);
+        DashboardDTODistrictIc dashboardData = dashboardDistrictIcService.getDashboardData(subProcessId);
         return new ResponseEntity<>(dashboardData, HttpStatus.OK);
     }
 }

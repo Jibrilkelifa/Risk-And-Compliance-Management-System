@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,7 @@ public class DashboardBranchIcService {
         // Calculate results for DailyActivityGapControl module
 
 //        BigDecimal outstandingCasesDuringMonth = calculateOutstandingCasesDuringMonth(branchId);
+
         Object[] result = calculateOutstandingCasesForBranch(branchId);
         BigDecimal totalFinancialOutstandingCases = (BigDecimal) result[0];
         int totalNonFinancialOutstandingCases = (int) result[1];
@@ -78,7 +80,7 @@ public class DashboardBranchIcService {
         BigDecimal financialPercentageFromLastOutstanding = (BigDecimal) result[3];
         BigDecimal nonFinancialPercentageFromLastOutstanding = (BigDecimal) result[4];
         Object[] resultt = calculateRectifiedCasesForBranch(branchId);
-        BigDecimal totalFinancialRectifiedCases = (BigDecimal) result[0];
+        BigDecimal totalFinancialRectifiedCases = (BigDecimal) resultt[0];
         int totalNonFinancialRectifiedCases = (int) resultt[1];
         BigDecimal rectifiedCasesDuringMonth = (BigDecimal) resultt[2];
         BigDecimal financialPercentageFromLastRectified = (BigDecimal) resultt[3];
@@ -170,7 +172,7 @@ public class DashboardBranchIcService {
         // Calculate the percentage change from last month for financial and non-financial cases
         BigDecimal financialChangePercentage = calculateChangePercentage(getTotalFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalFinancialOutstandingCasess));
         BigDecimal nonFinancialChangePercentage = calculateChangePercentage(getTotalNonFinancialOutstandingCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialOutstandingCases));
-        System.out.println("jibrilllllllllllllllthis" + totalFinancialOutstandingCasess);
+
 
         // Return all four values as an array
         return new Object[] {
@@ -211,7 +213,16 @@ public class DashboardBranchIcService {
 
 
     private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
-        return new BigDecimal(control.getAmountInvolved());
+        String amountInvolved = control.getAmountInvolved();
+        if (amountInvolved != null && !amountInvolved.isEmpty()) {
+            try {
+                return new BigDecimal(amountInvolved);
+            } catch (NumberFormatException e) {
+                // Log the error or handle it as needed
+                e.printStackTrace();
+            }
+        }
+        return BigDecimal.ZERO;
     }
 
     // Placeholder methods to get total financial and non-financial outstanding cases from last month
@@ -230,7 +241,6 @@ public class DashboardBranchIcService {
                 }
             }
         }
-        System.out.println("jibrillllllllllllllllast" + totalFinancialOutstandingCases);
         return BigDecimal.valueOf(totalFinancialOutstandingCases);
     }
 
@@ -242,13 +252,11 @@ public class DashboardBranchIcService {
         int totalNonFinancialOutstandingCases = 0;
         for (DailyActivityGapControl control : controls) {
             LocalDate controlDate = LocalDate.parse(control.getDate(),formatter);
-            System.out.println("lastmontrh" + lastMonth);
-            System.out.println("controldatelastmonth" + controlDate);
+
             if (controlDate.getMonthValue() == lastMonth.getMonthValue() && controlDate.getYear() == lastMonth.getYear()) {
 
                 if (!isFinancialCategory(control) && control.getActivityStatus() != null && control.getActivityStatus().getName().equals("Open")) {
                     totalNonFinancialOutstandingCases++;
-                    System.out.println(control);
                 }
             }
         }
@@ -279,6 +287,7 @@ public class DashboardBranchIcService {
             if (controll.getActivityStatus() != null && controll.getActivityStatus().getName().equals("Closed")) {
                 if (isFinancialCategory(controll)) {
                     totalFinancialRectifiedCases = totalFinancialRectifiedCases.add(getAmountInvolved(controll));
+
                     totalFinancialRectifiedCasess++;
                 } else {
                     totalNonFinancialRectifiedCases++;
@@ -290,7 +299,7 @@ public class DashboardBranchIcService {
         // Calculate the percentage change from last month for financial and non-financial cases
         BigDecimal financialChangePercentageR = calculateChangePercentageR(BigDecimal.valueOf(getTotalFinancialRectifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialRectifiedCasess));
         BigDecimal nonFinancialChangePercentageR = calculateChangePercentageR(getTotalNonFinancialRectifiedasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialRectifiedCases));
-        System.out.println("abdythis"+totalFinancialRectifiedCasess);
+
         // Return all four values as an array
         return new Object[] {
                 totalFinancialRectifiedCases,
@@ -326,7 +335,6 @@ public class DashboardBranchIcService {
                 }
             }
         }
-        System.out.println("abdylast"+totalFinancialOutstandingCases);
         return totalFinancialOutstandingCases;
     }
 
@@ -376,7 +384,6 @@ public class DashboardBranchIcService {
                 totalIdentifiedCases = totalIdentifiedCases.add(BigDecimal.ONE);
             }
         }
-        System.out.println("abdyyyyyyy"+totalFinancialIdentifiedCasess);
         // Calculate the percentage change from last month for financial and non-financial cases
         BigDecimal financialChangePercentageI = calculateChangePercentageI(BigDecimal.valueOf(getTotalFinancialIdentifiedCasesFromLastMonth(controlss)), BigDecimal.valueOf(totalFinancialIdentifiedCasess));
         BigDecimal nonFinancialChangePercentageI = calculateChangePercentageI(getTotalNonFinancialIdentifiedCasesFromLastMonth(controlss), BigDecimal.valueOf(totalNonFinancialIdentifiedCases));
@@ -496,14 +503,22 @@ public class DashboardBranchIcService {
 
         // Check each policy for expiration
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(), DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredPolicies.add(policy);
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isBefore(LocalDate.now())) {
+                        expiredPolicies.add(policy);
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiredPolicies;
     }
+
 
 
     private int calculateExpiredPolicies(String branchId) {
@@ -512,29 +527,43 @@ public class DashboardBranchIcService {
 
         // Count the number of policies that are expired
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(),DATE_FORMATTER);
-            if (expiryDate.isBefore(LocalDate.now())) {
-                expiredCount++;
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isBefore(LocalDate.now())) {
+                        expiredCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiredCount;
     }
+
     private int calculateExpiredFireExtinguishers(String branchId) {
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
-        int expireddCount = 0;
+        int expiredCount = 0;
 
-        // Count the number of policies that are expired
+        // Count the number of fire extinguishers that are expired
         for (FireExtinguisher fire : fires) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-            LocalDate expiryDatee = LocalDate.parse(fire.getInspectionDate(),formatter);
-
-            if (expiryDatee.isBefore(LocalDate.now())) {
-                expireddCount++;
+            String inspectionDateStr = fire.getInspectionDate();
+            if (inspectionDateStr != null && !inspectionDateStr.isEmpty()) {
+                try {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+                    LocalDate inspectionDate = LocalDate.parse(inspectionDateStr, formatter);
+                    if (inspectionDate.isBefore(LocalDate.now())) {
+                        expiredCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this fire extinguisher
+                }
             }
         }
 
-        return expireddCount;
+        return expiredCount;
     }
 
 
@@ -544,14 +573,23 @@ public class DashboardBranchIcService {
 
         // Count the number of policies expiring in the next 30 days
         for (CollateralInsurancePolicy policy : policies) {
-            LocalDate expiryDate = LocalDate.parse(policy.getInsuranceExpireDate(),DATE_FORMATTER);
-            if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
-                expiringCount++;
+            String expireDateStr = policy.getInsuranceExpireDate();
+            if (expireDateStr != null && !expireDateStr.isEmpty()) {
+                try {
+                    LocalDate expiryDate = LocalDate.parse(expireDateStr, DATE_FORMATTER);
+                    if (expiryDate.isAfter(LocalDate.now()) && expiryDate.isBefore(LocalDate.now().plusDays(30))) {
+                        expiringCount++;
+                    }
+                } catch (DateTimeParseException e) {
+                    // Handle parsing error, maybe log it or skip this policy
+                }
             }
         }
 
         return expiringCount;
     }
+
+
     private int calculateEexpiringIn30DaysExtinguiser(String branchId) {
         List<FireExtinguisher> fires = fireExtinguisherRepository.findFireExtinguisherByBranchId(branchId);
         int expiringCount = 0;
@@ -646,7 +684,6 @@ public class DashboardBranchIcService {
                 closedAndWrittenOffCases.add(caseItem);
             }
         }
-        System.out.println("closed&writtenOff" + closedAndWrittenOffCases.size());
         return closedAndWrittenOffCases.size();
     }
 
