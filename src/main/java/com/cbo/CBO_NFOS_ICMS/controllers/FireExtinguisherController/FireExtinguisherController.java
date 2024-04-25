@@ -85,7 +85,7 @@ public class FireExtinguisherController {
 
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
 
     public ResponseEntity<?> deleteFireExtinguisher(@PathVariable("id") Long id) {
         fireExtinguisherService.deleteFireExtinguisher(id);
