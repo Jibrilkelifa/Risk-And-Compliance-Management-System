@@ -250,7 +250,6 @@ public class DatabaseSeeder {
         seedAllCategoriesTable("Fund Management", findSubModuleByCode("FPIC"));
         seedAllCategoriesTable("Tax", findSubModuleByCode("FPIC"));
         seedAllCategoriesTable("Reconciliation", findSubModuleByCode("FPIC"));
-        seedAllCategoriesTable("Other", findSubModuleByCode("FPIC"));
 
 
 

@@ -28,7 +28,7 @@ public class FinanceController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE')")
     public ResponseEntity<List<Finance>> getFinance() {
         List<Finance> Finance = financeService.findAllFinance();
         return new ResponseEntity<>(Finance, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class FinanceController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<Finance> addIFB
             (@RequestBody Finance finance) {
         LocalDate date = LocalDate.now();
@@ -79,7 +79,7 @@ public class FinanceController {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
     public ResponseEntity<Finance> updateIFB
             (@RequestBody Finance finance) {
         System.out.println(finance.getFinanceStatus());
@@ -89,14 +89,14 @@ public class FinanceController {
     }
 
     @GetMapping("/getSize")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR')")
+    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR','ICMS_FINANCE')")
     public int getIFBSize() {
         return financeService.findFinanceSize();
     }
 
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasRole('ICMS_ADMIN')")
 
     public ResponseEntity<?> deleteIFB(@PathVariable("id") Long id) {
         financeService.deleteFinance(id);
@@ -106,7 +106,6 @@ public class FinanceController {
     @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT_IC')")
     @PatchMapping("/approveActionPlan/{id}")
     public ResponseEntity<Finance> approveActionPlan(@PathVariable Long id, @RequestBody Finance finance) {
-        System.out.println("rrrr" + finance);
         try {
             if (!id.equals(finance.getId())) {
                 throw new IllegalArgumentException("ID in the path variable and finance object must match");
