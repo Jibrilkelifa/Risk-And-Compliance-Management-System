@@ -6,6 +6,7 @@ import com.cbo.CBO_NFOS_ICMS.models.CIPM.Status;
 import com.cbo.CBO_NFOS_ICMS.models.IFB.ProductType;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Branch;
 import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.SubProcess;
+import com.cbo.CBO_NFOS_ICMS.models.UserAndEmployee.Team;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -58,7 +59,7 @@ public class Finance {
     private Branch branch;
     @ManyToOne
     @JoinColumn(name = "team_id")
-    private Branch team;
+    private Team team;
 
     @ManyToOne
     @JoinColumn(name = "sub_process_id")

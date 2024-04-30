@@ -28,7 +28,7 @@ public class FinanceController {
     }
 
     @GetMapping("/getAll")
-    @PreAuthorize("hasAnyRole('ICMS_FINANCE')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_OWNER')")
     public ResponseEntity<List<Finance>> getFinance() {
         List<Finance> Finance = financeService.findAllFinance();
         return new ResponseEntity<>(Finance, HttpStatus.OK);
@@ -42,7 +42,7 @@ public class FinanceController {
     }
 
     @PostMapping("/add")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public ResponseEntity<Finance> addIFB
             (@RequestBody Finance finance) {
         LocalDate date = LocalDate.now();
@@ -79,7 +79,7 @@ public class FinanceController {
     }
 
     @PutMapping("/update")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public ResponseEntity<Finance> updateIFB
             (@RequestBody Finance finance) {
         System.out.println(finance.getFinanceStatus());
@@ -89,7 +89,7 @@ public class FinanceController {
     }
 
     @GetMapping("/getSize")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_BRANCH_IC', 'ICMS_PROVISION','ICMS_ADMIN','ICMS_DISTRICT_DIRECTOR','ICMS_FINANCE')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public int getIFBSize() {
         return financeService.findFinanceSize();
     }
@@ -103,7 +103,7 @@ public class FinanceController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_DISTRICT_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_OWNER')")
     @PatchMapping("/approveActionPlan/{id}")
     public ResponseEntity<Finance> approveActionPlan(@PathVariable Long id, @RequestBody Finance finance) {
         try {
@@ -119,7 +119,7 @@ public class FinanceController {
 
 
     @PatchMapping("/escalate/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public ResponseEntity<Finance>escalatePlan(@PathVariable("id") Long id)
     {
         try
@@ -134,7 +134,7 @@ public class FinanceController {
     }
 
     @GetMapping("/findByOrganizationalUnitId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_BRANCH_MANAGER','ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public ResponseEntity<List<Finance>> getAllFinanceInSpecificOrganizationalUnit(@PathVariable("id") Long id) {
         List<Finance> Finance;
         Finance = financeService.findAllFinanceInSpecificOrganizationalUnit(id);
@@ -142,7 +142,7 @@ public class FinanceController {
     }
 
     @GetMapping("/findBySubProcessId/{id}")
-    @PreAuthorize("hasAnyRole('ICMS_DISTRICT_IC','ICMS_DISTRICT_DIRECTOR')")
+    @PreAuthorize("hasAnyRole('ICMS_FINANCE_IC')")
     public ResponseEntity<List<Finance>> getAllFinanceInSpecificSubProcess(@PathVariable("id") Long subProcessId) {
         List<Finance> Finance;
         Finance = financeService.findAllFinanceInSpecificSubProcess(subProcessId);
