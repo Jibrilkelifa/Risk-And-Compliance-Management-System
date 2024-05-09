@@ -59,3 +59,17 @@ Psrc/main/java/com/cbo/CBO_NFOS_ICMS/models/dashboard/DashboardDTODistrictIc.jav
 [src/main/java/com/cbo/CBO_NFOS_ICMS/services/dashboardService/DashboardBranchIcService.java,2\c\2c71cbbb2be9df7ab53f70e1dc2ab7daa8e41f0e
 ç
 ]src/main/java/com/cbo/CBO_NFOS_ICMS/services/dashboardService/DashboardDistrictIcService.java,4\8\48bdf2c03bdb83e1f371692ce37b3751f3b36e34
+s
+Csrc/main/java/com/cbo/CBO_NFOS_ICMS/models/IFR/IncidentOrFraud.java,0\9\0950f98b20645142f839cf8f38bb7cd9cc1857fe
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/DACGMController/ActivityStatusController.java,c\e\ce877731fd7cd80892c72205772e19038969d734
+u
+Esrc/main/java/com/cbo/CBO_NFOS_ICMS/models/UserAndEmployee/ERole.java,7\6\76fcac542a864e5eac840cf1defcf01476bc8818
+~
+Nsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/dashboard/DashboardDTOBranchIc.java,b\1\b1ec8cd7993c1d1b595222abe488ca2a0e4ee4e6
+õ
+ksrc/main/java/com/cbo/CBO_NFOS_ICMS/repositories/FireExtinguisherRepository/FireExtinguisherRepository.java,7\7\777f9cfd17a6e72d1c2858965a4efcd4fe91f516
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/DCQController/DishonoredChequeController.java,5\1\51a0377b23fb55a130d82ccbcb4e466ac484f288
+Ñ
+Tsrc/main/java/com/cbo/CBO_NFOS_ICMS/services/DCQService/DishonoredChequeService.java,8\7\87f4ba5bd09832285994dd6b9152b7cbda87d500

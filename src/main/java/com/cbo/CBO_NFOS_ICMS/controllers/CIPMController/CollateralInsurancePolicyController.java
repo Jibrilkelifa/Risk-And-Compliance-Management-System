@@ -58,9 +58,16 @@ public class CollateralInsurancePolicyController {
         CollateralInsurancePolicy CollateralInsurancePolicy = collateralInsurancePolicyService.findCollateralInsurancePolicyById(id);
         return new ResponseEntity<>(CollateralInsurancePolicy, HttpStatus.OK);
     }
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
+
+    public ResponseEntity<?> deleteCipm(@PathVariable("id") Long id) {
+        collateralInsurancePolicyService.deleteCollateralInsurancePolicy(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
+    @PreAuthorize("hasAnyRole('ICMS_BRANCH_IC','ICMS_IFB')")
     public ResponseEntity<CollateralInsurancePolicy> addCollateralInsurancePolicy
             (@RequestBody CollateralInsurancePolicy collateralInsurancePolicy) {
 
@@ -104,13 +111,6 @@ public class CollateralInsurancePolicyController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
-
-    public ResponseEntity<?> deleteCollateralInsurancePolicy(@PathVariable("id") Long id) {
-        collateralInsurancePolicyService.deleteCollateralInsurancePolicy(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/getTotalNumberOfPolicies")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")

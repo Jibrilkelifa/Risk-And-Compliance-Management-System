@@ -10,5 +10,5 @@ java:S46848"@Replace this persistent entity with a simple POJO or DTO object.(¸
 b
 java:S4684@"@Replace this persistent entity with a simple POJO or DTO object.(ğ‹üºÿÿÿÿÿ8¤®ÒÈÄ1
 C
-java:S1452H"&Remove usage of generic wildcard type.(çÕä°8¥®ÒÈÄ1
-]	java:S125s"<This block of commented-out lines of code should be removed.(˜Èø™üÿÿÿÿ8­®ÒÈÄ1
+java:S1452m"&Remove usage of generic wildcard type.(àÀ¸“8 ÷¬Âõ1
+]	java:S125t"<This block of commented-out lines of code should be removed.(˜Èø™üÿÿÿÿ8­®ÒÈÄ1

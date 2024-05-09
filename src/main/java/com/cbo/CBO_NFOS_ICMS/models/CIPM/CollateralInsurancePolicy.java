@@ -68,7 +68,6 @@ public class CollateralInsurancePolicy {
 
     @ManyToOne
     @JoinColumn(name = "branch_id")
-    @NotNull
     private Branch branch;
 
     @ManyToOne

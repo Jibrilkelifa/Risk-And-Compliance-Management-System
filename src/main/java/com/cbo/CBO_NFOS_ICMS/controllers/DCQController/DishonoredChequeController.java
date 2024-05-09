@@ -66,13 +66,7 @@ public class DishonoredChequeController {
         return new ResponseEntity<>(updateDishonoredCheque, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
-    public ResponseEntity<?> deleteDishonouredCheque(@PathVariable("id") Long id) {
-        dishonoredChequeService.deleteDishonouredCheque(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/getFrequencyForAccountNumber/{accountNumber}")
     public Frequency getDCFrequency(@PathVariable("accountNumber") String accountNumber) {
@@ -108,6 +102,13 @@ public class DishonoredChequeController {
     public ResponseEntity<Integer> countDishonouredChequesThreeTimesInLastWeek() {
         int count = dishonoredChequeService.countDishonouredChequesThreeTimesInLastWeek();
         return ResponseEntity.ok(count);
+    }
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
+
+    public ResponseEntity<?> deleteCheque(@PathVariable("id") Long id) {
+        dishonoredChequeService.deleteDishonouredCheque(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 /*    @GetMapping("/three-times-in-last-week-list")

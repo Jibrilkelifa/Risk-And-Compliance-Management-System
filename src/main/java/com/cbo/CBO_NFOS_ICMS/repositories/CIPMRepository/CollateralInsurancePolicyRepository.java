@@ -28,4 +28,5 @@ public interface CollateralInsurancePolicyRepository extends JpaRepository<Colla
     List<CollateralInsurancePolicy> findByBranchIdAndStatusName(String branchId, String statusName);
     List<CollateralInsurancePolicy> findBySubProcessIdAndStatusName(Long subProcessId, String statusName);
 
+    List<CollateralInsurancePolicy> findByStatusName(String active);
 }

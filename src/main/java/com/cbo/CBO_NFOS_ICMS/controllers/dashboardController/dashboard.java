@@ -1,7 +1,9 @@
 package com.cbo.CBO_NFOS_ICMS.controllers.dashboardController;
 
+import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTOAdmin;
 import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTOBranchIc;
 import com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTODistrictIc;
+import com.cbo.CBO_NFOS_ICMS.services.dashboardService.DashboardAdminService;
 import com.cbo.CBO_NFOS_ICMS.services.dashboardService.DashboardBranchIcService;
 import com.cbo.CBO_NFOS_ICMS.services.dashboardService.DashboardDistrictIcService;
 import org.springframework.http.HttpStatus;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/view")
 public class dashboard {
     private  final DashboardBranchIcService dashboardBranchIcService;
+    private final DashboardAdminService dashboardAdminService;
     private final DashboardDistrictIcService dashboardDistrictIcService;
 
-    public dashboard(DashboardBranchIcService dashboardBranchIcService, DashboardDistrictIcService dashboardDistrictIcService) {
+    public dashboard(DashboardBranchIcService dashboardBranchIcService, DashboardAdminService dashboardAdminService, DashboardDistrictIcService dashboardDistrictIcService) {
         this.dashboardBranchIcService = dashboardBranchIcService;
+        this.dashboardAdminService = dashboardAdminService;
         this.dashboardDistrictIcService = dashboardDistrictIcService;
     }
 
@@ -30,6 +34,11 @@ public class dashboard {
     @GetMapping("/dashboard/forDistrictIc/{subProcessId}")
     public ResponseEntity<DashboardDTODistrictIc> getDashboardDataForDistrictIc(@PathVariable Long subProcessId) {
         DashboardDTODistrictIc dashboardData = dashboardDistrictIcService.getDashboardData(subProcessId);
+        return new ResponseEntity<>(dashboardData, HttpStatus.OK);
+    }
+    @GetMapping("/dashboard/forAdmin")
+    public ResponseEntity<DashboardDTOAdmin> getDashboardDataForAdmin() {
+        DashboardDTOAdmin dashboardData = dashboardAdminService.getDashboardData();
         return new ResponseEntity<>(dashboardData, HttpStatus.OK);
     }
 }

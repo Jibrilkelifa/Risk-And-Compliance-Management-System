@@ -556,7 +556,7 @@ private BigDecimal getAmountInvolved(DailyActivityGapControl control) {
 
         // Count the number of fire extinguishers that are expired
         for (FireExtinguisher fire : fires) {
-            String inspectionDateStr = fire.getInspectionDate();
+            String inspectionDateStr = fire.getNextInspectionDate();
             if (inspectionDateStr != null && !inspectionDateStr.isEmpty()) {
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");

@@ -549,7 +549,7 @@ public class DashboardBranchIcService {
 
         // Count the number of fire extinguishers that are expired
         for (FireExtinguisher fire : fires) {
-            String inspectionDateStr = fire.getInspectionDate();
+            String inspectionDateStr = fire.getNextInspectionDate();
             if (inspectionDateStr != null && !inspectionDateStr.isEmpty()) {
                 try {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX");
@@ -596,7 +596,7 @@ public class DashboardBranchIcService {
 
         // Count the number of policies expiring in the next 30 days
         for (FireExtinguisher fire : fires) {
-            String inspectionDateString = fire.getInspectionDate();
+            String inspectionDateString = fire.getNextInspectionDate();
             // Assuming the input date string is in ISO 8601 format
             LocalDateTime inspectionDateTime = LocalDateTime.parse(inspectionDateString, DateTimeFormatter.ISO_DATE_TIME);
             LocalDate expiryDate = inspectionDateTime.toLocalDate();

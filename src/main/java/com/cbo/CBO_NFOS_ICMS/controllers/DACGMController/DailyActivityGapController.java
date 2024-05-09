@@ -77,6 +77,13 @@ public class DailyActivityGapController {
         Map<String,Long> subCategoryCounts = dACGMService.getDacgmNumbersBySubCategoryAndBranch(branchId);
         return ResponseEntity.ok(subCategoryCounts);
     }
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
+
+    public ResponseEntity<?> deleteDacgm(@PathVariable("id") Long id) {
+        dACGMService.deleteDACGM(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     @GetMapping("/subcategories/count/by-subprocess/{subProcessId}")
     public ResponseEntity<Map<String, Long>> getDacgmNumbersBySubCategoryAndSubProcess(@PathVariable("subProcessId") Long subProcessId) {
@@ -119,13 +126,7 @@ public class DailyActivityGapController {
 //        DailyActivityGapControl approvedDailyActivityGapControl = dACGMService.approveDACGM(dACGM);
 //        return new ResponseEntity<>(approvedDailyActivityGapControl, HttpStatus.CREATED);
 //    }
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
-    public ResponseEntity<?> deleteDACGM(@PathVariable("id") Long id) {
-        dACGMService.deleteDACGM(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 
 

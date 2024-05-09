@@ -59,3 +59,17 @@ Jsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/UserAndEmployee/SubProcess.java,8\4
 hsrc/main/java/com/cbo/CBO_NFOS_ICMS/repositories/CIPMRepository/CollateralInsurancePolicyRepository.java,b\8\b8b175973985750608d0dc1f51d7850937373cfb
 Ä
 Psrc/main/java/com/cbo/CBO_NFOS_ICMS/models/dashboard/DashboardDTODistrictIc.java,9\7\9782a79dbfeaf9bcb96c317e3853155b040e756f
+~
+Nsrc/main/java/com/cbo/CBO_NFOS_ICMS/models/dashboard/DashboardDTOBranchIc.java,b\1\b1ec8cd7993c1d1b595222abe488ca2a0e4ee4e6
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/DACGMController/ActivityStatusController.java,c\e\ce877731fd7cd80892c72205772e19038969d734
+s
+Csrc/main/java/com/cbo/CBO_NFOS_ICMS/models/IFR/IncidentOrFraud.java,0\9\0950f98b20645142f839cf8f38bb7cd9cc1857fe
+u
+Esrc/main/java/com/cbo/CBO_NFOS_ICMS/models/UserAndEmployee/ERole.java,7\6\76fcac542a864e5eac840cf1defcf01476bc8818
+Ñ
+Tsrc/main/java/com/cbo/CBO_NFOS_ICMS/services/DCQService/DishonoredChequeService.java,8\7\87f4ba5bd09832285994dd6b9152b7cbda87d500
+ç
+]src/main/java/com/cbo/CBO_NFOS_ICMS/controllers/DCQController/DishonoredChequeController.java,5\1\51a0377b23fb55a130d82ccbcb4e466ac484f288
+õ
+ksrc/main/java/com/cbo/CBO_NFOS_ICMS/repositories/FireExtinguisherRepository/FireExtinguisherRepository.java,7\7\777f9cfd17a6e72d1c2858965a4efcd4fe91f516

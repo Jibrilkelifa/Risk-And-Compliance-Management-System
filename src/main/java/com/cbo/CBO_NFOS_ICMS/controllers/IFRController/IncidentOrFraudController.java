@@ -293,14 +293,7 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
         }
     }
 
-    @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('ICMS_BRANCH_IC')")
 
-
-    public ResponseEntity<?> deleteIncidentFraudReport(@PathVariable("id") Long id) {
-        incidentOrFraudService.deleteIncidentFraudReport(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     @GetMapping("/getLastWeekCasesCount")
     @PreAuthorize("hasAnyRole('ICMS_ADMIN')")
@@ -314,6 +307,13 @@ public ResponseEntity<byte[]> getImage(@PathVariable Long id) throws IOException
     public ResponseEntity<Map<String, Integer>> getIncidentOrFraudCasesLastWeekByFraudType() {
         Map<String, Integer> countMap = incidentOrFraudService.findNumberOfIncidentOrFraudCasesLastWeekByFraudType();
         return new ResponseEntity<>(countMap, HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasAnyRole('ICMS_ADMIN', 'SUPER_ADMIN')")
+
+    public ResponseEntity<?> deleteFraud(@PathVariable("id") Long id) {
+        incidentOrFraudService.deleteIncidentFraudReport(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/getOutstandingCasesDuringQuarter")

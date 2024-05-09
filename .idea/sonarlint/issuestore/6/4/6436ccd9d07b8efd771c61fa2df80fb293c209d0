@@ -1,15 +1,17 @@
 
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á†Œúÿÿÿÿ
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Á†Œúÿÿÿÿ
 n	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ô–ÆR
 W
-java:S1854."ARemove this useless assignment to local variable "formattedDate".(ÀÑòŠ
+java:S1854>"ARemove this useless assignment to local variable "formattedDate".(ÀÑòŠ
 V
-java:S4684+"@Replace this persistent entity with a simple POJO or DTO object.(Ü×È
+java:S4684;"@Replace this persistent entity with a simple POJO or DTO object.(Ü×È
 H
-java:S1481."2Remove this unused "formattedDate" local variable.(ÀÑòŠ
+java:S1481>"2Remove this unused "formattedDate" local variable.(ÀÑòŠ
 V
-java:S4684:"@Replace this persistent entity with a simple POJO or DTO object.(Ü×È
+java:S4684J"@Replace this persistent entity with a simple POJO or DTO object.(Ü×È
 A
-java:S1452J"&Remove usage of generic wildcard type.(²¯£¥üÿÿÿÿ
+java:S1452Z"&Remove usage of generic wildcard type.(²¯£¥üÿÿÿÿ
+y
+java:S1128"WRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.DACGM.DailyActivityGapControl'.(‰ÂçËÿÿÿÿÿ8®ö¬Âõ1
 K
-java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á
+java:S1068"5Remove this unused "subProcessService" private field.(–œ‚á

@@ -1,35 +1,32 @@
 
 
-java:S1192¦"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8äê‰˜â1
+java:S1192Ú"^Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'" 10 times.(Å±íÿÿÿÿÿ8äê‰˜â1
 j
-java:S1192ø"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8åê‰˜â1
+java:S1192ª"GDefine a constant instead of duplicating this literal "Closed" 3 times.(İ†¸†ûÿÿÿÿ8åê‰˜â1
 o
-java:S1192ª"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8åê‰˜â1
+java:S1192Ş"LDefine a constant instead of duplicating this literal "Outstanding" 5 times.(”ÏÅøüÿÿÿÿ8åê‰˜â1
 X
-java:S1141Í"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8éê‰˜â1
-r	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8éê‰˜â1
-r	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8éê‰˜â1
-r	java:S117M"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8êê‰˜â1
-m	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8êê‰˜â1
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8éê‰˜â1
+r	java:S117*"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù¿Óìûÿÿÿÿ8éê‰˜â1
+r	java:S117D"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8éê‰˜â1
+r	java:S117L"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”óˆşûÿÿÿÿ8êê‰˜â1
+m	java:S117T"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚»¿÷8êê‰˜â1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¨ßîõûÿÿÿÿ8ùê‰˜â1
-W	java:S125`"<This block of commented-out lines of code should be removed.(Ö…€j8Õ‚Š˜â1
-H	java:S106š"+Replace this use of System.out by a logger.(ô¿½´8ƒŠ˜â1
-Y	java:S125Ø"<This block of commented-out lines of code should be removed.(ış†Ó8ŸƒŠ˜â1
-^	java:S125€"<This block of commented-out lines of code should be removed.(§Ÿ…ùÿÿÿÿ8§ƒŠ˜â1
-Y	java:S125"<This block of commented-out lines of code should be removed.(ÄúäÁ8±ƒŠ˜â1
+G	java:S106k"+Replace this use of System.out by a logger.(ô¿½´8ƒŠ˜â1
+^	java:S125´"<This block of commented-out lines of code should be removed.(§Ÿ…ùÿÿÿÿ8§ƒŠ˜â1
+Y	java:S125Ñ"<This block of commented-out lines of code should be removed.(ÄúäÁ8±ƒŠ˜â1
 ‰
-java:S1130¬"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(È‚ŠO8´ƒŠ˜â1
-H	java:S106´"+Replace this use of System.out by a logger.(Ïä™ø8¶ƒŠ˜â1
-I
-java:S1452ø"&Remove usage of generic wildcard type.(ˆó§©øÿÿÿÿ8ÅƒŠ˜â1
+java:S1130à"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(È‚ŠO8´ƒŠ˜â1
+H	java:S106è"+Replace this use of System.out by a logger.(Ïä™ø8¶ƒŠ˜â1
+D
+java:S1452º"&Remove usage of generic wildcard type.(ÃŸÒÂ8œ‹­Âõ1
 b
-java:S1854£"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8„Š˜â1
-^	java:S125Ğ"<This block of commented-out lines of code should be removed.(«§˜‰ùÿÿÿÿ8„Š˜â1
+java:S1854ƒ"DRemove this useless assignment to local variable "outstandingCases".(Ç šÙ8„Š˜â1
 S
-java:S1481£"5Remove this unused "outstandingCases" local variable.(Ç šÙ8“„Š˜â1
+java:S1481ƒ"5Remove this unused "outstandingCases" local variable.(Ç šÙ8“„Š˜â1
 k
-java:S5361À"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8„Š˜â1
-S
-java:S1128"6Remove this unused import 'javax.annotation.Resource'.(î¾Ì—8Æ„Š˜â1
-F
-java:S1128")Remove this unused import 'java.io.File'.(†Ğ¥Å8Æ„Š˜â1
+java:S5361Ÿ"HReplace this call to "replaceAll()" by a call to the "replace()" method.(ªûŠ›ÿÿÿÿÿ8„Š˜â1
+[
+java:S1854¿">Remove this useless assignment to local variable "endQuarter".(ÿ‹­!8¸‹­Âõ1
+L
+java:S1481¿"/Remove this unused "endQuarter" local variable.(ÿ‹­!8»‹­Âõ1

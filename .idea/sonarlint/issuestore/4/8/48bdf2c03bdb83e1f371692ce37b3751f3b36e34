@@ -1,51 +1,47 @@
 
 x
-java:S1192"\Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSSX" 12 times.(ä­Ùœıÿÿÿÿ
+java:S1192”"\Define a constant instead of duplicating this literal "yyyy-MM-dd'T'HH:mm:ss.SSSX" 14 times.(ä­Ùœıÿÿÿÿ
 c
-java:S1192ô"GDefine a constant instead of duplicating this literal "Closed" 3 times.(ºÙú—üÿÿÿÿ
+java:S1192¦"GDefine a constant instead of duplicating this literal "Closed" 3 times.(ºÙú—üÿÿÿÿ
 F
-java:S1066Ë"/Merge this if statement with the enclosing one.(•ñùÈ
+java:S1066ö"/Merge this if statement with the enclosing one.(•ñùÈ
 K
-java:S1066Ú"/Merge this if statement with the enclosing one.(İí ¼üÿÿÿÿ
+java:S1066‰"/Merge this if statement with the enclosing one.(İí ¼üÿÿÿÿ
 F
-java:S1066"/Merge this if statement with the enclosing one.(•ñùÈ
+java:S1066Ó"/Merge this if statement with the enclosing one.(•ñùÈ
 F
-java:S1066­"/Merge this if statement with the enclosing one.(Ö§Ï·
+java:S1066ã"/Merge this if statement with the enclosing one.(Ö§Ï·
 F
-java:S1066î"/Merge this if statement with the enclosing one.(½öíç
+java:S1066ª"/Merge this if statement with the enclosing one.(½öíç
 K
-java:S1066ı"/Merge this if statement with the enclosing one.(Ø¿”úÿÿÿÿ
+java:S1066»"/Merge this if statement with the enclosing one.(Ø¿”úÿÿÿÿ
 ƒ
-java:S1488"gImmediately return this expression instead of assigning it to the temporary variable "totalFineAmount".(ãú˜ëıÿÿÿÿ
+java:S1488Î"gImmediately return this expression instead of assigning it to the temporary variable "totalFineAmount".(ãú˜ëıÿÿÿÿ
 b
-java:S2184"FCast one of the operands of this multiplication operation to a "long".(ãú˜ëıÿÿÿÿ
+java:S2184Î"FCast one of the operands of this multiplication operation to a "long".(ãú˜ëıÿÿÿÿ
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(İ˜ÿñøÿÿÿÿ
 o
-java:S3008,"YRename this field "DATE_FORMATTER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßĞÚü
+java:S30080"YRename this field "DATE_FORMATTER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ßĞÚü
 
-java:S4144"jUpdate this method so that its implementation is not identical to "calculateChangePercentage" on line 178.(Íù™ñ
+java:S4144Â"jUpdate this method so that its implementation is not identical to "calculateChangePercentage" on line 192.(Íù™ñ
 
-java:S4144Ş"jUpdate this method so that its implementation is not identical to "calculateChangePercentage" on line 178.(ê‡¨ß
-–
-java:S4144—"Update this method so that its implementation is not identical to "getTotalFinancialOutstandingCasesFromLastMonth" on line 196.(ê‡çˆ
-
-java:S4144Ú"sUpdate this method so that its implementation is not identical to "calculateeExpiredFireExtinguishers" on line 405.(è¯¡Çÿÿÿÿÿ
-Q	java:S125G"<This block of commented-out lines of code should be removed.(»–Ìµ
-W	java:S125‚"<This block of commented-out lines of code should be removed.(¼Š¨ÿÿÿÿÿ
-m
-java:S2159¼"VRemove this call to "equals"; comparisons between unrelated types always return false.(ãäƒ
+java:S4144™"jUpdate this method so that its implementation is not identical to "calculateChangePercentage" on line 192.(ê‡¨ß
+Q	java:S125K"<This block of commented-out lines of code should be removed.(»–Ìµ
+W	java:S125‡"<This block of commented-out lines of code should be removed.(¼Š¨ÿÿÿÿÿ
+^	java:S125Ø"<This block of commented-out lines of code should be removed.(ëÄ°Áøÿÿÿÿ8ú£äÍò1
+Y	java:S125Õ"<This block of commented-out lines of code should be removed.(ª·¨±8•¤äÍò1
+d
+java:S1481ş"FRemove this unused "totalNonFinancialIdentifiedCasess" local variable.(Ìôˆã8š¤äÍò1
+^	java:S125¬"<This block of commented-out lines of code should be removed.(ğµÀêüÿÿÿÿ8 ¤äÍò1
 P
-java:S1854Œ"9Remove this useless assignment to local variable "fires".(Àòñ
+java:S1854Ê"9Remove this useless assignment to local variable "fires".(Àòñ
 A
-java:S1481Œ"*Remove this unused "fires" local variable.(Àòñ
-F	java:S106Ò"+Replace this use of System.out by a logger.(¤°„Äûÿÿÿÿ
+java:S1481Ê"*Remove this unused "fires" local variable.(Àòñ
 U
-java:S1854Û"9Remove this useless assignment to local variable "today".(ô“æÚşÿÿÿÿ
+java:S1854¾"9Remove this useless assignment to local variable "today".(ô“æÚşÿÿÿÿ
 Y
-java:S1854Ú"=Remove this useless assignment to local variable "formatter".(ä­Ùœıÿÿÿÿ
+java:S1854½"=Remove this useless assignment to local variable "formatter".(ä­Ùœıÿÿÿÿ
 J
-java:S1481Ú".Remove this unused "formatter" local variable.(ä­Ùœıÿÿÿÿ
+java:S1481½".Remove this unused "formatter" local variable.(ä­Ùœıÿÿÿÿ
 F
-java:S1481Û"*Remove this unused "today" local variable.(ô“æÚşÿÿÿÿ
-s
-java:S1128"XRemove this unused import 'com.cbo.CBO_NFOS_ICMS.models.dashboard.DashboardDTOBranchIc'.(äÜÆºûÿÿÿÿ
+java:S1481¾"*Remove this unused "today" local variable.(ô“æÚşÿÿÿÿ
